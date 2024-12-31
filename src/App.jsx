@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react"
+import axios from "axios";   
+
 
 
 async function createListPokemon() {
   
-  const response = await fetch(
+  const response = await axios.get(
     "https://pokeapi.co/api/v2/pokemon?limit=10"
   );
-  const pokemons = await response.json();
 
-const p =  pokemons.results.map((item) => {
-      const poke = item.name
-      return poke
-  })
-  
-  
-  
-  
 
-    
+
+
+  return response.data.results
+ 
 }
 
-createListPokemon()
+ async function getPokemonDetatils(namePokemon) {
 
-async function getPokemonDetatils(namePokemon) {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${namePokemon}/`
-  );
 
-  const details = await response.json();
-// console.log(details);
 
-  return details
+  const novo = namePokemon.map(async function (item) {
+  
+    const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${item.name}/`
+      );
+    
+      const details = response.data
+
+      return details
+
+})
+
+  const deta = await Promise.all(novo)
+  
+  return deta
 
 }
 
@@ -43,26 +47,27 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const namesPokemons = await createListPokemon()
-      // console.log(namesPokemons);
-      
+      const namesPokemons = await createListPokemon()
+      const detailsPokemons = await getPokemonDetatils(namesPokemons);
+      const teste = [1,2,3]
+      detailsPokemons.push(teste)
+
       
 
 
       
-      // const detailsPokemons = await getPokemonDetatils(namesPokemons);
-      // console.log(detailsPokemons);
-      // setPokedex({
-      //     pokemons: detailsPokemons,
-      // });
-
-      // console.log(pokedex);
+      const namesPokemon = await createListPokemon()
       
+      
+      setPokedex({
+          pokemons: detailsPokemons,
+      });
   };
   fetchData();
   }, []);
 
-
+  // console.log(pokedex.pokemons);
+  
 
   return (
 
@@ -70,9 +75,26 @@ function App() {
 
 
 
-    <>
-        <p>{}</p>
-        <p>{}</p>
+    <>  
+      
+        {pokedex.pokemons.map((pokemon) => {
+
+           return (
+
+              <p>{pokemon.name}</p>
+
+           );
+
+
+
+      })}
+
+
+
+
+
+
+
     </>
   )
 }
