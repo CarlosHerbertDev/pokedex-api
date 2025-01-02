@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios";   
-import { Button } from "../button/button";
+import { ButtonNextList } from "../button/button-next-list";
 
 
 
@@ -10,21 +10,16 @@ async function createListPokemon() {
         "https://pokeapi.co/api/v2/pokemon?limit=10"
     );
     return response.data
-
 }
 
-async function nextListPokemons(nextList) {
-    const response = await axios.get(`${nextList}`);
+async function nextListPokemons(numberList) {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${numberList}&limit=10`);
     return response.data.results
 }
 
-
-
-
-
 async function getPokemonDetatils(namePokemon) {
 
-    const novo = namePokemon.map(async function (item) {
+    const listDetails = namePokemon.map(async function (item) {
     const response = await axios.get(
         `https://pokeapi.co/api/v2/pokemon/${item.name}/`
     );
@@ -32,10 +27,27 @@ async function getPokemonDetatils(namePokemon) {
         return details
 
 })
-    const deta = await Promise.all(novo)
+    const deta = await Promise.all(listDetails)
     return deta
 
 }
+
+const IntroducinPpokemons = ({ list }) => {
+    return (
+        <ul>
+            {list.map((list, index) => {
+                return (
+                    <li key={index}>
+                        <img src={list.sprites.front_default} alt={list.name} />
+                        <p>
+                            {list.name}
+                        </p>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};
 
 
 export const ListPokemons = () => {
@@ -46,98 +58,49 @@ export const ListPokemons = () => {
 
     useEffect(() => {
     const fetchData = async () => {
-        const namesPokemons = await createListPokemon()
+        const namesPokemons = await createListPokemon()        
         const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
         setPokedex({
             pokemons: detailsPokemons,
         });
 
-        // const newFetchData = async () => {
-    
-        //     const namesPokemons = await createListPokemon()
-        //     const newList = await nextListPokemons(namesPokemons.next)
-        //     const newListDetails = await getPokemonDetatils(newList)
-        //     return newListDetails
-            
-            
-        // }
+        console.log(pokedex);
         
-        // newFetchData()
-    
-    
+
         };
         fetchData();
     }, []);
     
-    
-    const ob = {
-        name: 'testando'
-    }
-
-
-    const newFetchData = async () => {
-    
-        const namesPokemons = await createListPokemon()
-        const newList = await nextListPokemons(namesPokemons.next)
-        const newListDetails = await getPokemonDetatils(newList)
-        console.log(newList);
-        
-        return newListDetails
-
-        
-    }
-
-
 
     const addNewList = (newlist)=> {
-        setPokedex({
-            pokemons: [...pokedex.pokemons, newlist],
-        })
-        console.log(pokedex)
-        
-    }
 
+            setPokedex({
+                pokemons: pokedex.pokemons.concat(newlist)
+            })
+        }
 
     return (
-
-
-
-
-
         <>  
-
+{/* 
         {pokedex.pokemons.map((pokemon) => {
 
             return (
 
-                <p>{pokemon.name}</p>
+                <p>{pokemon.name} {pokemon.id}</p>
                 
             );
             
-        })}
-
-        <Button newList={addNewList} onClick = {() => 
-
-        addNewList()
-
-    // setPokedex({
-    //     pokemons: [...pokedex.pokemons, ob],
-    // })
+        })} */}
 
 
-        
-        
-        
-        // setPokedex({
-            //         pokemons: [...newListDetails],
-        // })
-        
-        
-        
-    }>Carregar mais</Button>
-    {console.log(pokedex)}
-        </>
+        <IntroducinPpokemons list = {pokedex.pokemons} />
+        <ButtonNextList 
+            addNewList = {addNewList} 
+            nextListPokemons = {nextListPokemons}
+            getPokemonDetatils = {getPokemonDetatils}
+        >Carregar mais
+       </ButtonNextList>
+    </>
     )
 }
 
-// export default ListPokemons;
