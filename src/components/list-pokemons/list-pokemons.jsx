@@ -80,8 +80,20 @@ export const ListPokemons = () => {
         const namesPokemons = await createListPokemon()
         const newList = await nextListPokemons(namesPokemons.next)
         const newListDetails = await getPokemonDetatils(newList)
+        console.log(newList);
+        
         return newListDetails
 
+        
+    }
+
+
+
+    const addNewList = (newlist)=> {
+        setPokedex({
+            pokemons: [...pokedex.pokemons, newlist],
+        })
+        console.log(pokedex)
         
     }
 
@@ -104,11 +116,13 @@ export const ListPokemons = () => {
             
         })}
 
-        <Button onClick = {() => 
+        <Button newList={addNewList} onClick = {() => 
 
-    setPokedex({
-        pokemons: [...pokedex.pokemons, ob],
-    })
+        addNewList()
+
+    // setPokedex({
+    //     pokemons: [...pokedex.pokemons, ob],
+    // })
 
 
         

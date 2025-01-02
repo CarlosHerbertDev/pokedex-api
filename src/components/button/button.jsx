@@ -1,14 +1,16 @@
+import { useState } from "react"
 
 export const Button = (props) => {
 
+const [array, setArray] = useState({
+    array: {
+        name: "mewto"
+    }
+})
 
 
-
-
-
-
-const teste = () =>{
-    console.log(props);
+function list() {
+    addNewList(array)
 }
 
 
@@ -16,9 +18,8 @@ const teste = () =>{
 
 
 
-
     return (
-        <button {...props}/>
+        <button onClick={list} {...props}/>
     )
     
 }
