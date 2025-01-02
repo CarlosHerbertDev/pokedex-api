@@ -52,17 +52,17 @@ export const ListPokemons = () => {
             pokemons: detailsPokemons,
         });
 
-        const newFetchData = async () => {
+        // const newFetchData = async () => {
     
-            const namesPokemons = await createListPokemon()
-            const newList = await nextListPokemons(namesPokemons.next)
-            const newListDetails = await getPokemonDetatils(newList)
-            return newListDetails
+        //     const namesPokemons = await createListPokemon()
+        //     const newList = await nextListPokemons(namesPokemons.next)
+        //     const newListDetails = await getPokemonDetatils(newList)
+        //     return newListDetails
             
             
-        }
+        // }
         
-        newFetchData()
+        // newFetchData()
     
     
         };
@@ -70,6 +70,20 @@ export const ListPokemons = () => {
     }, []);
     
     
+    const ob = {
+        name: 'testando'
+    }
+
+
+    const newFetchData = async () => {
+    
+        const namesPokemons = await createListPokemon()
+        const newList = await nextListPokemons(namesPokemons.next)
+        const newListDetails = await getPokemonDetatils(newList)
+        return newListDetails
+
+        
+    }
 
 
     return (
@@ -91,16 +105,23 @@ export const ListPokemons = () => {
         })}
 
         <Button onClick = {() => 
-        console.log(newListDetails)
+
+    setPokedex({
+        pokemons: [...pokedex.pokemons, ob],
+    })
+
+
+        
+        
         
         // setPokedex({
-        //         pokemons: [...newListDetails],
+            //         pokemons: [...newListDetails],
         // })
         
         
         
-        }>Carregar mais</Button>
-
+    }>Carregar mais</Button>
+    {console.log(pokedex)}
         </>
     )
 }
