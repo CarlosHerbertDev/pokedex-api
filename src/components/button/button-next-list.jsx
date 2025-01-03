@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "./button"
 
-export const ButtonNextList = ({children, addNewList, nextListPokemons, getPokemonDetatils }) => {
+const ButtonNextList = ({children, addNewList, nextListPokemons, getPokemonDetatils }) => {
     
     const [nextList, setNextList] = useState(10) 
     const [pokemons, setPokemons] = useState({
@@ -28,16 +28,17 @@ export const ButtonNextList = ({children, addNewList, nextListPokemons, getPokem
 
         function callingNewList() {
             
-            setNextList (nextList + 10)            
+            setNextList (nextList + 10)           
             addNewList(pokemons.pokemons)
-            
+     
         }
  
-
          return (
-            <Button onClick = {() => {callingNewList ()}}>
+            <Button onClick = {() => {callingNewList ()}}  disabled={nextList > 1302}>
                 {children}
             </Button>
         )
     
 }
+
+export { ButtonNextList }

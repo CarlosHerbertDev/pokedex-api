@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios";   
 import { ButtonNextList } from "../button/button-next-list";
+import { Link } from "react-router-dom";
 
 
 
@@ -32,16 +33,29 @@ async function getPokemonDetatils(namePokemon) {
 
 }
 
+// console.log(nextList)
+
+
 const IntroducinPpokemons = ({ list }) => {
     return (
         <ul>
             {list.map((list, index) => {
                 return (
                     <li key={index}>
-                        <img src={list.sprites.front_default} alt={list.name} />
-                        <p>
-                            {list.name}
-                        </p>
+                    
+                        <Link to={`/details-pokemons/${list.id}`}>                
+                            {list.sprites.front_default != null ? (
+
+                            <img src={list.sprites.front_default} alt={list.name} />
+
+                                ) : (
+                                    "sem image"
+                                )
+                            }
+                                <p>
+                                {list.name}
+                                </p>
+                        </Link>
                     </li>
                 );
             })}
@@ -50,7 +64,7 @@ const IntroducinPpokemons = ({ list }) => {
 };
 
 
-export const ListPokemons = () => {
+const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({
         pokemons: [],
 })
@@ -58,14 +72,13 @@ export const ListPokemons = () => {
 
     useEffect(() => {
     const fetchData = async () => {
-        const namesPokemons = await createListPokemon()        
+        const namesPokemons = await createListPokemon()  
+        console.log(namesPokemons);
+              
         const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
         setPokedex({
             pokemons: detailsPokemons,
         });
-
-        console.log(pokedex);
-        
 
         };
         fetchData();
@@ -78,6 +91,9 @@ export const ListPokemons = () => {
                 pokemons: pokedex.pokemons.concat(newlist)
             })
         }
+
+        console.log(pokedex)
+        
 
     return (
         <>  
@@ -104,3 +120,5 @@ export const ListPokemons = () => {
     )
 }
 
+
+export { ListPokemons }

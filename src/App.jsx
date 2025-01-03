@@ -1,15 +1,10 @@
 
-import { ListPokemons } from "./components/list-pokemons/list-pokemons"
-
-
+import { AppRoutes } from "./pages/routes"
 
 function App() {
-
   return (
-            <>  
-                <ListPokemons />
-            </>
-  )
-}
+            <AppRoutes />
+        )
+    }
 
 export default App
