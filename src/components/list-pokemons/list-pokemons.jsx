@@ -43,7 +43,7 @@ const IntroducinPpokemons = ({ list }) => {
                 return (
                     <li key={index}>
                     
-                        <Link to={`/details-pokemons/${list.id}`}>                
+                        <Link to={`/details/${list.name}`}>                
                             {list.sprites.front_default != null ? (
 
                             <img src={list.sprites.front_default} alt={list.name} />

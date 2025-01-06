@@ -12,7 +12,7 @@ async function getDetails(id) {
 
 
 const ListDetailsPokemons = () => {
-    const [pokeDetails, setPokeDetails] = useState({})
+    const [details, setPokeDetails] = useState({})
     
     const { id } = useParams()
     console.log(id);
@@ -20,31 +20,50 @@ const ListDetailsPokemons = () => {
     useEffect(() => {
         async function fetchData() {
             const pokeDetails = await getDetails(id)
-            console.log(pokeDetails);
+
             
-            setPokeDetails({
-                pokeDetails
-            })
-        }
+            setPokeDetails(pokeDetails)
+
         
-        
-        
-        fetchData()
-        
-        
-    }, [id]);
+
+
+                    
+                    
+                }
+                
+                
+                
+                
+                fetchData()
+                
+                
+            }, [id]);
+            
+
+
     
-    console.log(pokeDetails)
+    
 
     return (
         <section>
-           <Link to='/'>Voltar</Link>
+        <Link to='/'>Voltar</Link>
+
+
+
+
             <div>
-                {/* <img src={pokeDetails.sprites.front_default} alt={pokeDetails.name} /> */}
+                {details.sprites && details.sprites.front_default ? (
+                    <img src={details.sprites.front_default} alt={details.name} />
+
+                ) :
+                (
+                    <p> Carregando imagem...</p>
+                )}
+
                 <p>
-                    {console.log(pokeDetails.pokeDetails.name)
-                    }
+                    {details.name} 
                 </p>
+
             </div>
 
         </section>
