@@ -28,12 +28,11 @@ async function getPokemonDetatils(namePokemon) {
         return details
 
 })
-    const deta = await Promise.all(listDetails)
-    return deta
+    const data = await Promise.all(listDetails)    
+    return data
 
 }
 
-// console.log(nextList)
 
 
 const IntroducinPpokemons = ({ list }) => {
@@ -73,8 +72,6 @@ const ListPokemons = () => {
     useEffect(() => {
     const fetchData = async () => {
         const namesPokemons = await createListPokemon()  
-        console.log(namesPokemons);
-              
         const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
         setPokedex({
             pokemons: detailsPokemons,
@@ -91,10 +88,7 @@ const ListPokemons = () => {
                 pokemons: pokedex.pokemons.concat(newlist)
             })
         }
-
-        console.log(pokedex)
         
-
     return (
         <>  
 {/* 

@@ -11,6 +11,22 @@ async function getDetails(id) {
 }
 
 
+async function getDetailsAbilities(link) {
+
+    const dataAbilities = link.map(async function (abilities) {
+
+        const response = await axios.get(`${abilities.ability.url}`);
+        return response.data
+    })
+
+    const data = await Promise.all(dataAbilities)
+    return data
+    
+    
+}
+
+
+
 const ListDetailsPokemons = () => {
     const [details, setPokeDetails] = useState({})
     
@@ -21,29 +37,25 @@ const ListDetailsPokemons = () => {
         async function fetchData() {
             const pokeDetails = await getDetails(id)
 
+            const detailsAbilities = await getDetailsAbilities(pokeDetails.abilities)
+           console.log(detailsAbilities);
+
+
+
+
             
             setPokeDetails(pokeDetails)
-
-        
-
-
+    
+        }
                     
-                    
-                }
+        fetchData()
                 
                 
-                
-                
-                fetchData()
-                
-                
-            }, [id]);
+    }, [id]);
+
+    console.log(details);
+    
             
-
-
-    
-    
-
     return (
         <section>
         <Link to='/'>Voltar</Link>
@@ -59,10 +71,49 @@ const ListDetailsPokemons = () => {
                 (
                     <p> Carregando imagem...</p>
                 )}
-
+                <p> Nome: </p>
                 <p>
                     {details.name} 
                 </p>
+
+                <p> Tipo: </p>
+                {Array.isArray(details.types) ? (
+                <ul>
+                    {details.types.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.type.name}
+                            </li>
+                        )
+                    })}
+
+                </ul>
+
+                ) : (
+                    <p> Carregando imagem...</p>
+                )}
+
+                <p> Moves: </p>
+                {Array.isArray(details.moves) ? (
+                    
+                <ul>
+                    {details.moves.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.move.name}
+                            </li>
+                        )
+                    })}
+
+                </ul>
+
+                ) : (
+                    <p> Carregando imagem...</p>
+                )}
+            
+
+
+
 
             </div>
 
