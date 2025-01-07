@@ -29,32 +29,56 @@ async function getDetailsAbilities(link) {
 
 const ListDetailsPokemons = () => {
     const [details, setPokeDetails] = useState({})
+    const [abilities, setAbilities] = useState({
+        
+    })
     
     const { id } = useParams()
-    console.log(id);
+
     
     useEffect(() => {
         async function fetchData() {
             const pokeDetails = await getDetails(id)
 
             const detailsAbilities = await getDetailsAbilities(pokeDetails.abilities)
-           console.log(detailsAbilities);
+            
+            
+            const teste = detailsAbilities.map((item) => {
 
+                
+                const texts = item.flavor_text_entries.filter((itemText) => {
+                    return itemText.language.name === 'en'
+                })
+                
 
+                const novo = {
+                    name: item.name,
+                    description: texts[0].flavor_text
+                }
 
+                return novo
+            
+            })
+            
 
             
-            setPokeDetails(pokeDetails)
-    
-        }
-                    
-        fetchData()
-                
-                
-    }, [id]);
 
-    console.log(details);
+            setAbilities(teste)
+
+            
+            
+            
+            setPokeDetails(pokeDetails)
+            
+        }
+        
+        fetchData()
+        
+        
+    }, [id]);
     
+        console.log(abilities)
+        
             
     return (
         <section>
@@ -110,7 +134,28 @@ const ListDetailsPokemons = () => {
                 ) : (
                     <p> Carregando imagem...</p>
                 )}
-            
+
+                {abilities.length > 0 ? (
+                    <div>
+
+                    {abilities.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <h1> {item.name}</h1>
+                                <p>
+                                {item.description}
+                                </p>
+                            </div>
+                        )
+                    })}
+
+                </div>
+
+                ) : (
+                    <p> Carregando imagem...</p>
+                )}
+
+                
 
 
 
