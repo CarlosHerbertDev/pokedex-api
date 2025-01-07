@@ -7,33 +7,44 @@ import { Link } from "react-router-dom";
 
 async function createListPokemon() {
 
-    const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=10"
-    );
-    return response.data
-}
+    try {
+        const response = await axios.get(
+            "https://pokeapi.co/api/v2/pokemon?limit=10"
+        );
+        return response.data
+    } catch (error) {
+        console.error('Erro ao buscar lista dos Pokemon 😕', error);
+    }
 
-async function nextListPokemons(numberList) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${numberList}&limit=10`);
-    return response.data.results
+    
 }
 
 async function getPokemonDetatils(namePokemon) {
 
-    const listDetails = namePokemon.map(async function (item) {
-    const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${item.name}/`
-    );
-        const details = response.data
-        return details
+    try {
+        const listDetails = namePokemon.map(async function (item) {
+            const response = await axios.get(item.url);
+            return response.data
+        })
+    
+            return await Promise.all(listDetails)
 
-})
-    const data = await Promise.all(listDetails)    
-    return data
+    } catch (error) {
+        console.error('Erro ao buscar informações dos Pokemon 😕', error);
+        
+    }
 
 }
 
+async function nextListPokemons(numberList) {
 
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${numberList}&limit=10`);
+        return response.data.results    
+    } catch (error) {
+        console.error('Erro ao carregar mais Pokemons 😕', error);   
+    }
+}
 
 const IntroducinPpokemons = ({ list }) => {
     return (
@@ -48,7 +59,7 @@ const IntroducinPpokemons = ({ list }) => {
                             <img src={list.sprites.front_default} alt={list.name} />
 
                                 ) : (
-                                    "sem image"
+                                    "sem imagem"
                                 )
                             }
                                 <p>
@@ -66,18 +77,29 @@ const IntroducinPpokemons = ({ list }) => {
 const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({
         pokemons: [],
-})
+    })
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
 
     useEffect(() => {
     const fetchData = async () => {
-        const namesPokemons = await createListPokemon()  
-        const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
-        setPokedex({
-            pokemons: detailsPokemons,
-        });
 
-        };
+
+        try {
+            
+            const namesPokemons = await createListPokemon()  
+            const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
+            setPokedex({
+                pokemons: detailsPokemons,
+            });
+
+        } catch (error) {
+            setError('Erro ao carregar informações dos Pokemons 😕')
+        } finally {
+            setLoading(false)
+        }
+    };
         fetchData();
     }, []);
     
@@ -85,32 +107,28 @@ const ListPokemons = () => {
     const addNewList = (newlist)=> {
 
             setPokedex({
-                pokemons: pokedex.pokemons.concat(newlist)
+                pokemons: [...pokedex.pokemons, ...newlist]
             })
+        }
+     
+        if (loading) {
+            return <p>Carregando...</p>
+        }
+    
+        if (error) {
+            return <p>{error}</p>
         }
         
     return (
-        <>  
-{/* 
-        {pokedex.pokemons.map((pokemon) => {
-
-            return (
-
-                <p>{pokemon.name} {pokemon.id}</p>
-                
-            );
-            
-        })} */}
-
-
-        <IntroducinPpokemons list = {pokedex.pokemons} />
-        <ButtonNextList 
-            addNewList = {addNewList} 
-            nextListPokemons = {nextListPokemons}
-            getPokemonDetatils = {getPokemonDetatils}
-        >Carregar mais
-       </ButtonNextList>
-    </>
+            <>  
+                <IntroducinPpokemons list = {pokedex.pokemons} />
+                    <ButtonNextList 
+                    addNewList = {addNewList} 
+                    nextListPokemons = {nextListPokemons}
+                    getPokemonDetatils = {getPokemonDetatils}
+                    >Carregar mais
+                </ButtonNextList>
+            </>
     )
 }
 

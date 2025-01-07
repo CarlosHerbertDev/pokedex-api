@@ -12,14 +12,19 @@ const ButtonNextList = ({children, addNewList, nextListPokemons, getPokemonDetat
       useEffect(() => {
         const fetchData = async () => {
 
-            const newList = await nextListPokemons(nextList)
-            const newListDetails = await getPokemonDetatils(newList)
+            try {
+                const newList = await nextListPokemons(nextList)
+                const newListDetails = await getPokemonDetatils(newList)
 
-            setPokemons({
-                pokemons: newListDetails,
-            });
+                setPokemons({
+                    pokemons: newListDetails,
+                 });            
+            }   catch (error) {
+                    console.error('Erro em carregar mais', error);
+                    
+            }
     
-            };
+        };
 
             fetchData();
 

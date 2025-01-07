@@ -5,71 +5,70 @@ import { Link, useParams } from "react-router-dom"
 
 
 async function getDetails(id) {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    return response.data
 
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        return response.data    
+    } catch (error) {
+        console.error('Houve um erro ao buscar as informações detalhadas do Pokemon 😕', error);
+    }
 }
 
 
 async function getDetailsAbilities(link) {
 
-    const dataAbilities = link.map(async function (abilities) {
+    try {
+        const dataAbilities = link.map(async function (abilities) {
+            const response = await axios.get(abilities.ability.url);
+            return response.data
+        })
+            return await Promise.all(dataAbilities)
 
-        const response = await axios.get(`${abilities.ability.url}`);
-        return response.data
-    })
-
-    const data = await Promise.all(dataAbilities)
-    return data
-    
-    
+    } catch (error) {
+        console.error('Houve um erro ao buscar as habilidades do Pokemon 😕', error);
+    }
+       
 }
 
 
 
 const ListDetailsPokemons = () => {
-    const [details, setPokeDetails] = useState({})
-    const [abilities, setAbilities] = useState({
-        
-    })
-    
     const { id } = useParams()
+    const [details, setPokeDetails] = useState({})
+    const [abilities, setAbilities] = useState({})
+    const [loading, setLoading] = useState(true)
+    const [error, seError] = useState(null)
 
     
     useEffect(() => {
+
+        
         async function fetchData() {
+            try {
+            
             const pokeDetails = await getDetails(id)
-
-            const detailsAbilities = await getDetailsAbilities(pokeDetails.abilities)
+                const detailsAbilities = await getDetailsAbilities(pokeDetails.abilities)
             
-            
-            const teste = detailsAbilities.map((item) => {
-
-                
-                const texts = item.flavor_text_entries.filter((itemText) => {
-                    return itemText.language.name === 'en'
+            const descriptionAbilities = detailsAbilities.map((item) => {
+                const texts = item.flavor_text_entries.find((entry) => {
+                    return entry.language.name === 'en'
                 })
                 
-
-                const novo = {
+                return {
                     name: item.name,
-                    description: texts[0].flavor_text
+                    description:  texts ? texts.flavor_text : 'Sem descrição'
                 }
-
-                return novo
-            
             })
-            
+                setAbilities(descriptionAbilities)
+                setPokeDetails(pokeDetails)
 
-            
-
-            setAbilities(teste)
-
-            
-            
-            
-            setPokeDetails(pokeDetails)
-            
+            } catch(error) {
+                seError('Erro ao carregar as informaçãoes do Pokemon 😕')
+                console.error(error)
+                    
+            } finally {
+                setLoading(false)
+            };
         }
         
         fetchData()
@@ -77,15 +76,18 @@ const ListDetailsPokemons = () => {
         
     }, [id]);
     
-        console.log(abilities)
+    if (loading) {
+        return <p>Carregando...</p>
+    }
+
+    if (error) {
+        return <p>{error}</p>
+    }
         
             
     return (
         <section>
         <Link to='/'>Voltar</Link>
-
-
-
 
             <div>
                 {details.sprites && details.sprites.front_default ? (
@@ -114,7 +116,7 @@ const ListDetailsPokemons = () => {
                 </ul>
 
                 ) : (
-                    <p> Carregando imagem...</p>
+                    <p> Carregando tipo...</p>
                 )}
 
                 <p> Moves: </p>
@@ -132,7 +134,7 @@ const ListDetailsPokemons = () => {
                 </ul>
 
                 ) : (
-                    <p> Carregando imagem...</p>
+                    <p> Carregando moves...</p>
                 )}
 
                 {abilities.length > 0 ? (
@@ -152,16 +154,9 @@ const ListDetailsPokemons = () => {
                 </div>
 
                 ) : (
-                    <p> Carregando imagem...</p>
+                    <p> Carregando habilidades...</p>
                 )}
-
-                
-
-
-
-
             </div>
-
         </section>
     )
     
