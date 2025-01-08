@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 import axios from "axios";   
 import { ButtonNextList } from "../button/button-next-list";
 import { Link } from "react-router-dom";
-import { Button } from "../button/button";
 
 
 
-async function createListPokemon(offset) {
+async function createListPokemon() {
 
     try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`);
+        const response = await axios.get(
+            "https://pokeapi.co/api/v2/pokemon?limit=10"
+        );
         return response.data
     } catch (error) {
         console.error('Erro ao buscar lista dos Pokemon 😕', error);
@@ -74,57 +75,34 @@ const IntroducinPpokemons = ({ list }) => {
 
 
 const ListPokemons = () => {
-    const [pokedex, setPokedex] = useState(
-{        pokemons: [],}
-    )
-
-    const [novalista, setNovalista] = useState(0)
+    const [pokedex, setPokedex] = useState({
+        pokemons: [],
+    })
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    
-    // useEffect(() => {
-    //     const savedPokedex = localStorage.getItem("pokedex");
-    //     if (savedPokedex) {
-    //         setPokedex(JSON.parse(savedPokedex));
-    //     }
-    // }, []);
 
 
-    const saveToLocalStorage = (pokedexData) => {
-        localStorage.setItem("pokedex", JSON.stringify(pokedexData));
-    };
-    
-    
     useEffect(() => {
-        const fetchData = async () => {
-            
-            
-            try {
-                
-                const namesPokemons = await createListPokemon(novalista)  
-                const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
-                setPokedex({
-                    pokemons: pokedex.pokemons.concat(detailsPokemons)
-                });
+    const fetchData = async () => {
 
-                
-                
-                
-            } catch (error) {
-                setError('Erro ao carregar informações dos Pokemons 😕', error)
-            } finally {
+
+        try {
+            
+            const namesPokemons = await createListPokemon()  
+            const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
+            setPokedex({
+                pokemons: detailsPokemons,
+            });
+
+        } catch (error) {
+            setError('Erro ao carregar informações dos Pokemons 😕')
+        } finally {
             setLoading(false)
         }
     };
-    fetchData();
-}, [novalista]);
-
-const hadlechange = () => {
+        fetchData();
+    }, []);
     
-    setNovalista(novalista + 10)
-    
-}
-
 
     const addNewList = (newlist)=> {
 
@@ -132,9 +110,7 @@ const hadlechange = () => {
                 pokemons: [...pokedex.pokemons, ...newlist]
             })
         }
-
-        console.log(pokedex)
-        
+     
         if (loading) {
             return <p>Carregando...</p>
         }
@@ -146,18 +122,12 @@ const hadlechange = () => {
     return (
             <>  
                 <IntroducinPpokemons list = {pokedex.pokemons} />
-                <Button onClick={() => hadlechange()}>
-                    carregar
-                </Button>
-
-
-
-                    {/* <ButtonNextList 
+                    <ButtonNextList 
                     addNewList = {addNewList} 
                     nextListPokemons = {nextListPokemons}
                     getPokemonDetatils = {getPokemonDetatils}
                     >Carregar mais
-                </ButtonNextList> */}
+                </ButtonNextList>
             </>
     )
 }

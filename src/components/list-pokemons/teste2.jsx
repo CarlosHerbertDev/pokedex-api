@@ -74,45 +74,51 @@ const IntroducinPpokemons = ({ list }) => {
 
 
 const ListPokemons = () => {
-    const [pokedex, setPokedex] = useState(
-{        pokemons: [],}
-    )
+    const [pokedex, setPokedex] = useState({
+        pokemons: [],
+    })
 
     const [novalista, setNovalista] = useState(0)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    
-    // useEffect(() => {
-    //     const savedPokedex = localStorage.getItem("pokedex");
-    //     if (savedPokedex) {
-    //         setPokedex(JSON.parse(savedPokedex));
-    //     }
-    // }, []);
 
 
     const saveToLocalStorage = (pokedexData) => {
         localStorage.setItem("pokedex", JSON.stringify(pokedexData));
     };
-    
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            
-            
-            try {
-                
-                const namesPokemons = await createListPokemon(novalista)  
-                const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
-                setPokedex({
-                    pokemons: pokedex.pokemons.concat(detailsPokemons)
-                });
 
-                
-                
-                
-            } catch (error) {
-                setError('Erro ao carregar informações dos Pokemons 😕', error)
-            } finally {
+
+
+    useEffect(() => {
+        const savedPokedex = localStorage.getItem("pokedex");
+        if (savedPokedex) {
+            setPokedex(JSON.parse(savedPokedex));
+        }
+    }, []);
+
+
+    useEffect(() => {
+    const fetchData = async () => {
+        
+        
+        try {
+            
+            const namesPokemons = await createListPokemon(novalista)  
+            const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
+            setPokedex({
+                pokemons: pokedex.pokemons.concat(detailsPokemons)
+            });
+            
+            
+
+            // localStorage.setItem('pokedex', JSON.stringify(pokedex));
+
+            
+            
+            
+        } catch (error) {
+            setError('Erro ao carregar informações dos Pokemons 😕')
+        } finally {
             setLoading(false)
         }
     };
