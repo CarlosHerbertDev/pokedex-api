@@ -1,7 +1,56 @@
 import { useEffect, useState } from "react";
+import axios from "axios";   
 import { Button } from "../button/button";
+import { Link } from "react-router-dom";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
-import { createListPokemon, getPokemonDetatils } from "./services"
+
+
+
+async function createListPokemon(offset) {
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`);
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao buscar lista dos Pokemons 😕', error);
+    }
+}
+
+async function getPokemonDetatils(namePokemon) {
+    try {
+        const listDetails = namePokemon.map(async function (item) {
+            const response = await axios.get(item.url);
+            return response.data;
+        });
+
+        return await Promise.all(listDetails);
+
+    } catch (error) {
+        console.error('Erro ao buscar informações dos Pokemons 😕', error);
+    }
+}
+
+// const IntroductinPpokemons = ({ list }) => {
+//     return (
+
+//         <DivTeste >
+
+//         <ul>
+//             {list.map((pokemon, index) => (
+//                 <li key={index}>
+//                     <Link to={`/details/${pokemon.name}`}>
+//                         {pokemon.image ? (
+//                             <img src={pokemon.image} alt={pokemon.name} />
+//                         ) : (
+//                             "Sem imagem"
+//                         )}
+//                         <p>{pokemon.name}</p>
+//                     </Link>
+//                 </li>
+//             ))}
+//         </ul>
+//         </DivTeste>
+//     );
+// };
 
 const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({ pokemons: [] });
@@ -57,9 +106,12 @@ const ListPokemons = () => {
                 );
                 return { pokemons: uniquePokemons };
             });
-                      
+            
+            
             setNumberOfPokemon(namesPokemons.count)
                    
+                    
+
             } catch (error) {
                 setError('Erro ao carregar informações dos Pokemons 😕');
             } finally {
@@ -74,7 +126,8 @@ const ListPokemons = () => {
         localStorage.removeItem("pokedex");  
         return '';
     };
- 
+  
+    console.log(numberOfPokemons)
     const handleChange = () => {
 
         setNovalista((prevOffset) => {
@@ -98,6 +151,7 @@ const ListPokemons = () => {
 
     return (
         <>
+            {/* <IntroducinPpokemons list={pokedex.pokemons} /> */}
             <IntroductinPpokemons list={pokedex.pokemons} />
             <Button 
             onClick={handleChange} 
@@ -106,6 +160,9 @@ const ListPokemons = () => {
             </Button>
         </>
     );
+
+
 };
+
 
 export { ListPokemons };
