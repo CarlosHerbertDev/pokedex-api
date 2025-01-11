@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "../button/button";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
 import { createListPokemon, getPokemonDetatils } from "./services"
+import { MainListPokemons } from "../../style/listis-styled/list-pokemons";
+import { HeaderOfTheList } from "./header-of-the-list";
 
 const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({ pokemons: [] });
@@ -41,10 +43,11 @@ const ListPokemons = () => {
             try {
                 const namesPokemons = await createListPokemon(novalista)
                 const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
+                console.log(detailsPokemons)
                 const resumedeDetails = detailsPokemons.map((item) => {
                     return {
                         name: item.name,
-                        image: item.sprites.front_default
+                        image: item.sprites.other.dream_world.front_default
                     };
                 });
                 
@@ -98,12 +101,15 @@ const ListPokemons = () => {
 
     return (
         <>
+            <HeaderOfTheList />
+            <MainListPokemons> 
             <IntroductinPpokemons list={pokedex.pokemons} />
             <Button 
             onClick={handleChange} 
             disabled={pokedex.pokemons.length === numberOfPokemons}> 
                 Carregar mais
             </Button>
+            </MainListPokemons>
         </>
     );
 };

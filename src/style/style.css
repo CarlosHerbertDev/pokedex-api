@@ -14,8 +14,18 @@ a {
 }
 
 ul {
+    height: 100vh;
     display: flex;
     justify-content:center;
+    flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 1440px;
+    border: 1px solid #2C3052;
+    text-align: center;
+    padding: 35px;
+    border-radius: 20px;
+    margin-top: 50px;
+    text-align: center;
+    align-self: flex-end;
 }

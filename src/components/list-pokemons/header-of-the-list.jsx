@@ -1,22 +1,15 @@
-
-// import { A } from "../../../public" 
-
-import styled from "styled-components"
+import { HeaderlistPokemons } from "../../style/listis-styled/list-pokemons"
 
 export const HeaderOfTheList = () => {
 
     return (
                 <>
-                    <Header>
+                    <HeaderlistPokemons>
                     <div>
                         <p>Pokedex API</p>
                         <img src="../../../public/vite.svg" alt="" />
                     </div>       
-                    </Header>
+                    </HeaderlistPokemons>
                 </>
     )
 }
-
-const Header = styled.header `
-    background-color: red;
-`
