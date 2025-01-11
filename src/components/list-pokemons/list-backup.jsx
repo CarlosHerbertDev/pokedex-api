@@ -151,7 +151,6 @@ const ListPokemons = () => {
 
     return (
         <>
-            {/* <IntroducinPpokemons list={pokedex.pokemons} /> */}
             <IntroductinPpokemons list={pokedex.pokemons} />
             <Button 
             onClick={handleChange} 
