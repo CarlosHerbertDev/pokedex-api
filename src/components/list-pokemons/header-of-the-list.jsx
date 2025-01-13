@@ -1,21 +1,21 @@
-import { ButtonDarkLight, Div, DivLogo, HeaderlistPokemons, TitleLogo } from "../../style/listis-styled/list-pokemons"
+import { ButtonDarkLight, HeaderContainer, Logo, HeaderlistPokemons, ImagePokebola, TitleLogo, LinkHome } from "../../style/listis-styled/list-pokemons"
 
 
 export const HeaderOfTheList = () => {
 
     return (
-            <>
                 <HeaderlistPokemons>
-                    <Div>
-                    <DivLogo>
-                        <TitleLogo>
-                            Pokedex API
-                        </TitleLogo>
-                        <img src="../../../public/vite.svg" alt="" />
-                    </DivLogo>
-                    <ButtonDarkLight />
-                    </Div>
+                    <HeaderContainer>
+                        <Logo>
+                            <TitleLogo>
+                                <LinkHome href="#home">
+                                    Pokédex API
+                                </LinkHome>
+                            </TitleLogo>
+                            <ImagePokebola />
+                        </Logo>
+                        <ButtonDarkLight />
+                    </HeaderContainer>
                 </HeaderlistPokemons>
-            </>
     )
 }

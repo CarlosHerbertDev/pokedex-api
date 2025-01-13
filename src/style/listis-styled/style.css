@@ -32,4 +32,6 @@ ul {
     align-self: flex-end;
     align-content: end;
     background-image: url(../../assets/sun64.png);
+    transition: 0.3s ease-in-out;
+    position: fixed;
 }

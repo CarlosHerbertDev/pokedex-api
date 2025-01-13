@@ -6,8 +6,8 @@ const Globalstyle = createGlobalStyle `
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    }
+    scroll-behavior: smooth;
+}
     
 body {
     background-color: rgb(238 242 255);

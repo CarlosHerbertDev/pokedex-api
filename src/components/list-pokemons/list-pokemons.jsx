@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../button/button";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
 import { createListPokemon, getPokemonDetatils } from "./services"
-import { MainListPokemons } from "../../style/listis-styled/list-pokemons";
+import { MainListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
 import { HeaderOfTheList } from "./header-of-the-list";
 
 const ListPokemons = () => {
@@ -102,14 +102,15 @@ const ListPokemons = () => {
     return (
         <>
             <HeaderOfTheList />
-            <MainListPokemons> 
+            <MainListPokemons id="home"> 
             <IntroductinPpokemons list={pokedex.pokemons} />
-            <Button 
+            <VerMais 
             onClick={handleChange} 
             disabled={pokedex.pokemons.length === numberOfPokemons}> 
-                Carregar mais
-            </Button>
+                Ver Mais
+            </VerMais>
             </MainListPokemons>
+            <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
         </>
     );
 };
