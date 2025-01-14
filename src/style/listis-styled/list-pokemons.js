@@ -21,7 +21,7 @@ export const Logo = styled.div `
 export const TitleLogo = styled.p `
     font-family: "Luckiest Guy", serif;
     font-size: 2rem;
-    text-shadow: #395fAA 0.1em 0.2em 0.1em;
+    text-shadow: #395fAA 0.1em 0.1em 0.1em;
 `
 
 export const LinkHome = styled.a `
@@ -106,7 +106,7 @@ export const VerMais = styled(Button) `
     font-family: "Luckiest Guy", serif;
     font-size: 1.1rem;
     color: #ffcb05;
-    text-shadow: #395fAA 0.1em 0.2em 0.1em;
+    text-shadow: #395fAA 0.1em 0.1em 0.1em;
     transition: 0.3s ease-in-out;
 
     &:hover {
