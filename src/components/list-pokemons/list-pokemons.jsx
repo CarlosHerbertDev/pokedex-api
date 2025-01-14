@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Button } from "../button/button";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
 import { createListPokemon, getPokemonDetatils } from "./services"
-import { MainListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
+import { Container, MainListPokemons, MainLoading, TextLoading, VerMais } from "../../style/listis-styled/list-pokemons";
 import { HeaderOfTheList } from "./header-of-the-list";
 
 const ListPokemons = () => {
@@ -92,26 +91,43 @@ const ListPokemons = () => {
     };
 
     if (loading) {
-        return <p>Carregando...</p>;
+            return (
+                <Container>
+                    <MainLoading>
+                        <TextLoading>
+                            Carregando...
+                        </TextLoading>
+                    </MainLoading>
+                </Container>
+            )
+
     }
     
     if (error) {
-        return <p>{error}</p>;
+            return (
+                <Container>
+                    <MainLoading>
+                        <TextLoading>
+                            {error}
+                        </TextLoading>
+                    </MainLoading>
+                </Container>
+            )
     }   
 
-    return (
-        <>
+    return ( 
+        <Container>
             <HeaderOfTheList />
-            <MainListPokemons id="home"> 
-            <IntroductinPpokemons list={pokedex.pokemons} />
-            <VerMais 
-            onClick={handleChange} 
-            disabled={pokedex.pokemons.length === numberOfPokemons}> 
-                Ver Mais
-            </VerMais>
-            </MainListPokemons>
-            <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
-        </>
+                <MainListPokemons id="home"> 
+                    <IntroductinPpokemons list={pokedex.pokemons} />
+                        <VerMais 
+                        onClick={handleChange} 
+                        disabled={pokedex.pokemons.length === numberOfPokemons}> 
+                            Ver Mais
+                        </VerMais>
+                    </MainListPokemons>
+                    <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
+        </Container>
     );
 };
 
