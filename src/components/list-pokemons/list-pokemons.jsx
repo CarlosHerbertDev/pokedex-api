@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
-import { createListPokemon, getPokemonDetatils } from "./services"
-import { Container, MainListPokemons, MainLoading, TextLoading, VerMais } from "../../style/listis-styled/list-pokemons";
-import { HeaderOfTheList } from "./header-of-the-list";
+import { createListPokemon, getPokemonDetatils } from "../../services/services"
+import { Container, MainListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
+import { HeaderOfComponents } from "../header/header-of-components";
+import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 
 const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({ pokemons: [] });
@@ -28,7 +29,7 @@ const ListPokemons = () => {
         }
     }, []); 
 
- 
+
     useEffect(() => {
 
         if (pokedex.pokemons.length > 0) {
@@ -59,9 +60,9 @@ const ListPokemons = () => {
                 );
                 return { pokemons: uniquePokemons };
             });
-                      
+
             setNumberOfPokemon(namesPokemons.count)
-                   
+
             } catch (error) {
                 setError('Erro ao carregar informações dos Pokemons 😕');
             } finally {
@@ -76,12 +77,12 @@ const ListPokemons = () => {
         localStorage.removeItem("pokedex");  
         return '';
     };
- 
+
     const handleChange = () => {
 
         setNovalista((prevOffset) => {
             if (pokedex.pokemons.length === 10) {
-                 return prevOffset + 10
+                    return prevOffset + 10
             } else {
                 prevOffset = pokedex.pokemons.length
                 return prevOffset + 10
@@ -92,32 +93,24 @@ const ListPokemons = () => {
 
     if (loading) {
             return (
-                <Container>
-                    <MainLoading>
-                        <TextLoading>
-                            Carregando...
-                        </TextLoading>
-                    </MainLoading>
-                </Container>
+                <ErrorOrLoadingHandling>
+                    Carregando...
+                </ErrorOrLoadingHandling>
             )
 
     }
     
     if (error) {
             return (
-                <Container>
-                    <MainLoading>
-                        <TextLoading>
-                            {error}
-                        </TextLoading>
-                    </MainLoading>
-                </Container>
+                <ErrorOrLoadingHandling>
+                    {error}
+                </ErrorOrLoadingHandling>
             )
     }   
 
     return ( 
         <Container>
-            <HeaderOfTheList />
+            <HeaderOfComponents />
                 <MainListPokemons id="home"> 
                     <IntroductinPpokemons list={pokedex.pokemons} />
                         <VerMais 

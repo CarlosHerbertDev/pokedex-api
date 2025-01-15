@@ -23,3 +23,28 @@ export async function getPokemonDetatils(namePokemon) {
     }
 }
 
+export async function getDetails(id) {
+
+    try {
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        return response.data    
+    } catch (error) {
+        console.error('Houve um erro ao buscar as informações detalhadas do Pokemon 😕', error);
+    }
+}
+
+
+export async function getDetailsAbilities(link) {
+
+    try {
+        const dataAbilities = link.map(async function (abilities) {
+            const response = await axios.get(abilities.ability.url);
+            return response.data
+        })
+            return await Promise.all(dataAbilities)
+
+    } catch (error) {
+        console.error('Houve um erro ao buscar as habilidades do Pokemon 😕', error);
+    }
+
+}

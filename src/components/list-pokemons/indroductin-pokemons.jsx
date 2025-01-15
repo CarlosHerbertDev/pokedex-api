@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { DescriptionApresentation, ImagePokemon, LinkHome, LiPokemons, NumberPokemon, TextApresentation, UlListPokemons } from "../../style/listis-styled/list-pokemons";
+import { DescriptionApresentation, ImagePokemon, LinkHome, LiPokemons, NamePokemon, TextApresentation, UlListPokemons } from "../../style/listis-styled/introduction-styled";
 
 export const IntroductinPpokemons = ({ list }) => {
 
     return (
         <>
         <TextApresentation> 
-            <LinkHome>Bem vindo ao Pokédex API!
+            <LinkHome>
+                Bem vindo ao Pokédex API!
             </LinkHome>
         </TextApresentation>
         <DescriptionApresentation>
@@ -21,7 +22,7 @@ export const IntroductinPpokemons = ({ list }) => {
                         ) : (
                             "Sem imagem"
                         )}
-                        <NumberPokemon>{pokemon.name}</NumberPokemon>
+                        <NamePokemon>{pokemon.name}</NamePokemon>
                     </Link>
                 </LiPokemons>
             ))}

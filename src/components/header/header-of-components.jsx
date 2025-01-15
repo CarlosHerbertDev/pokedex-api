@@ -1,7 +1,10 @@
-import { ButtonDarkLight, HeaderContainer, Logo, HeaderlistPokemons, ImagePokebola, TitleLogo, LinkHome } from "../../style/listis-styled/list-pokemons"
+import { ButtonDarkLight, HeaderContainer, Logo, HeaderlistPokemons, ImagePokebola, TitleLogo } from "../../style/header-styled/header-styled"
+
+import { LinkHome } from "../../style/listis-styled/list-pokemons"
 
 
-export const HeaderOfTheList = () => {
+
+export const HeaderOfComponents = () => {
 
     return (
                 <HeaderlistPokemons>

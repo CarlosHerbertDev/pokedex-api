@@ -34,6 +34,12 @@ ul {
     background-image: url(../../assets/sun64.png);
     transition: 0.3s ease-in-out;
     position: fixed;
-
+    letter-spacing: 2px;
     transform: scale(1.1);
+
+    @media (max-width: 620px) {
+    
+        padding: 15px;
+    }
+
 }

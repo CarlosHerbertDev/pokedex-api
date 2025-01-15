@@ -1,35 +1,6 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
-
-
-
-async function getDetails(id) {
-
-    try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        return response.data    
-    } catch (error) {
-        console.error('Houve um erro ao buscar as informações detalhadas do Pokemon 😕', error);
-    }
-}
-
-
-async function getDetailsAbilities(link) {
-
-    try {
-        const dataAbilities = link.map(async function (abilities) {
-            const response = await axios.get(abilities.ability.url);
-            return response.data
-        })
-            return await Promise.all(dataAbilities)
-
-    } catch (error) {
-        console.error('Houve um erro ao buscar as habilidades do Pokemon 😕', error);
-    }
-       
-}
-
+import { getDetails, getDetailsAbilities } from "../../services/services"
 
 
 const ListDetailsPokemons = () => {
