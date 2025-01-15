@@ -47,7 +47,7 @@ export const LiPokemons = styled.li `
             transition: 0.1s ease-in-out;
             transform: translateY(-4px);
             box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
-}
+        }    
 `
 
 export const ImagePokemon = styled.img `
@@ -65,4 +65,5 @@ export const NamePokemon = styled.h2 `
     background-color: #2C3052;
     border-radius: 8px;
     width: 100%;
+    text-transform: capitalize;
     `

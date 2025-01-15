@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IntroductinPpokemons } from "./indroductin-pokemons";
 import { createListPokemon, getPokemonDetatils } from "../../services/services"
-import { Container, MainListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
+import { Container, SectionListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
 import { HeaderOfComponents } from "../header/header-of-components";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 
@@ -13,12 +13,12 @@ const ListPokemons = () => {
     const [error, setError] = useState(null);
 
     const saveToLocalStorage = (pokedexData) => {
-        localStorage.setItem("pokedex", JSON.stringify(pokedexData));
+        sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
     };
 
     useEffect(() => {
         
-        const savedPokedex = localStorage.getItem("pokedex");
+        const savedPokedex = sessionStorage.getItem("pokedex");
         if (savedPokedex) {
             try {
                 const parsedPokedex = JSON.parse(savedPokedex);
@@ -73,11 +73,6 @@ const ListPokemons = () => {
         fetchData();
     }, [novalista]); 
 
-    window.onbeforeunload = () => {
-        localStorage.removeItem("pokedex");  
-        return '';
-    };
-
     const handleChange = () => {
 
         setNovalista((prevOffset) => {
@@ -111,14 +106,14 @@ const ListPokemons = () => {
     return ( 
         <Container>
             <HeaderOfComponents />
-                <MainListPokemons id="home"> 
+                <SectionListPokemons id="home"> 
                     <IntroductinPpokemons list={pokedex.pokemons} />
                         <VerMais 
                         onClick={handleChange} 
                         disabled={pokedex.pokemons.length === numberOfPokemons}> 
                             Ver Mais
                         </VerMais>
-                    </MainListPokemons>
+                    </SectionListPokemons>
                     <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
         </Container>
     );

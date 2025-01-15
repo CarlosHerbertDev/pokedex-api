@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { getDetails, getDetailsAbilities } from "../../services/services"
-
+import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling"
+import { HeaderOfComponents } from "../header/header-of-components";
+import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities } from "../../style/details-styled/details-poke-styled"
+import { Container } from "../../style/listis-styled/list-pokemons";
 
 const ListDetailsPokemons = () => {
     const { id } = useParams()
@@ -48,30 +51,42 @@ const ListDetailsPokemons = () => {
     }, [id]);
     
     if (loading) {
-        return <p>Carregando...</p>
+        return (
+            <ErrorOrLoadingHandling>
+                Carregando...
+            </ErrorOrLoadingHandling>
+        )
     }
 
     if (error) {
-        return <p>{error}</p>
+        return (
+            <ErrorOrLoadingHandling>
+                {error}
+            </ErrorOrLoadingHandling>
+        )
     }
         
             
     return (
-        <section>
-        <Link to='/'>Voltar</Link>
-
-            <div>
-                {details.sprites && details.sprites.front_default ? (
-                    <img src={details.sprites.front_default} alt={details.name} />
+        <Container>
+            <HeaderOfComponents />  
+                <Link to='/'><BackOfList> Voltar </BackOfList></Link>
+                    <SectionDetails id="home">
+                        <ConatainerDetails>
+                            <NamePokemonDetails>
+                                {details.name} 
+                            </NamePokemonDetails>
+                            <ContainerGrid>
+                {details.sprites && details.sprites.other.dream_world.front_default ? (
+                <ImagePokemonDetails src={details.sprites.other.dream_world.front_default} alt={details.name} />
+                // <img src={details.sprites.other.dream_world.front_default} alt={details.name} />
 
                 ) :
                 (
                     <p> Carregando imagem...</p>
                 )}
-                <p> Nome: </p>
-                <p>
-                    {details.name} 
-                </p>
+
+                <TypeAndAbilities>
 
                 <p> Tipo: </p>
                 {Array.isArray(details.types) ? (
@@ -90,23 +105,6 @@ const ListDetailsPokemons = () => {
                     <p> Carregando tipo...</p>
                 )}
 
-                <p> Moves: </p>
-                {Array.isArray(details.moves) ? (
-                    
-                <ul>
-                    {details.moves.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                {item.move.name}
-                            </li>
-                        )
-                    })}
-
-                </ul>
-
-                ) : (
-                    <p> Carregando moves...</p>
-                )}
 
                 {abilities.length > 0 ? (
                     <div>
@@ -127,8 +125,36 @@ const ListDetailsPokemons = () => {
                 ) : (
                     <p> Carregando habilidades...</p>
                 )}
-            </div>
-        </section>
+                </TypeAndAbilities>
+
+
+                <Moves>
+
+                <p> Moves: </p>
+                {Array.isArray(details.moves) ? (
+                    
+                <ul>
+                    {details.moves.map((item, index) => {
+                        return (
+                            <li key={index}>
+                                {item.move.name}
+                            </li>
+                        )
+                    })}
+
+                </ul>
+
+                ) : (
+                    <p> Carregando moves...</p>
+                )}
+                            
+                </Moves>
+
+                            
+                            </ContainerGrid>       
+                        </ConatainerDetails>
+                    </SectionDetails>
+        </Container>
     )
     
 }

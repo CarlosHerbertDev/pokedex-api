@@ -11,7 +11,7 @@ export const LinkHome = styled.a `
     text-shadow: #395fAA -0.1em 0.1em 0.1em;
 `
 
-export const MainListPokemons = styled.main `
+export const SectionListPokemons = styled.section `
     margin: 0 auto;
     display: flex;
     justify-content:center;
@@ -37,8 +37,8 @@ export const VerMais = styled(Button) `
     transition: 0.1s ease-in-out;
 
     &:hover {
-        padding: 16px 18px;
-        transition: 0.1s ease-in-out;
-    
+         transition: 0.1s ease-in-out;
+            transform: translateY(-4px);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
     }
     `
