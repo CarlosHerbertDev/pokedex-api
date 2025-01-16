@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { IntroductinPpokemons } from "./indroductin-pokemons";
-import { createListPokemon, getPokemonDetatils } from "../../services/services"
-import { Container, SectionListPokemons, VerMais } from "../../style/listis-styled/list-pokemons";
-import { HeaderOfComponents } from "../header/header-of-components";
+import { createListPokemon, getPokemonDetatils } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
+import { HeaderOfComponents } from "../header/header-of-components";
+import { IntroductinPokemons } from "./indroductin-pokemons";
+import { Container } from "../../style/reusablestyles";
+import { VerMais } from "./styles";
+import { SectionListPokemons } from "../../style/reusablestyles"
 
 const ListPokemons = () => {
     const [pokedex, setPokedex] = useState({ pokemons: [] });
@@ -27,6 +29,23 @@ const ListPokemons = () => {
                 console.error("Erro ao parsear o conteúdo do localStorage", error);
             }
         }
+
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+    
+        if (scrollPosition) {
+          // Restaura a rolagem para o valor armazenado
+          window.scrollTo(0, parseInt(scrollPosition));
+          console.log('eae')
+          
+          
+          console.log(scrollPosition)
+          
+          
+          // Limpa a posição armazenada após a rolagem ser restaurada
+        //   sessionStorage.removeItem('scrollPosition');
+        }
+
+        
     }, []); 
 
 
@@ -86,6 +105,12 @@ const ListPokemons = () => {
         }); 
     };
 
+    const teste = () => {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+        
+        
+    }
+
     if (loading) {
             return (
                 <ErrorOrLoadingHandling>
@@ -107,7 +132,7 @@ const ListPokemons = () => {
         <Container>
             <HeaderOfComponents />
                 <SectionListPokemons id="home"> 
-                    <IntroductinPpokemons list={pokedex.pokemons} />
+                    <IntroductinPokemons list={pokedex.pokemons} onClick={() =>{ teste ()}} />
                         <VerMais 
                         onClick={handleChange} 
                         disabled={pokedex.pokemons.length === numberOfPokemons}> 
@@ -120,3 +145,4 @@ const ListPokemons = () => {
 };
 
 export { ListPokemons };
+

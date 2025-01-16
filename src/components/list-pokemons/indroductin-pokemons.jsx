@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { DescriptionApresentation, ImagePokemon, LinkHome, LiPokemons, NamePokemon, TextApresentation, UlListPokemons } from "../../style/listis-styled/introduction-styled";
+import { DescriptionApresentation, ImagePokemon, LiPokemons, NamePokemon, TextApresentation, UlListPokemons } from "./styles";
+import { LinkHome } from "../../style/reusablestyles"
 
-export const IntroductinPpokemons = ({ list }) => {
+export const IntroductinPokemons = ({ list, onClick }) => {
+
+console.log(onClick)
 
     return (
         <>
@@ -16,7 +19,7 @@ export const IntroductinPpokemons = ({ list }) => {
         <UlListPokemons>
             {list.map((pokemon, index) => (
                 <LiPokemons key={index}>
-                    <Link to={`/details/${pokemon.name}`}>
+                    <Link to={`/details/${pokemon.name}`} onClick={onClick}>
                         {pokemon.image ? (
                             <ImagePokemon src={pokemon.image} alt={pokemon.name} />
                         ) : (

@@ -1,5 +1,5 @@
-import { Container } from "../../style/listis-styled/list-pokemons"
-import { SectionMessage, TextMessage } from "../../style/styled-error-or-loanding/styled-error-or-loading"
+import { Container } from "../../style/reusablestyles"
+import { SectionMessage, TextMessage } from "./styles"
 
 export const ErrorOrLoadingHandling = ({children}) => {
 

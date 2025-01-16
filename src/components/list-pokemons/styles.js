@@ -1,4 +1,17 @@
 import styled from "styled-components";
+import { ButtonStyle } from "../../style/reusablestyles";
+
+export const SectionListPokemons = styled.section `
+    margin: 0 auto;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+
+    @media (max-width: 620px) {
+        padding: 15px;
+    }
+`
 
 export const TextApresentation = styled.h1 `
     margin-top: 110px;
@@ -10,11 +23,13 @@ export const TextApresentation = styled.h1 `
     }
 
 `
+
 export const LinkHome = styled.a `
     font-family: "Luckiest Guy", serif;
     color: #ffcb05;
     text-shadow: #395fAA -0.1em 0.1em 0.1em;
 `
+
 
 export const DescriptionApresentation = styled.p `
     margin-top: 30px;
@@ -66,4 +81,12 @@ export const NamePokemon = styled.h2 `
     border-radius: 8px;
     width: 100%;
     text-transform: capitalize;
+    `
+    
+export const VerMais = styled(ButtonStyle) `
+    &:hover {
+        transition: 0.1s ease-in-out;
+            transform: translateY(-4px);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
+    }
     `

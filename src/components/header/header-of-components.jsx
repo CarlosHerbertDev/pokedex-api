@@ -1,6 +1,6 @@
-import { ButtonDarkLight, HeaderContainer, Logo, HeaderlistPokemons, ImagePokebola, TitleLogo } from "../../style/header-styled/header-styled"
+import { ButtonDarkLight, HeaderContainer, HeaderlistPokemons, ImagePokebola, Logo, TitleLogo } from "./styles"
 
-import { LinkHome } from "../../style/listis-styled/list-pokemons"
+import { LinkHome } from "../list-pokemons/styles"
 
 
 

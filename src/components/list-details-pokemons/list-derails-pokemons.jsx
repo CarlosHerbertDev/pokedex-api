@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
-import { getDetails, getDetailsAbilities } from "../../services/services"
-import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling"
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { getDetails, getDetailsAbilities } from "../../services/services";
+import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
-import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities } from "../../style/details-styled/details-poke-styled"
-import { Container } from "../../style/listis-styled/list-pokemons";
+import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, LayoutContainer } from "./styles";
+
 
 const ListDetailsPokemons = () => {
     const { id } = useParams()
@@ -68,7 +68,7 @@ const ListDetailsPokemons = () => {
         
             
     return (
-        <Container>
+        <LayoutContainer>
             <HeaderOfComponents />  
                 <Link to='/'><BackOfList> Voltar </BackOfList></Link>
                     <SectionDetails id="home">
@@ -128,12 +128,10 @@ const ListDetailsPokemons = () => {
                 </TypeAndAbilities>
 
 
-                <Moves>
-
-                <p> Moves: </p>
+                
                 {Array.isArray(details.moves) ? (
                     
-                <ul>
+                <Moves>
                     {details.moves.map((item, index) => {
                         return (
                             <li key={index}>
@@ -142,20 +140,19 @@ const ListDetailsPokemons = () => {
                         )
                     })}
 
-                </ul>
+                </Moves>
 
                 ) : (
                     <p> Carregando moves...</p>
                 )}
-                            
-                </Moves>
+                        
 
                             
                             </ContainerGrid>       
                         </ConatainerDetails>
                     </SectionDetails>
-        </Container>
+        </LayoutContainer>
     )
     
 }
-    export { ListDetailsPokemons }
+    export { ListDetailsPokemons };
