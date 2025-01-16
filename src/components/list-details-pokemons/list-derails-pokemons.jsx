@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetails, getDetailsAbilities } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
-import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, LayoutContainer } from "./styles";
+import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, Types, ContainerImagePokemon, ContinerAbilities, TitleDetails, AbilitiesDetails, TitleAbilities,  TextBlock } from "./styles";
 
 
 const ListDetailsPokemons = () => {
@@ -68,8 +68,8 @@ const ListDetailsPokemons = () => {
         
             
     return (
-        <LayoutContainer>
-            <HeaderOfComponents />  
+        <>
+        <HeaderOfComponents />  
                 <Link to='/'><BackOfList> Voltar </BackOfList></Link>
                     <SectionDetails id="home">
                         <ConatainerDetails>
@@ -77,6 +77,9 @@ const ListDetailsPokemons = () => {
                                 {details.name} 
                             </NamePokemonDetails>
                             <ContainerGrid>
+
+                                <ContainerImagePokemon>
+
                 {details.sprites && details.sprites.other.dream_world.front_default ? (
                 <ImagePokemonDetails src={details.sprites.other.dream_world.front_default} alt={details.name} />
                 // <img src={details.sprites.other.dream_world.front_default} alt={details.name} />
@@ -85,46 +88,50 @@ const ListDetailsPokemons = () => {
                 (
                     <p> Carregando imagem...</p>
                 )}
+                                </ContainerImagePokemon>
 
                 <TypeAndAbilities>
 
-                <p> Tipo: </p>
-                {Array.isArray(details.types) ? (
-                <ul>
-                    {details.types.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                {item.type.name}
-                            </li>
-                        )
-                    })}
+                <TitleDetails>Type</TitleDetails>
+                {       Array.isArray(details.types) ? (
+                        <Types>
+                            {details.types.map((item, index) => {
+                                return (
+                                    <li key={index}>
+                                        <TextBlock>{item.type.name}</TextBlock>
+                                    </li>
+                                 )
+                            })}
 
-                </ul>
+                        </Types>
 
-                ) : (
-                    <p> Carregando tipo...</p>
-                )}
+                    ) : (
+                        <p> Carregando tipo...</p>
+                    )}
 
 
-                {abilities.length > 0 ? (
-                    <div>
+                    {abilities.length > 0 ? (
+                        
+                        <ContinerAbilities>
+                            <TitleDetails>Abilities</TitleDetails>
 
-                    {abilities.map((item, index) => {
-                        return (
-                            <div key={index}>
-                                <h1> {item.name}</h1>
-                                <p>
-                                {item.description}
-                                </p>
-                            </div>
-                        )
-                    })}
+                            <AbilitiesDetails>    
+                            {abilities.map((item, index) => {
+                                return (
+                                        <li key={index}>
+                                            <TitleAbilities>{item.name}</TitleAbilities>
+                                            <TextBlock>{item.description} </TextBlock>
+                                        </li>
+                                    )
+                                })}
+                            </AbilitiesDetails>
+                        </ContinerAbilities>
+                
 
-                </div>
+                         ) : (
 
-                ) : (
-                    <p> Carregando habilidades...</p>
-                )}
+                        <p> Carregando habilidades...</p>
+                    )}
                 </TypeAndAbilities>
 
 
@@ -151,7 +158,7 @@ const ListDetailsPokemons = () => {
                             </ContainerGrid>       
                         </ConatainerDetails>
                     </SectionDetails>
-        </LayoutContainer>
+        </>
     )
     
 }

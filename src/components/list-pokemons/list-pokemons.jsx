@@ -3,7 +3,6 @@ import { createListPokemon, getPokemonDetatils } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
 import { IntroductinPokemons } from "./indroductin-pokemons";
-import { Container } from "../../style/reusablestyles";
 import { VerMais } from "./styles";
 import { SectionListPokemons } from "../../style/reusablestyles"
 
@@ -18,6 +17,27 @@ const ListPokemons = () => {
         sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
     };
 
+
+    useEffect(() => {
+        const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+        if (savedScrollPosition) {
+            window.scrollTo(0, parseInt(savedScrollPosition, 10));
+            
+        }
+
+        const handleScroll = () => {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+          };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        // Limpeza do evento ao desmontar o componente
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [])
+
     useEffect(() => {
         
         const savedPokedex = sessionStorage.getItem("pokedex");
@@ -30,21 +50,10 @@ const ListPokemons = () => {
             }
         }
 
-        const scrollPosition = sessionStorage.getItem('scrollPosition');
-    
-        if (scrollPosition) {
-          // Restaura a rolagem para o valor armazenado
-          window.scrollTo(0, parseInt(scrollPosition));
-          console.log('eae')
-          
-          
-          console.log(scrollPosition)
-          
-          
-          // Limpa a posição armazenada após a rolagem ser restaurada
-        //   sessionStorage.removeItem('scrollPosition');
-        }
 
+       
+
+       
         
     }, []); 
 
@@ -82,6 +91,9 @@ const ListPokemons = () => {
 
             setNumberOfPokemon(namesPokemons.count)
 
+
+            
+
             } catch (error) {
                 setError('Erro ao carregar informações dos Pokemons 😕');
             } finally {
@@ -105,11 +117,6 @@ const ListPokemons = () => {
         }); 
     };
 
-    const teste = () => {
-        sessionStorage.setItem('scrollPosition', window.scrollY);
-        
-        
-    }
 
     if (loading) {
             return (
@@ -129,10 +136,10 @@ const ListPokemons = () => {
     }   
 
     return ( 
-        <Container>
+        <>
             <HeaderOfComponents />
                 <SectionListPokemons id="home"> 
-                    <IntroductinPokemons list={pokedex.pokemons} onClick={() =>{ teste ()}} />
+                    <IntroductinPokemons list={pokedex.pokemons} />
                         <VerMais 
                         onClick={handleChange} 
                         disabled={pokedex.pokemons.length === numberOfPokemons}> 
@@ -140,7 +147,7 @@ const ListPokemons = () => {
                         </VerMais>
                     </SectionListPokemons>
                     <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
-        </Container>
+        </>
     );
 };
 

@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { SectionListPokemons} from "../list-pokemons/styles";
-import { ButtonStyle, Container } from "../../style/reusablestyles"
+import { ButtonStyle, DisplayFlex, FlexUL } from "../../style/reusablestyles"
 
-export const LayoutContainer = styled(Container) `
-    height: 100vh;
-`
 
 export const SectionDetails = styled(SectionListPokemons)`
     @media (max-width: 620px) {
@@ -18,8 +15,11 @@ export const ConatainerDetails = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid black;
-    margin-top: 70px;
+    border: 1px solid #2C3052;
+    border-radius: 10px;
+    background-color: #2C3052;
+    color: rgb(238 242 255);
+    margin: 40px 0px 40px;
 
 `
 
@@ -33,9 +33,9 @@ export const BackOfList = styled(ButtonStyle) `
 `
 
 export const NamePokemonDetails = styled.h2 `
-    color: #2C3052;
     font-size: 1.8rem;
     text-transform: capitalize;
+    margin: 10px 0px 20px;
 `
 export const ContainerGrid = styled.div `
     display: grid;
@@ -45,23 +45,70 @@ export const ContainerGrid = styled.div `
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
 `
+
+export const ContainerImagePokemon = styled(DisplayFlex) `
+    grid-area: image;  
+
+`
 export const ImagePokemonDetails = styled.img `
-    grid-area: image;   
-    border: 1px solid black;
+    max-width: 300px;
+    
 `
-export const TypeAndAbilities = styled.div `
-    border: 1px solid black;
+export const TypeAndAbilities = styled(DisplayFlex) `
+    border: 1px solid rgb(238 242 255);
     grid-area: details;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+     padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+    background-color: rgb(238 242 255); 
+    color: #2C3052;
+    
 `
-export const Moves = styled.div `
+export const Types = styled(FlexUL) `
+    gap:20px;
+    margin-top: 20px;
+`
+
+export const ContinerAbilities = styled(DisplayFlex) `
+    flex-direction: column;
+     text-align: center;
+     margin-top: 40px;
+     gap: 10px;
+    
+`
+
+export const AbilitiesDetails = styled(FlexUL) `
+    gap: 20px;  
+    flex-direction: column;
+
+`
+
+export const TitleAbilities = styled.h3 `
+    font-size: 1.2rem;
+    text-transform: capitalize;
+`
+
+export const TextBlock  = styled.p `
+    font-size: 1rem;
+    text-transform: capitalize;
+`
+
+export const TitleDetails = styled.h3 `
+
+    text-transform: capitalize;
+    font-size: 1.4rem;
+`
+
+
+
+
+export const Moves = styled(DisplayFlex) `
     grid-area: moves;
+    border-radius: 10px;
+    background-color: #B8191F;
+    padding: 15px;
     border: 1px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     max-width: 800px;
     flex-wrap: wrap;
     gap: 10px;

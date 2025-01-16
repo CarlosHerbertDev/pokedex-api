@@ -10,6 +10,7 @@ const Globalstyle = createGlobalStyle `
 }
     
 body {
+    background-color: rgb(238 242 255);
     font-family: "Roboto", serif;
     font-display: swap;
     font-size: 62.5%;

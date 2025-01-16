@@ -2,10 +2,17 @@ import styled from "styled-components"
 import { Button } from "../components/button/button"
 
 
-export const Container = styled.div `
-    background-color: rgb(238 242 255);
+export const DisplayFlex = styled.div `
+    display: flex;
+    justify-content:center;
+    align-items: center;
 `
 
+export const FlexUL = styled.ul `
+    display: flex;
+    justify-content:center;
+    align-items: center;
+`
 
 export const SectionListPokemons = styled.section `
     margin: 0 auto;

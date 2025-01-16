@@ -79,8 +79,8 @@ export const NamePokemon = styled.h2 `
     border: 5px solid #2C3052;
     background-color: #2C3052;
     border-radius: 8px;
-    width: 100%;
     text-transform: capitalize;
+    transform: translateY(1px);
     `
     
 export const VerMais = styled(ButtonStyle) `

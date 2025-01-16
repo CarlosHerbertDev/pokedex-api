@@ -4,8 +4,7 @@ import { LinkHome } from "../../style/reusablestyles"
 
 export const IntroductinPokemons = ({ list, onClick }) => {
 
-console.log(onClick)
-
+// console.log(onClick)
     return (
         <>
         <TextApresentation> 
