@@ -35,7 +35,6 @@ const ListPokemons = () => {
         return () => {
           window.removeEventListener('scroll', handleScroll);
         };
-
     }, [])
 
     useEffect(() => {
@@ -113,8 +112,9 @@ const ListPokemons = () => {
                 prevOffset = pokedex.pokemons.length
                 return prevOffset + 10
             }
-        
+            
         }); 
+        // window.scrollTo(100, 0)
     };
 
 

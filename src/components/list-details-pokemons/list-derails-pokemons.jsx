@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetails, getDetailsAbilities } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
-import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, Types, ContainerImagePokemon, ContinerAbilities, TitleDetails, AbilitiesDetails, TitleAbilities,  TextBlock } from "./styles";
+import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, Types, ContainerImagePokemon, ContinerAbilities, TitleDetails, AbilitiesDetails, TitleAbilities,  TextBlock, LayoutMoves, TitleMoves, ContainerMoves, TeextBlockMoves, CardBack, ContainerCards, FlipEffect, CardFront, ContainerTypesAbilities } from "./styles";
 
 
 const ListDetailsPokemons = () => {
@@ -90,10 +90,10 @@ const ListDetailsPokemons = () => {
                 )}
                                 </ContainerImagePokemon>
 
-                <TypeAndAbilities>
-
+        <TypeAndAbilities>
+            <ContainerTypesAbilities>
                 <TitleDetails>Type</TitleDetails>
-                {       Array.isArray(details.types) ? (
+                    {Array.isArray(details.types) ? (
                         <Types>
                             {details.types.map((item, index) => {
                                 return (
@@ -115,39 +115,56 @@ const ListDetailsPokemons = () => {
                         <ContinerAbilities>
                             <TitleDetails>Abilities</TitleDetails>
 
+                            {/* <ContainerCards> */}
                             <AbilitiesDetails>    
                             {abilities.map((item, index) => {
                                 return (
-                                        <li key={index}>
-                                            <TitleAbilities>{item.name}</TitleAbilities>
-                                            <TextBlock>{item.description} </TextBlock>
-                                        </li>
+                                    <ContainerCards key={index}>
+                                            <FlipEffect>
+                                                <CardFront>
+                                                <TitleAbilities>{item.name}</TitleAbilities>
+                                                </CardFront>
+
+                                                <CardBack>
+                                                <TextBlock>{item.description} </TextBlock>
+                                                </CardBack>
+                                            </FlipEffect>   
+                                        </ContainerCards>
                                     )
                                 })}
                             </AbilitiesDetails>
+                            {/* </ContainerCards> */}
                         </ContinerAbilities>
                 
-
-                         ) : (
-
-                        <p> Carregando habilidades...</p>
-                    )}
-                </TypeAndAbilities>
+                
+            ) : (
+                
+                <p> Carregando habilidades...</p>
+            )}
+            </ContainerTypesAbilities>
+        </TypeAndAbilities>
 
 
                 
                 {Array.isArray(details.moves) ? (
-                    
-                <Moves>
-                    {details.moves.map((item, index) => {
+
+                    <LayoutMoves>
+                    <ContainerMoves>
+
+                    <TitleMoves>Moves</TitleMoves>
+                    <Moves>
+                    {details.moves.map((item, index, array) => {
                         return (
                             <li key={index}>
-                                {item.move.name}
+                                <TeextBlockMoves>
+                                    {item.move.name}
+                                </TeextBlockMoves>
                             </li>
                         )
                     })}
-
                 </Moves>
+                    </ContainerMoves>
+                    </LayoutMoves>
 
                 ) : (
                     <p> Carregando moves...</p>

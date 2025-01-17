@@ -52,6 +52,7 @@ export const UlListPokemons = styled.ul `
     flex-wrap: wrap;
 `
 export const LiPokemons = styled.li `
+ 
     border-radius: 20px;
     border: 5px solid #2C3052;
     text-align: center;

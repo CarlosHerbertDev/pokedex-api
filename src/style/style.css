@@ -36,10 +36,9 @@ ul {
     position: fixed;
     letter-spacing: 2px;
     transform: scale(1.1);
-
-    @media (max-width: 620px) {
-    
-        padding: 15px;
-    }
-
+    overflow: hidden;
+    transform: translateY();
+   transform: rotateY(180deg);
+   transition: .5s;
+position: relative;
 }
