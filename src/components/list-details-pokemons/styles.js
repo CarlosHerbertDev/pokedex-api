@@ -86,7 +86,7 @@ export const ContainerTypesAbilities = styled(DisplayFlex) `
     max-width: 800px;
 ` 
 export const Types = styled(FlexUL) `
-    gap:20px;
+    gap:10px;
     margin-top: 10px;
 `
 
@@ -109,9 +109,120 @@ export const TitleAbilities = styled.h3 `
     text-transform: capitalize;
 `
 
-export const TextBlock  = styled.p `
+export const TextBlock = styled.p` 
     font-size: 1rem;
     text-transform: capitalize;
+`
+
+export const TextBlockType = styled(TextBlock) `
+padding: 5px 20px;
+border-radius: 5px;
+font-size: 1rem;
+text-transform: capitalize;
+${({type}) => {
+    if (type === 'fire') {
+        return `
+        background-color: rgb(253, 125, 36); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'normal') {
+        return `
+        background-color:rgb(112, 112, 112);
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'flying') {
+        return `
+        background-color:#efac71; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'fighting') {
+        return `
+        background-color:#E34A47; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'poison') {
+        return `
+        background-color:rgb(185, 127, 201); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'ground') {
+        return `
+        background-color:#e2725b; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'rock') {
+        return `
+        background-color:#964b00; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'bug') {
+        return `
+        background-color:rgb(114, 159, 63); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'ghost') {
+        return `
+        background-color:rgb(123, 98, 163); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'steel') {
+        return `
+        background-color:rgb(164, 172, 175); 
+        color:#2C3052;
+        `
+    } else if(type === 'grass') {
+        return `
+        background-color:rgb(155, 204, 80); 
+        color:#2C3052;
+        `
+    } else if(type === 'electric') {
+        return `
+        background-color:rgb(238, 213, 53); 
+        color:#2C3052;
+        `
+    } else if(type === 'psychic') {
+        return `
+        background-color:rgb(243, 102, 185); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'ice') {
+        return `
+        background-color:rgb(81, 196, 231); 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'dragon') {
+        return `
+        background-color:#f1f17d; 
+        color:#2C3052;
+        `
+    } else if(type === 'dark') {
+        return `
+        background-color:#000; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'fairy') {
+        return `
+        background-color:rgb(253, 185, 233); 
+        color:#2C3052;
+        `
+    } else if(type === 'stellar') {
+        return `
+        background-color:#4b0082 ; 
+        color:rgb(238 242 255);
+        `
+    } else if(type === 'water') {
+        return `
+        background-color:rgb(69, 146, 196); 
+        color:rgb(238 242 255);
+        `
+    } else {
+        return `
+        background-color:#2C3052;
+        color:rgb(238 242 255);
+
+        `
+    }
+}}
 `
 
 export const FlipEffect = styled.div `

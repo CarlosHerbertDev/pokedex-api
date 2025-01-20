@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDetails, getDetailsAbilities } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
-import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, Types, ContainerImagePokemon, ContinerAbilities, TitleDetails, AbilitiesDetails, TitleAbilities,  TextBlock, LayoutMoves, TitleMoves, ContainerMoves, TeextBlockMoves, CardBack, ContainerCards, FlipEffect, CardFront, ContainerTypesAbilities } from "./styles";
+import { BackOfList, ConatainerDetails, ContainerGrid, ImagePokemonDetails, Moves, NamePokemonDetails, SectionDetails, TypeAndAbilities, Types, ContainerImagePokemon, ContinerAbilities, TitleDetails, AbilitiesDetails, TitleAbilities,  TextBlock, LayoutMoves, TitleMoves, ContainerMoves, TeextBlockMoves, CardBack, ContainerCards, FlipEffect, CardFront, ContainerTypesAbilities, TextBlockType } from "./styles";
 
 
 const ListDetailsPokemons = () => {
@@ -98,9 +98,12 @@ const ListDetailsPokemons = () => {
                             {details.types.map((item, index) => {
                                 return (
                                     <li key={index}>
-                                        <TextBlock>{item.type.name}</TextBlock>
+                                        <TextBlockType 
+                                        type={item.type.name}>
+                                                {item.type.name}
+                                        </TextBlockType>
                                     </li>
-                                 )
+                                )
                             })}
 
                         </Types>
@@ -153,7 +156,7 @@ const ListDetailsPokemons = () => {
 
                     <TitleMoves>Moves</TitleMoves>
                     <Moves>
-                    {details.moves.map((item, index, array) => {
+                    {details.moves.map((item, index) => {
                         return (
                             <li key={index}>
                                 <TeextBlockMoves>

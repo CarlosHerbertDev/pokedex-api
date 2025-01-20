@@ -15,6 +15,7 @@ const ListPokemons = () => {
 
     const saveToLocalStorage = (pokedexData) => {
         sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
+        // sessionStorage.setItem("numberList", pokedexData);
     };
 
 
@@ -27,32 +28,33 @@ const ListPokemons = () => {
 
         const handleScroll = () => {
             sessionStorage.setItem('scrollPosition', window.scrollY);
-          };
+        };
     
         window.addEventListener('scroll', handleScroll);
     
         // Limpeza do evento ao desmontar o componente
         return () => {
-          window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, [])
 
     useEffect(() => {
         
         const savedPokedex = sessionStorage.getItem("pokedex");
+        // const savedNumberList = sessionStorage.getItem("numberList");
         if (savedPokedex) {
             try {
                 const parsedPokedex = JSON.parse(savedPokedex);
+                // const parsedNumberList = parseInt(savedNumberList);
                 setPokedex(parsedPokedex);
+                // setNovalista(parsedNumberList)
             } catch (error) {
                 console.error("Erro ao parsear o conteúdo do localStorage", error);
             }
         }
 
 
-       
 
-       
         
     }, []); 
 
@@ -60,8 +62,10 @@ const ListPokemons = () => {
     useEffect(() => {
 
         if (pokedex.pokemons.length > 0) {
-            saveToLocalStorage(pokedex); 
+            saveToLocalStorage(pokedex);
+            // saveToLocalStorage(novalista);
         }
+
     }, [pokedex]);
 
     useEffect(() => {
@@ -74,7 +78,8 @@ const ListPokemons = () => {
                 const resumedeDetails = detailsPokemons.map((item) => {
                     return {
                         name: item.name,
-                        image: item.sprites.other.dream_world.front_default
+                        image: item.sprites.other.dream_world.front_default,
+                        type: item.types
                     };
                 });
                 
@@ -92,6 +97,7 @@ const ListPokemons = () => {
 
 
             
+            
 
             } catch (error) {
                 setError('Erro ao carregar informações dos Pokemons 😕');
@@ -104,17 +110,15 @@ const ListPokemons = () => {
     }, [novalista]); 
 
     const handleChange = () => {
-
-        setNovalista((prevOffset) => {
-            if (pokedex.pokemons.length === 10) {
+            setNovalista((prevOffset) => {
+                if (pokedex.pokemons.length === 10) {
+                        return prevOffset + 10
+                } else {
+                    prevOffset = pokedex.pokemons.length - 10
                     return prevOffset + 10
-            } else {
-                prevOffset = pokedex.pokemons.length
-                return prevOffset + 10
-            }
-            
-        }); 
+                }
         // window.scrollTo(100, 0)
+        })
     };
 
 
@@ -127,6 +131,8 @@ const ListPokemons = () => {
 
     }
     
+    console.log(pokedex.pokemons)
+
     if (error) {
             return (
                 <ErrorOrLoadingHandling>
@@ -140,10 +146,8 @@ const ListPokemons = () => {
             <HeaderOfComponents />
                 <SectionListPokemons id="home"> 
                     <IntroductinPokemons list={pokedex.pokemons} />
-                        <VerMais 
-                        onClick={handleChange} 
-                        disabled={pokedex.pokemons.length === numberOfPokemons}> 
-                            Ver Mais
+                        <VerMais onClick={handleChange}> 
+                            {novalista > numberOfPokemons ? 'Fim da Lista' : 'Ver Mais'}
                         </VerMais>
                     </SectionListPokemons>
                     <footer>icone <a href="https://iconscout.com/icons/pokemon" target="_blank">Pokémon</a> feito por <a href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"target="_blank">Mohit Gandhi</a></footer>
@@ -152,4 +156,3 @@ const ListPokemons = () => {
 };
 
 export { ListPokemons };
-
