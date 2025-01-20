@@ -14,16 +14,19 @@ export const FlexUL = styled.ul `
     align-items: center;
 `
 
-export const SectionListPokemons = styled.section `
+export const BodyPokemons = styled.div `
+    background-color: ${({theme}) => { 
+        return theme === 'light' ? 'rgb(238 242 255)' : '#2C3052' 
+    }}; 
+`
+
+export const SectionPokemons = styled.section `
     margin: 0 auto;
     display: flex;
     justify-content:center;
     align-items: center;
     flex-direction: column;
 
-    @media (max-width: 620px) {
-        padding: 15px;
-    }
 `
 
 export const LinkHome = styled.a `
@@ -37,7 +40,7 @@ export const ButtonStyle = styled(Button) `
     padding: 15px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: #2C3052;
+    background-color: #1d2039;
     border: none;
     font-family: "Luckiest Guy", serif;
     font-size: 1.1rem;

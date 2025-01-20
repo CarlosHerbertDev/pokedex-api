@@ -1,13 +1,7 @@
 import styled from "styled-components";
-import { ButtonStyle } from "../../style/reusablestyles";
+import { ButtonStyle, SectionPokemons } from "../../style/reusablestyles";
 
-export const SectionListPokemons = styled.section `
-    margin: 0 auto;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-
+export const SectionListPokemons = styled(SectionPokemons) `
     @media (max-width: 620px) {
         padding: 15px;
     }
@@ -24,20 +18,18 @@ export const TextApresentation = styled.h1 `
 
 `
 
-export const LinkHome = styled.a `
-    font-family: "Luckiest Guy", serif;
-    color: #ffcb05;
-    text-shadow: #395fAA -0.1em 0.1em 0.1em;
-`
-
-
 export const DescriptionApresentation = styled.p `
+    background-color: ${({theme}) => { 
+        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+    }};
+    color: ${({theme}) => { 
+        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039)' 
+    }};
     margin-top: 30px;
     font-size: 1.2rem;
     text-align: justify;
     padding: 15px;
-    background-color: #2C3052;
-    color: rgb(238 242 255);
+    font-weight: 500;
     border-radius: 8px;
     line-height: 30px;
     max-width: 600px;
@@ -54,7 +46,9 @@ export const UlListPokemons = styled.ul `
 export const LiPokemons = styled.li `
  
     border-radius: 20px;
-    border: 5px solid #2C3052;
+    border: 5px solid ${({theme}) => { 
+        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+    }};
     text-align: center;
     display: flex;
     transition: 0.1s ease-in-out;
@@ -74,11 +68,20 @@ export const ImagePokemon = styled.img `
 `
 
 export const NamePokemon = styled.h2 `
-    color: rgb(238 242 255);
+    color: ${({theme}) => { 
+        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039' 
+    }};
     font-size: 1.6rem;
     margin-top: 5px;
-    border: 5px solid #2C3052;
-    background-color: #2C3052;
+
+    border: 5px solid ${({theme}) => { 
+        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+    }};
+
+    background-color: ${({theme}) => { 
+        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+    }};
+    
     border-radius: 8px;
     text-transform: capitalize;
     transform: translateY(1px);

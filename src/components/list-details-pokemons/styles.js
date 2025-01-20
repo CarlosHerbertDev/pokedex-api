@@ -1,12 +1,21 @@
 import styled from "styled-components";
-import { SectionListPokemons} from "../list-pokemons/styles";
-import { ButtonStyle, DisplayFlex, FlexUL } from "../../style/reusablestyles"
+import { ButtonStyle, DisplayFlex, FlexUL, LinkHome } from "../../style/reusablestyles"
 
 
-export const SectionDetails = styled(SectionListPokemons)`
-    @media (max-width: 620px) {
-        padding: 0px;
-    }
+export const TextLoading = styled (LinkHome)`
+     font-size: 1.4rem;
+`
+export const TextLoadingAbilities = styled (TextLoading)`
+    transform: translateY(80px);
+`
+export const TitleDetails = styled.h3 `
+    margin: 20px 0px 20px;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+`  
+export const TextBlock = styled.p ` 
+    font-size: 1rem;
+    text-transform: capitalize;
 `
 export const ConatainerDetails = styled.div `
     max-width: 800px;
@@ -15,9 +24,9 @@ export const ConatainerDetails = styled.div `
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid #2C3052;
+    border: 1px solid #1d2039;
     border-radius: 10px;
-    background-color: #2C3052;
+    background-color: #1d2039;
     color: rgb(238 242 255);
     margin: 40px 0px 40px;  
 `
@@ -64,7 +73,7 @@ export const TypeAndAbilities = styled(DisplayFlex) `
     gap: 0px;
     border-radius: 10px;
     background-color: rgb(238 242 255); 
-    color: #2C3052;
+    color: #1d2039;
     overflow: auto;
 
      &::-webkit-scrollbar {
@@ -74,7 +83,7 @@ export const TypeAndAbilities = styled(DisplayFlex) `
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #2C3052;
+        background-color: #1d2039;
         border-radius: 10px;
     }
 `
@@ -98,27 +107,11 @@ export const ContinerAbilities = styled(DisplayFlex) `
     
 `
 
-export const AbilitiesDetails = styled(DisplayFlex) `
-    gap: 20px;  
-    flex-direction: row;
-    flex-wrap: wrap;
-`
-
-export const TitleAbilities = styled.h3 ` 
-    font-size: 1.2rem;
-    text-transform: capitalize;
-`
-
-export const TextBlock = styled.p` 
+export const TextBlockType = styled(TextBlock) `
+    padding: 5px 20px;
+    border-radius: 5px;
     font-size: 1rem;
     text-transform: capitalize;
-`
-
-export const TextBlockType = styled(TextBlock) `
-padding: 5px 20px;
-border-radius: 5px;
-font-size: 1rem;
-text-transform: capitalize;
 ${({type}) => {
     if (type === 'fire') {
         return `
@@ -168,17 +161,17 @@ ${({type}) => {
     } else if(type === 'steel') {
         return `
         background-color:rgb(164, 172, 175); 
-        color:#2C3052;
+        color:#1d2039;
         `
     } else if(type === 'grass') {
         return `
         background-color:rgb(155, 204, 80); 
-        color:#2C3052;
+        color:#1d2039;
         `
     } else if(type === 'electric') {
         return `
         background-color:rgb(238, 213, 53); 
-        color:#2C3052;
+        color:#1d2039;
         `
     } else if(type === 'psychic') {
         return `
@@ -193,7 +186,7 @@ ${({type}) => {
     } else if(type === 'dragon') {
         return `
         background-color:#f1f17d; 
-        color:#2C3052;
+        color:#1d2039;
         `
     } else if(type === 'dark') {
         return `
@@ -203,7 +196,7 @@ ${({type}) => {
     } else if(type === 'fairy') {
         return `
         background-color:rgb(253, 185, 233); 
-        color:#2C3052;
+        color:#1d2039;
         `
     } else if(type === 'stellar') {
         return `
@@ -217,21 +210,33 @@ ${({type}) => {
         `
     } else {
         return `
-        background-color:#2C3052;
+        background-color:#1d2039;
         color:rgb(238 242 255);
-
+        
         `
     }
 }}
 `
+export const AbilitiesDetails = styled(DisplayFlex) `
+    gap: 20px;  
+    flex-direction: row;
+    flex-wrap: wrap;
+`
 
+export const ContainerTitleAbilites = styled(DisplayFlex) `
+    gap: 10px;
+`
+export const TitleAbilities = styled.h3 ` 
+    font-size: 1.2rem;
+    text-transform: capitalize;
+`
 export const FlipEffect = styled.div `
     position: absolute;
     height: 100%;
     width: 100%;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: .8s;
+    transition: 1s;
 `
 export const ContainerCards = styled(DisplayFlex) `
     margin-top: 5px;
@@ -240,6 +245,7 @@ export const ContainerCards = styled(DisplayFlex) `
     min-height: 120px;
     width: 150px;
     padding-bottom: 25px;
+
     &:hover ${FlipEffect} { 
         transform: rotateY(180deg);
     }
@@ -256,34 +262,54 @@ export const StyleCards = styled(DisplayFlex) `
 `
 
 export const CardFront = styled(StyleCards) `
-    background-color: #B81;
+    background-color:#daa520;
              
 `
 
 export const CardBack = styled(StyleCards) `
-    background-color: #B8191F;
+    background-color: #1d2039;
+    color: #daa520;
+    padding: 5px;
+    transform: rotateY(180deg);
+`
+
+export const MiniFlip = styled(FlipEffect) `
+    animation: flip-indicativo 2.5s infinite ease-in-out;
+`
+export const MiniContainerCard = styled.div `
+    position: relative;
+    height: 30px;
+    width: 20px;
+`
+export const MiniStyledCard = styled(DisplayFlex) `
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+`
+export const MiniCardFront = styled(MiniStyledCard) `
+    background-color:#daa520;
+             
+`
+export const MiniCardBack = styled(MiniStyledCard) `
+    background-color: #1d2039;
+    color: #daa520;
     transform: rotateY(180deg);
 `
 
 export const TeextBlockMoves = styled(TextBlock) `
     padding: 3px 8px;
-    color: #2C3052;
+    color: #1d2039;
     background-color: rgb(238 242 255);
     border-top-left-radius: 5px;
     border-bottom-right-radius: 10px;
     font-weight: 700;
 `
 
-export const TitleDetails = styled.h3 `
-    margin: 20px 0px 20px;
-    text-transform: capitalize;
-    font-size: 1.4rem;
-`
 export const TitleMoves = styled(TitleDetails) `
     margin-top: 15px;
 `
-
-
 export const LayoutMoves = styled(DisplayFlex) `
 
     background-color: #B8191F;
@@ -321,3 +347,5 @@ export const Moves = styled(DisplayFlex) `
     flex-wrap: wrap;
     gap: 10px;
 `
+
+

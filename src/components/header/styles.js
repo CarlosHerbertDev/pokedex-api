@@ -3,7 +3,7 @@ import sun34 from "../../assets/sun34.png"
 import pokebola34 from "../../assets/pokebola34.png"
 
 export const HeaderlistPokemons = styled.header `
-    background-color: #2C3052;
+    background-color: #1d2039;
     display: flex;
     justify-content: center;
     position: fixed;
@@ -27,6 +27,7 @@ export const Logo = styled.div `
 
 export const TitleLogo = styled.p `
     font-size: 2rem;
+    cursor: pointer;
 `
 
 export const ImagePokebola = styled.div `
@@ -34,6 +35,7 @@ export const ImagePokebola = styled.div `
     border: none;
     width: 40px;
     height: 40px;
+    cursor: pointer;
 `
 
 export const ButtonDarkLight = styled.button `
@@ -42,4 +44,5 @@ export const ButtonDarkLight = styled.button `
     width: 34px;
     height: 34px;
     cursor: pointer;
+    transform: translateY(4px);
 `

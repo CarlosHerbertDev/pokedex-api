@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { LinkHome, SectionListPokemons } from "../../style/reusablestyles";
+import { LinkHome, SectionPokemons } from "../../style/reusablestyles";
 
-export const SectionMessage = styled(SectionListPokemons) `
+export const SectionMessage = styled(SectionPokemons) `
     height: 100vh;
 `
 export const TextMessage = styled(LinkHome) `

@@ -1,23 +1,26 @@
 import { ButtonDarkLight, HeaderContainer, HeaderlistPokemons, ImagePokebola, Logo, TitleLogo } from "./styles"
+import { LinkHome } from "../../style/reusablestyles"
+import { useContext } from "react"
+import { ThemeContext } from "../../contexts/theme-context"
 
-import { LinkHome } from "../list-pokemons/styles"
 
 
 
 export const HeaderOfComponents = () => {
+    const {tooglerTheme, setTogglerTheme} = useContext(ThemeContext)
 
     return (
                 <HeaderlistPokemons>
                     <HeaderContainer>
-                        <Logo>
+                        <Logo onClick={() => {window.scrollTo(100, 0)}}>
                             <TitleLogo>
-                                <LinkHome href="#home">
+                                <LinkHome>
                                     Pokédex API
                                 </LinkHome>
                             </TitleLogo>
                             <ImagePokebola />
                         </Logo>
-                        <ButtonDarkLight />
+                        <ButtonDarkLight onClick={() => {setTogglerTheme(tooglerTheme === 'light' ? 'dark' : 'light' )}}/>
                     </HeaderContainer>
                 </HeaderlistPokemons>
     )
