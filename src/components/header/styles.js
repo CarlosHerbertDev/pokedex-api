@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import sun34 from "../../assets/sun34.png"
 import pokebola34 from "../../assets/pokebola34.png"
+import moon34 from "../../assets/moon34.png"
 
 export const HeaderlistPokemons = styled.header `
     background-color: #1d2039;
@@ -39,10 +40,13 @@ export const ImagePokebola = styled.div `
 `
 
 export const ButtonDarkLight = styled.button `
-    background: url(${sun34});
+    background: url(${({theme}) => { 
+        return theme === 'light' ? sun34 : moon34 
+    }});
     border: none;
     width: 34px;
     height: 34px;
     cursor: pointer;
     transform: translateY(4px);
+    transition: 1s;
 `

@@ -27,7 +27,9 @@ export const IntroductinPokemons = ({ list, onClick }) => {
                         ) : (
                             "Sem imagem"
                         )}
-                        <NamePokemon theme={tooglerTheme}>{pokemon.name}</NamePokemon>
+                        <NamePokemon theme={tooglerTheme}>
+                            {pokemon.name}
+                        </NamePokemon>
                     </Link>
                 </LiPokemons>
             ))}

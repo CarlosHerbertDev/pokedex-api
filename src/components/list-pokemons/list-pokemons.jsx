@@ -15,10 +15,10 @@ const ListPokemons = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const {tooglerTheme} = useContext(ThemeContext)
+  const [teste, setTeste] = useState(['a', 'b', 'c', 'd'])
 
   const saveToLocalStorage = (pokedexData) => {
     sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
-    // sessionStorage.setItem("numberList", pokedexData);
   };
 
   useEffect(() => {
@@ -104,7 +104,6 @@ const ListPokemons = () => {
         prevOffset = pokedex.pokemons.length - 10;
         return prevOffset + 10;
       }
-      // window.scrollTo(100, 0)
     });
   };
 
@@ -112,10 +111,20 @@ const ListPokemons = () => {
     return <ErrorOrLoadingHandling>Carregando...</ErrorOrLoadingHandling>;
   }
 
-  console.log(pokedex.pokemons);
+  // const Teste = pokedex.pokemons.filter((item) => { return item.name.startsWith('p')})
+
+  console.log(pokedex.pokemons)
+  
 
   if (error) {
     return <ErrorOrLoadingHandling>{error}</ErrorOrLoadingHandling>;
+  }
+
+
+  const haddleTeste = (event) => {
+
+      console.log(event.target);
+      
   }
 
   return (
@@ -123,9 +132,37 @@ const ListPokemons = () => {
       <HeaderOfComponents />
       <SectionListPokemons >
         <IntroductinPokemons list={pokedex.pokemons} />
+        <select id="filmes" defaultValue ='' name="filmes" onChange={haddleTeste}>
+		<option value = ''>Selecione um filme!</option>
+    {pokedex.pokemons.map((item) => {
+         
+
+         return item.type.map((types, index) => {
+          console.log(types)
+         
+          
+
+
+          const novoTeste = types.filter(
+            (value, index) =>
+              types.findIndex(
+                (pokemon) => pokemon.type.name === value.name
+              ) === index
+            )
+
+
+          //  return (
+          //   <option value = {types.type.name} key={index}>{types.type.name}</option>
+          //  )
+          })    
+
+    })}
+        </select>
         <VerMais onClick={handleChange}>
           {novalista > numberOfPokemons ? "Fim da Lista" : "Ver Mais"}
         </VerMais>
+        
+
       </SectionListPokemons>
       <footer>
         <a href="https://iconscout.com/icons/pokemon" target="_blank">

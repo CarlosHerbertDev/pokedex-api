@@ -20,7 +20,10 @@ export const HeaderOfComponents = () => {
                             </TitleLogo>
                             <ImagePokebola />
                         </Logo>
-                        <ButtonDarkLight onClick={() => {setTogglerTheme(tooglerTheme === 'light' ? 'dark' : 'light' )}}/>
+                        <ButtonDarkLight 
+                        onClick={() => {setTogglerTheme(tooglerTheme === 'light' ? 'dark' : 'light' )}}
+                        theme={tooglerTheme}
+                        />
                     </HeaderContainer>
                 </HeaderlistPokemons>
     )

@@ -23,13 +23,13 @@ export const DescriptionApresentation = styled.p `
         return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
     }};
     color: ${({theme}) => { 
-        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039)' 
+        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039' 
     }};
     margin-top: 30px;
     font-size: 1.2rem;
     text-align: justify;
     padding: 15px;
-    font-weight: 500;
+    font-weight: 400;
     border-radius: 8px;
     line-height: 30px;
     max-width: 600px;
