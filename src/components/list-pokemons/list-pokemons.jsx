@@ -15,7 +15,7 @@ const ListPokemons = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const {tooglerTheme} = useContext(ThemeContext)
-  const [teste, setTeste] = useState(['a', 'b', 'c', 'd'])
+  const [teste, setTeste] = useState([])
 
   const saveToLocalStorage = (pokedexData) => {
     sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
@@ -52,13 +52,7 @@ const ListPokemons = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (pokedex.pokemons.length > 0) {
-      saveToLocalStorage(pokedex);
- 
-    }
-  }, [pokedex]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -74,27 +68,58 @@ const ListPokemons = () => {
         });
 
         setPokedex((prevPokedex) => {
-          const allPokemons = [...prevPokedex.pokemons, ...resumedeDetails];
-
+          const allPokemons = [...prevPokedex.pokemons, ...resumedeDetails];          
           const uniquePokemons = allPokemons.filter(
             (value, index) =>
               allPokemons.findIndex(
                 (pokemon) => pokemon.name === value.name
               ) === index
-          );
-          return { pokemons: uniquePokemons };
-        });
-
-        setNumberOfPokemon(namesPokemons.count);
-      } catch (error) {
-        setError("Erro ao carregar informações dos Pokemons 😕");
-      } finally {
-        setLoading(false);
+            );
+            return { pokemons: uniquePokemons };
+          });
+          
+          setNumberOfPokemon(namesPokemons.count);
+        } catch (error) {
+          setError("Erro ao carregar informações dos Pokemons 😕");
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      fetchData();
+    }, [novalista]);
+    
+    useEffect(() => {
+      if (pokedex.pokemons.length > 0) {
+        saveToLocalStorage(pokedex);
+   
       }
-    };
+  
+      setTeste((prevTeste) => {
 
-    fetchData();
-  }, [novalista]);
+        const arrayOfTypes = pokedex.pokemons.map((item) => {
+              const names = item.type.map((value) => value.type.name )
+              return names
+        })  
+        const arrayTyoesFlatten = arrayOfTypes.reduce((acc, item) =>  acc.concat(item), [])
+        const removeDuplicates = arrayTyoesFlatten.filter((value, index) =>
+          arrayTyoesFlatten.findIndex((name) => name === value) === index
+        )
+  
+        return prevTeste = [...removeDuplicates] 
+    }) 
+  
+  
+  
+  
+  
+  
+  
+    }, [pokedex]);
+  //   useEffect(() => {
+      
+
+  // }, [pokedex])
 
   const handleChange = () => {
     setNovalista((prevOffset) => {
@@ -111,11 +136,6 @@ const ListPokemons = () => {
     return <ErrorOrLoadingHandling>Carregando...</ErrorOrLoadingHandling>;
   }
 
-  // const Teste = pokedex.pokemons.filter((item) => { return item.name.startsWith('p')})
-
-  console.log(pokedex.pokemons)
-  
-
   if (error) {
     return <ErrorOrLoadingHandling>{error}</ErrorOrLoadingHandling>;
   }
@@ -123,9 +143,12 @@ const ListPokemons = () => {
 
   const haddleTeste = (event) => {
 
-      console.log(event.target);
+      // console.log(event.target);
       
   }
+
+  console.log(teste)
+  
 
   return (
     <BodyPokemons theme = {tooglerTheme}>
@@ -134,29 +157,13 @@ const ListPokemons = () => {
         <IntroductinPokemons list={pokedex.pokemons} />
         <select id="filmes" defaultValue ='' name="filmes" onChange={haddleTeste}>
 		<option value = ''>Selecione um filme!</option>
+
+
     {pokedex.pokemons.map((item) => {
          
 
-         return item.type.map((types, index) => {
-          console.log(types)
-         
-          
-
-
-          const novoTeste = types.filter(
-            (value, index) =>
-              types.findIndex(
-                (pokemon) => pokemon.type.name === value.name
-              ) === index
-            )
-
-
-          //  return (
-          //   <option value = {types.type.name} key={index}>{types.type.name}</option>
-          //  )
-          })    
-
     })}
+    
         </select>
         <VerMais onClick={handleChange}>
           {novalista > numberOfPokemons ? "Fim da Lista" : "Ver Mais"}
