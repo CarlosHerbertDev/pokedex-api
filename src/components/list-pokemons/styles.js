@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ButtonStyle, SectionPokemons } from "../../style/reusablestyles";
+import { ButtonStyle, DisplayFlex, LinkHome, SectionPokemons } from "../../style/reusablestyles";
 
 export const SectionListPokemons = styled(SectionPokemons) `
     @media (max-width: 620px) {
@@ -7,8 +7,11 @@ export const SectionListPokemons = styled(SectionPokemons) `
     }
 `
 
+export const ContainerFilter = styled(DisplayFlex) `
+    gap: 10px;
+`
 export const TextApresentation = styled.h1 `
-    margin-top: 110px;
+    margin-top: 90px;
     font-size: 2rem;
     text-align: center;
 
@@ -19,23 +22,31 @@ export const TextApresentation = styled.h1 `
 `
 
 export const DescriptionApresentation = styled.p `
-    background-color: ${({theme}) => { 
+    color: ${({theme}) => { 
         return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
     }};
-    color: ${({theme}) => { 
-        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039' 
-    }};
-    margin-top: 30px;
+
+    margin-top: 10px;
     font-size: 1.2rem;
-    text-align: justify;
+    text-align: center;
     padding: 15px;
     font-weight: 400;
     border-radius: 8px;
     line-height: 30px;
     max-width: 600px;
 `
+
+export const TitleFiltro = styled.label `
+    font-family: "Luckiest Guy", serif;
+    color: #ffcb05;
+    text-shadow: #395fAA -0.1em 0.1em 0.1em;
+    font-size: 1.5rem;
+
+`
+
+
 export const UlListPokemons = styled.ul `
-    margin-top: 40px;
+    margin-top: 30px;
     max-width: 1440px;
     display: flex;
     justify-content:center;

@@ -20,9 +20,9 @@ const ListPokemons = () => {
   const [filteredPokemons, setFilteredPokemons] = useState([])
   const {tooglerTheme} = useContext(ThemeContext)
 
-  const saveToLocalStorage = (pokedexData) => {
-    sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
-  };
+  // const saveToLocalStorage = (pokedexData) => {
+  //   sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
+  // };
 
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
@@ -43,6 +43,7 @@ const ListPokemons = () => {
 
   useEffect(() => {
     const savedPokedex = sessionStorage.getItem("pokedex");
+    const savedFilterPokemons = sessionStorage.getItem("filterPokemons");
 
     if (savedPokedex) {
       try {
@@ -50,9 +51,22 @@ const ListPokemons = () => {
         setPokedex(parsedPokedex);
 
       } catch (error) {
-        console.error("Erro ao parsear o conteúdo do localStorage", error);
+        console.error("Erro ao parsear o conteúdo dos pokemons do SessionStorage", error);
       }
     }
+
+    if (savedFilterPokemons) {
+      try {
+        const parseFilterPokemons = JSON.parse(savedFilterPokemons);
+        setFilteredPokemons(parseFilterPokemons)
+
+      } catch (error) {
+        console.error("Erro ao parsear o conteúdo dos pokemons Filtrado do SessionStorage", error);
+      }
+    }
+
+
+
   }, []);
 
   
@@ -94,7 +108,7 @@ const ListPokemons = () => {
     
     useEffect(() => {
       if (pokedex.pokemons.length > 0) {
-        saveToLocalStorage(pokedex);
+        sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
       }
   
       setDinamicSelect((prevdinamicSelect) => {
@@ -112,6 +126,12 @@ const ListPokemons = () => {
     }) 
   
     }, [pokedex]);
+
+    useEffect(() => {
+      if (filteredPokemons.length > 0) {
+        sessionStorage.setItem("filterPokemons", JSON.stringify(filteredPokemons));
+      }
+    }, [filteredPokemons])
 
   const handleChange = () => {
     setNovalista((prevOffset) => {
@@ -135,32 +155,38 @@ const ListPokemons = () => {
 
   const filteringPokemons  = (value) => {
 
-      const filterPokemons = pokedex.pokemons.filter((item) =>{
-        return item.type.find((element) => element.type.name === value)
+      if (value === 'todos') {
+        sessionStorage.removeItem("filterPokemons")
+        setFilteredPokemons((prevFilter) => {
+          return prevFilter = []
+      })
+      } else {
+    
+           const filterPokemons = pokedex.pokemons.filter((item) =>{
+            return item.type.find((element) => element.type.name === value)
       })
 
       setFilteredPokemons((prevFilter) => {
           return prevFilter = [...filterPokemons]
       })
-      
-
+    
+      }
   }
 
-  console.log(filteredPokemons)
   
-  
-
   return (
  
     <BodyPokemons theme = {tooglerTheme}>
       <HeaderOfComponents />
       <SectionListPokemons >
-      <DescriptionProject itens={dinamicSelect}
-        filter={filteringPokemons}/>
+      <DescriptionProject 
+        dinamicSelect={dinamicSelect}
+        filteringPokemons={filteringPokemons}
+        />
 
       {filteredPokemons.length > 0 ? (
 
-        <FilterPokemons  filteredPokemons={filteredPokemons} />
+        <FilterPokemons filteredPokemons={filteredPokemons} />
 
       ) : (
 

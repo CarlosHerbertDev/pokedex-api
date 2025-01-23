@@ -1,6 +1,6 @@
 import { ButtonDarkLight, HeaderContainer, HeaderlistPokemons, ImagePokebola, Logo, TitleLogo } from "./styles"
 import { LinkHome } from "../../style/reusablestyles"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ThemeContext } from "../../contexts/theme-context"
 
 
