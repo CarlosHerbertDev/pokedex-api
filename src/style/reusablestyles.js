@@ -18,6 +18,7 @@ export const BodyPokemons = styled.div `
     background-color: ${({theme}) => { 
         return theme === 'light' ? 'rgb(238 242 255)' : '#2C3052' 
     }}; 
+    min-height: 100vh;
 `
 
 export const SectionPokemons = styled.section `

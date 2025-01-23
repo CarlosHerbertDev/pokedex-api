@@ -7,6 +7,8 @@ import { VerMais } from "./styles";
 import { SectionListPokemons } from "./styles";
 import { BodyPokemons } from "../../style/reusablestyles";
 import { ThemeContext } from "../../contexts/theme-context";
+import { DescriptionProject } from "./description-project";
+import { FilterPokemons } from "./filter-pokemons";
 
 const ListPokemons = () => {
   const [pokedex, setPokedex] = useState({ pokemons: [] });
@@ -14,8 +16,9 @@ const ListPokemons = () => {
   const [numberOfPokemons, setNumberOfPokemon] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [dinamicSelect, setDinamicSelect] = useState([])
+  const [filteredPokemons, setFilteredPokemons] = useState([])
   const {tooglerTheme} = useContext(ThemeContext)
-  const [teste, setTeste] = useState([])
 
   const saveToLocalStorage = (pokedexData) => {
     sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
@@ -92,34 +95,23 @@ const ListPokemons = () => {
     useEffect(() => {
       if (pokedex.pokemons.length > 0) {
         saveToLocalStorage(pokedex);
-   
       }
   
-      setTeste((prevTeste) => {
+      setDinamicSelect((prevdinamicSelect) => {
 
         const arrayOfTypes = pokedex.pokemons.map((item) => {
               const names = item.type.map((value) => value.type.name )
               return names
         })  
-        const arrayTyoesFlatten = arrayOfTypes.reduce((acc, item) =>  acc.concat(item), [])
+        const arrayTyoesFlatten = arrayOfTypes.flat()
         const removeDuplicates = arrayTyoesFlatten.filter((value, index) =>
           arrayTyoesFlatten.findIndex((name) => name === value) === index
         )
   
-        return prevTeste = [...removeDuplicates] 
+        return prevdinamicSelect = [...removeDuplicates] 
     }) 
   
-  
-  
-  
-  
-  
-  
     }, [pokedex]);
-  //   useEffect(() => {
-      
-
-  // }, [pokedex])
 
   const handleChange = () => {
     setNovalista((prevOffset) => {
@@ -141,35 +133,46 @@ const ListPokemons = () => {
   }
 
 
-  const haddleTeste = (event) => {
+  const filteringPokemons  = (value) => {
 
-      // console.log(event.target);
+      const filterPokemons = pokedex.pokemons.filter((item) =>{
+        return item.type.find((element) => element.type.name === value)
+      })
+
+      setFilteredPokemons((prevFilter) => {
+          return prevFilter = [...filterPokemons]
+      })
       
+
   }
 
-  console.log(teste)
+  console.log(filteredPokemons)
+  
   
 
   return (
+ 
     <BodyPokemons theme = {tooglerTheme}>
       <HeaderOfComponents />
       <SectionListPokemons >
+      <DescriptionProject itens={dinamicSelect}
+        filter={filteringPokemons}/>
+
+      {filteredPokemons.length > 0 ? (
+
+        <FilterPokemons  filteredPokemons={filteredPokemons} />
+
+      ) : (
+
+        <>
+
         <IntroductinPokemons list={pokedex.pokemons} />
-        <select id="filmes" defaultValue ='' name="filmes" onChange={haddleTeste}>
-		<option value = ''>Selecione um filme!</option>
-
-
-    {pokedex.pokemons.map((item) => {
-         
-
-    })}
-    
-        </select>
         <VerMais onClick={handleChange}>
           {novalista > numberOfPokemons ? "Fim da Lista" : "Ver Mais"}
         </VerMais>
-        
 
+        </>
+      )}
       </SectionListPokemons>
       <footer>
         <a href="https://iconscout.com/icons/pokemon" target="_blank">
