@@ -16,7 +16,7 @@ export const FlexUL = styled.ul `
 
 export const BodyPokemons = styled.div `
     background-color: ${({theme}) => { 
-        return theme === 'light' ? 'rgb(238 242 255)' : '#2C3052' 
+        return theme === 'dark' ? '#2C3052' : 'rgb(238 242 255)' 
     }}; 
     min-height: 100vh;
 `

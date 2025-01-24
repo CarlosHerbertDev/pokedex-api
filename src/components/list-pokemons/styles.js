@@ -23,14 +23,14 @@ export const TextApresentation = styled.h1 `
 
 export const DescriptionApresentation = styled.p `
     color: ${({theme}) => { 
-        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
     }};
 
     margin-top: 10px;
     font-size: 1.2rem;
     text-align: center;
     padding: 15px;
-    font-weight: 400;
+    font-weight: 500;
     border-radius: 8px;
     line-height: 30px;
     max-width: 600px;
@@ -43,10 +43,25 @@ export const TitleFiltro = styled.label `
     font-size: 1.5rem;
 
 `
+export const SelectFilter = styled.select `
+
+    background-color: ${({theme}) => { 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
+    }};
+    color: ${({theme}) => { 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+    }};
+    
+    border-radius: 5px;  
+    font-size: 1.2rem; 
+    min-width: 80px; 
+    padding: 2px;
+`
+
 
 
 export const UlListPokemons = styled.ul `
-    margin-top: 30px;
+    margin: 30px 0px; 
     max-width: 1440px;
     display: flex;
     justify-content:center;
@@ -55,10 +70,10 @@ export const UlListPokemons = styled.ul `
     flex-wrap: wrap;
 `
 export const LiPokemons = styled.li `
- 
+
     border-radius: 20px;
     border: 5px solid ${({theme}) => { 
-        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
     }};
     text-align: center;
     display: flex;
@@ -80,17 +95,17 @@ export const ImagePokemon = styled.img `
 
 export const NamePokemon = styled.h2 `
     color: ${({theme}) => { 
-        return theme === 'light' ? 'rgb(238 242 255)' : '#1d2039' 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)' 
     }};
     font-size: 1.6rem;
     margin-top: 5px;
 
     border: 5px solid ${({theme}) => { 
-        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
     }};
 
     background-color: ${({theme}) => { 
-        return theme === 'light' ? '#1d2039' : 'rgb(238 242 255)' 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
     }};
     
     border-radius: 8px;
@@ -99,6 +114,7 @@ export const NamePokemon = styled.h2 `
     `
     
 export const VerMais = styled(ButtonStyle) `
+    margin-bottom: 30px;
     &:hover {
         transition: 0.1s ease-in-out;
             transform: translateY(-4px);

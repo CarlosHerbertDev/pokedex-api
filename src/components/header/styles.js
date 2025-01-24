@@ -41,7 +41,7 @@ export const ImagePokebola = styled.div `
 
 export const ButtonDarkLight = styled.button `
     background: url(${({theme}) => { 
-        return theme === 'light' ? sun34 : moon34 
+        return theme === 'dark' ? moon34 : sun34 
     }});
     border: none;
     width: 34px;

@@ -200,17 +200,6 @@ const ListPokemons = () => {
         </>
       )}
       </SectionListPokemons>
-      <footer>
-        <a href="https://iconscout.com/icons/pokemon" target="_blank">
-          Pokémon
-        </a>
-        <a
-          href="https://iconscout.com/pt/contributors/mcgandhi61/:assets"
-          target="_blank"
-        >
-          Mohit Gandhi
-        </a>
-      </footer>
     </BodyPokemons>
   );
 };
