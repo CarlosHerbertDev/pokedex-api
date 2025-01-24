@@ -1,6 +1,6 @@
 
-import { ContainerFilter, DescriptionApresentation, SelectFilter, TextApresentation, TitleFiltro } from "./styles"
-import { LinkHome } from "../../style/reusablestyles"
+import { ContainerFilter, DescriptionApresentation, DropdownButton, DropdownContainer, DropdownItem, DropdownList, OptionFilter, SelectFilter, TextApresentation, TitleFiltro } from "./styles"
+import { DisplayFlex, LinkHome } from "../../style/reusablestyles"
 import { useContext, useEffect } from "react"
 import { ThemeContext } from "../../contexts/theme-context"
 import { useState } from "react"
@@ -10,10 +10,13 @@ export const DescriptionProject = ({dinamicSelect, filteringPokemons}) => {
 
     const {tooglerTheme} = useContext(ThemeContext)
     const [select, setSelect] = useState('')
-    const handleChange = (event) => {
-        filteringPokemons(event.target.value);
-        setSelect(event.target.value)
-    }
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const handleChange = (value) => {
+      filteringPokemons(value);
+      setSelect(value);
+      setDropdownOpen(false);
+    };
 
     useEffect(() => {   
         
@@ -37,7 +40,7 @@ export const DescriptionProject = ({dinamicSelect, filteringPokemons}) => {
     }, [select])
     
 return(
-        <>
+        <>  
             <TextApresentation> 
                 <LinkHome>
                     Bem vindo ao Pokédex API !
@@ -48,16 +51,34 @@ return(
             </DescriptionApresentation>
             <ContainerFilter>
             <TitleFiltro htmlFor = 'filtro-pokemons'>Filtrar</TitleFiltro>
-            <SelectFilter id="filtro-pokemons" value ={select} name="filtro-pokemons" onChange={handleChange} theme={tooglerTheme}>
-            <option value = 'todos'>todos</option>
+            {/* <SelectFilter id="filtro-pokemons" value ={select} name="filtro-pokemons" size='1' onChange={handleChange} theme={tooglerTheme}>
+            <OptionFilter value = 'todos'>todos</OptionFilter>
                     {dinamicSelect.map((item, index) => {
                         return (
-                                <option key={index} value = {item}>{item}</option>
+                                <OptionFilter key={index} value = {item}>{item}</OptionFilter>
                                 )
-    
+   
                     })}
         
-            </SelectFilter>
+            </SelectFilter> */}
+
+
+<DropdownContainer>
+          <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)}>
+            {select}
+          </DropdownButton>
+          {isDropdownOpen && (
+            <DropdownList>
+              <DropdownItem onClick={() => handleChange('todos')}>todos</DropdownItem>
+              {dinamicSelect.map((item, index) => (
+                <DropdownItem key={index} onClick={() => handleChange(item)}>
+                  {item}
+                </DropdownItem>
+              ))}
+            </DropdownList>
+          )}
+        </DropdownContainer>
+            
             </ContainerFilter>
         </>
 )
