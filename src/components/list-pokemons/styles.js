@@ -40,7 +40,11 @@ export const DescriptionApresentation = styled.p `
 export const TitleFiltro = styled.p `
     font-family: "Luckiest Guy", serif;
     color: #ffcb05;
-    text-shadow: #395fAA -0.1em 0.1em 0.1em;
+   text-shadow: 
+    2px 2px 0px #395fAA,   
+    -2px 2px 0px #395fAA,  
+    2px -2px 0px #395fAA,  
+    -2px -2px 0px #395fAA;
     font-size: 1.5rem;
 
 `

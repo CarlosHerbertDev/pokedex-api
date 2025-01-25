@@ -34,7 +34,12 @@ export const SectionPokemons = styled.section `
 export const LinkHome = styled.a `
     font-family: "Luckiest Guy", serif;
     color: #ffcb05;
-    text-shadow: #395fAA -0.1em 0.1em 0.1em;
+   text-shadow: 
+    2px 2px 0px #395fAA,   
+    -2px 2px 0px #395fAA,  
+    2px -2px 0px #395fAA,  
+    -2px -2px 0px #395fAA;
+}
 `
 
 export const ButtonStyle = styled(Button) `
@@ -47,6 +52,10 @@ export const ButtonStyle = styled(Button) `
     font-family: "Luckiest Guy", serif;
     font-size: 1.1rem;
     color: #ffcb05;
-    text-shadow: #395fAA 0.1em 0.1em 0.1em;
+   text-shadow: 
+    2px 2px 0px #395fAA,   
+    -2px 2px 0px #395fAA,  
+    2px -2px 0px #395fAA,  
+    -2px -2px 0px #395fAA;
     transition: 0.1s ease-in-out;
     `

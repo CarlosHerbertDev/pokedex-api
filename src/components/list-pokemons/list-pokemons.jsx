@@ -148,7 +148,6 @@ const ListPokemons = () => {
     return <ErrorOrLoadingHandling>{error}</ErrorOrLoadingHandling>;
   }
 
-
   const filteringPokemons  = (value) => {
 
       if (value === 'todos') {
