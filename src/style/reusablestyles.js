@@ -22,6 +22,7 @@ export const BodyPokemons = styled.div `
 `
 
 export const SectionPokemons = styled.section `
+    max-width: 1440px;
     margin: 0 auto;
     display: flex;
     justify-content:center;

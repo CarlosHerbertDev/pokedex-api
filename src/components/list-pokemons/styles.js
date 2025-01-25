@@ -37,103 +37,94 @@ export const DescriptionApresentation = styled.p `
     max-width: 600px;
 `
 
-export const TitleFiltro = styled.label `
+export const TitleFiltro = styled.p `
     font-family: "Luckiest Guy", serif;
     color: #ffcb05;
     text-shadow: #395fAA -0.1em 0.1em 0.1em;
     font-size: 1.5rem;
 
 `
-export const SelectFilter = styled.select `
+export const DropdownContainer = styled.div `
+    position: relative;
+    width: 100%;
+    display: inline-block;
+`
 
+export const DropdownButton = styled.button `
     background-color: ${({theme}) => { 
         return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
     }};
     color: ${({theme}) => { 
         return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
     }};
-    
-    border-radius: 5px;  
-    font-size: 1.2rem; 
-    min-width: 80px; 
-    padding: 2px;
-
-`
-
-export const OptionFilter = styled.option `
-
-
+    border: 2px solid ${({theme}) => { 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+    }};
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
 
 
-`
-
-
-// Contêiner do dropdown
-export const DropdownContainer = styled.div `
-  position: relative;
-  width: 100%;
-  display: inline-block;
-`;
-
-// Estilo do botão que exibe a lista
-export const DropdownButton = styled.button `
-  background-color: ${({ theme }) => theme.backgroundColor || '#fff'};
-  color: ${({ theme }) => theme.textColor || '#333'};
-  border: 2px solid ${({ theme }) => theme.borderColor || '#ccc'};
-  padding: 5px 15px;
-  font-size: 16px;
-  border-radius: 5px;
-  width: 100%;
-  cursor: pointer;
-  text-align: left;
-
-
-  &:after {
+    &:after {
     content: " ▼";
     font-size: 0.8rem;
-  }
-`;
+    }
+`
 
-// Lista de opções (simulando o dropdown)
 export const DropdownList = styled.ul `
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: ${({ theme }) => theme.optionBackground || '#fff'};
-  border: 1px solid ${({ theme }) => theme.borderColor || '#ccc'};
-  border-radius: 5px;
-  z-index: 1;
-  padding: 0px;
-  max-height: 150px;
-  overflow: auto;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: ${({theme}) => { 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
+    }};
+    border: 1px solid ${({theme}) => { 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+    }};
+    border-radius: 5px;
+    z-index: 1;
+    padding: 0px;
+    max-height: 150px;
+    overflow: auto;
 
-   &::-webkit-scrollbar {
+&::-webkit-scrollbar {
         border-radius: 10px;
         width: 10px;
-        background-color: #B8191F;
+        background-color: ${({theme}) => { 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
+    }};
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: rgb(238 242 255);
-        border-radius: 10px;
+        background-color: ${({theme}) => { 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+    }};
     }
 
-`;
+`
 
-// Estilo de cada item do dropdown
 export const DropdownItem = styled.li `
-  padding: 15px;
-  font-size: 16px;
-  cursor: pointer;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: ${({theme}) => { 
+        return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+    }};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.optionHoverBackground || '#f1f1f1'};
-  }
+    &:hover {
+        background-color: ${({theme}) => { 
+            return theme === 'dark' ? '#1d2039' : 'rgb(238 242 255)'
+        }};
+        color: ${({theme}) => { 
+        return theme === 'dark' ? 'rgb(238 242 255)' : '#1d2039'
+    }};
+    }
 
-
-`;
-
+`
 
 export const UlListPokemons = styled.ul `
     margin: 30px 0px; 

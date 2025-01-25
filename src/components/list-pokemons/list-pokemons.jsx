@@ -12,7 +12,7 @@ import { FilterPokemons } from "./filter-pokemons";
 
 const ListPokemons = () => {
   const [pokedex, setPokedex] = useState({ pokemons: [] });
-  const [novalista, setNovalista] = useState(0);
+  const [newList, setNewList] = useState(0);
   const [numberOfPokemons, setNumberOfPokemon] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,9 +20,6 @@ const ListPokemons = () => {
   const [filteredPokemons, setFilteredPokemons] = useState([])
   const {tooglerTheme} = useContext(ThemeContext)
 
-  // const saveToLocalStorage = (pokedexData) => {
-  //   sessionStorage.setItem("pokedex", JSON.stringify(pokedexData));
-  // };
 
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
@@ -61,7 +58,7 @@ const ListPokemons = () => {
         setFilteredPokemons(parseFilterPokemons)
 
       } catch (error) {
-        console.error("Erro ao parsear o conteúdo dos pokemons Filtrado do SessionStorage", error);
+        console.error("Erro ao parsear o conteúdo dos pokemons filtrados do SessionStorage", error);
       }
     }
 
@@ -73,9 +70,8 @@ const ListPokemons = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const namesPokemons = await createListPokemon(novalista);
+        const namesPokemons = await createListPokemon(newList);
         const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
-        console.log(detailsPokemons);
         const resumedeDetails = detailsPokemons.map((item) => {
           return {
             name: item.name,
@@ -104,7 +100,7 @@ const ListPokemons = () => {
       };
       
       fetchData();
-    }, [novalista]);
+    }, [newList]);
     
     useEffect(() => {
       if (pokedex.pokemons.length > 0) {
@@ -134,7 +130,7 @@ const ListPokemons = () => {
     }, [filteredPokemons])
 
   const handleChange = () => {
-    setNovalista((prevOffset) => {
+    setNewList((prevOffset) => {
       if (pokedex.pokemons.length === 10) {
         return prevOffset + 10;
       } else {
@@ -162,8 +158,8 @@ const ListPokemons = () => {
       })
       } else {
     
-           const filterPokemons = pokedex.pokemons.filter((item) =>{
-            return item.type.find((element) => element.type.name === value)
+        const filterPokemons = pokedex.pokemons.filter((item) =>{
+        return item.type.find((element) => element.type.name === value)
       })
 
       setFilteredPokemons((prevFilter) => {
@@ -175,7 +171,7 @@ const ListPokemons = () => {
 
   
   return (
- 
+
     <BodyPokemons theme = {tooglerTheme}>
       <HeaderOfComponents />
       <SectionListPokemons >
@@ -194,7 +190,7 @@ const ListPokemons = () => {
 
         <IntroductinPokemons list={pokedex.pokemons} />
         <VerMais onClick={handleChange}>
-          {novalista > numberOfPokemons ? "Fim da Lista" : "Ver Mais"}
+          {newList > numberOfPokemons ? "Fim da Lista" : "Ver Mais"}
         </VerMais>
 
         </>

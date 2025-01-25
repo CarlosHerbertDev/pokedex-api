@@ -10,7 +10,6 @@ export const IntroductinPokemons = ({ list}) => {
 
     return (
         <>
-     
         <UlListPokemons>
             {list.map((pokemon, index) => (
                 <LiPokemons key={index} theme={tooglerTheme}>

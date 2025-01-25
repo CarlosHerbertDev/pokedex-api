@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getDetails, getDetailsAbilities } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
@@ -35,6 +35,7 @@ import {
   ContainerTitleAbilites,
   MiniCardFront,
   MiniCardBack,
+  ContainerButtonBack
 } from "./styles";
 import { BodyPokemons, DisplayFlex, SectionPokemons } from "../../style/reusablestyles";
 import { ThemeContext } from "../../contexts/theme-context";
@@ -45,7 +46,7 @@ const ListDetailsPokemons = () => {
   const [abilities, setAbilities] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, seError] = useState(null);
-  const {tooglerTheme} = useContext(ThemeContext)
+  const { tooglerTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     async function fetchData() {
@@ -89,25 +90,25 @@ const ListDetailsPokemons = () => {
   return (
     <BodyPokemons theme={tooglerTheme}>
       <HeaderOfComponents />
-      <Link to="/">
+      <ContainerButtonBack to="/">
         <BackOfList> Voltar </BackOfList>
-      </Link>
+      </ContainerButtonBack>
       <SectionPokemons>
         <ConatainerDetails>
           <NamePokemonDetails>{details.name}</NamePokemonDetails>
           <ContainerGrid>
             <ContainerImagePokemon>
               {details.sprites &&
-              details.sprites.other.dream_world.front_default ? (
+                details.sprites.other.dream_world.front_default ? (
                 <ImagePokemonDetails
                   src={details.sprites.other.dream_world.front_default}
                   alt={details.name}
                 />
               ) : (
                 <DisplayFlex>
-                    <TextLoading>
-                        Carregando imagem...
-                    </TextLoading>
+                  <TextLoading>
+                    Carregando imagem...
+                  </TextLoading>
                 </DisplayFlex>
               )}
             </ContainerImagePokemon>
@@ -128,23 +129,23 @@ const ListDetailsPokemons = () => {
                     })}
                   </Types>
                 ) : (
-                    <DisplayFlex>
-                        <TextLoading>
-                            Carregando Tipo...
-                        </TextLoading>
-                    </DisplayFlex>
+                  <DisplayFlex>
+                    <TextLoading>
+                      Carregando Type...
+                    </TextLoading>
+                  </DisplayFlex>
                 )}
 
                 {abilities.length > 0 ? (
                   <ContinerAbilities>
                     <ContainerTitleAbilites>
-                        <TitleDetails>Abilities</TitleDetails>
-                            <MiniContainerCard>
-                                <MiniFlip>
-                                    <MiniCardFront />
-                                    <MiniCardBack />
-                                </MiniFlip>
-                            </MiniContainerCard>
+                      <TitleDetails>Abilities</TitleDetails>
+                      <MiniContainerCard>
+                        <MiniFlip>
+                          <MiniCardFront />
+                          <MiniCardBack />
+                        </MiniFlip>
+                      </MiniContainerCard>
                     </ContainerTitleAbilites>
 
                     <AbilitiesDetails>
@@ -166,11 +167,11 @@ const ListDetailsPokemons = () => {
                     </AbilitiesDetails>
                   </ContinerAbilities>
                 ) : (
-                    <DisplayFlex>
-                        <TextLoadingAbilities>
-                            Carregando Abilities...
-                        </TextLoadingAbilities>
-                    </DisplayFlex>
+                  <DisplayFlex>
+                    <TextLoadingAbilities>
+                      Carregando Abilities...
+                    </TextLoadingAbilities>
+                  </DisplayFlex>
                 )}
               </ContainerTypesAbilities>
             </TypeAndAbilities>
@@ -191,13 +192,13 @@ const ListDetailsPokemons = () => {
                 </ContainerMoves>
               </LayoutMoves>
             ) : (
-                <LayoutMoves>
-                    <DisplayFlex>
-                        <TextLoading>
-                            Carregando Moves...
-                        </TextLoading>
-                    </DisplayFlex>
-                </LayoutMoves>
+              <LayoutMoves>
+                <DisplayFlex>
+                  <TextLoading>
+                    Carregando Moves...
+                  </TextLoading>
+                </DisplayFlex>
+              </LayoutMoves>
             )}
           </ContainerGrid>
         </ConatainerDetails>

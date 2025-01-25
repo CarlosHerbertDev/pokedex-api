@@ -7,9 +7,6 @@ export const ErrorOrLoadingHandling = ({children}) => {
 
     const {tooglerTheme} = useContext(ThemeContext)
 
-
-
-
     return (
             <BodyPokemons theme={tooglerTheme}>
                 

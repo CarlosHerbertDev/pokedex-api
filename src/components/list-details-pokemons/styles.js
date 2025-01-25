@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { ButtonStyle, DisplayFlex, FlexUL, LinkHome } from "../../style/reusablestyles"
+import { Link } from "react-router-dom";
 
 
 export const TextLoading = styled (LinkHome)`
-     font-size: 1.4rem;
+    font-size: 1.4rem;
 `
 export const TextLoadingAbilities = styled (TextLoading)`
     transform: translateY(80px);
@@ -31,9 +32,17 @@ export const ConatainerDetails = styled.div `
     margin: 40px 0px 40px;  
 `
 
+export const ContainerButtonBack = styled(Link) `
+    display: flex;
+    margin: 0 auto;
+    justify-content: flex-start;
+    max-width: 1440px;
+`
+
+
 export const BackOfList = styled(ButtonStyle) `
     margin: 90px 10px 0px;
-
+    
     &:hover {
         padding: 15px;
         transform: translateY(-4px);
@@ -52,6 +61,22 @@ export const ContainerGrid = styled.div `
     "moves moves" ;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+
+    @media (max-width: 825px) {
+        grid-template-areas:
+        "image image"
+        "details details"
+        "moves moves" ;
+        grid-template-columns: repeat( 1, 500px);
+    }
+
+    @media (max-width: 570px) {
+        grid-template-columns: repeat( 1, 400px);
+    }
+
+    @media (max-width: 465px) {
+        grid-template-columns: repeat( 1, 300px);
+    }
 `
 
 export const ContainerImagePokemon = styled(DisplayFlex) `
@@ -64,6 +89,7 @@ export const ImagePokemonDetails = styled.img `
 `
 export const TypeAndAbilities = styled(DisplayFlex) `
     position: relative;
+    margin: 0 auto;
     height: 330px;
     width: 400px;
     border: 1px solid rgb(238 242 255);
@@ -76,7 +102,7 @@ export const TypeAndAbilities = styled(DisplayFlex) `
     color: #1d2039;
     overflow: auto;
 
-     &::-webkit-scrollbar {
+    &::-webkit-scrollbar {
         border-radius: 10px;
         width: 10px;
         background-color: rgb(238 242 255);
@@ -85,6 +111,10 @@ export const TypeAndAbilities = styled(DisplayFlex) `
     &::-webkit-scrollbar-thumb {
         background-color: #1d2039;
         border-radius: 10px;
+    }
+
+    @media (max-width: 470px) {
+        max-width: 300px;
     }
 `
 
@@ -101,9 +131,9 @@ export const Types = styled(FlexUL) `
 
 export const ContinerAbilities = styled(DisplayFlex) `
     flex-direction: column;
-     text-align: center;
-     margin-top: 40px;
-     gap: 10px;
+    text-align: center;
+    margin-top: 40px;
+    gap: 10px;
     
 `
 
@@ -258,12 +288,12 @@ export const StyleCards = styled(DisplayFlex) `
     backface-visibility: hidden;
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 0 1px 0 rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-   
+
 `
 
 export const CardFront = styled(StyleCards) `
     background-color:#daa520;
-             
+            
 `
 
 export const CardBack = styled(StyleCards) `
@@ -290,7 +320,7 @@ export const MiniStyledCard = styled(DisplayFlex) `
 `
 export const MiniCardFront = styled(MiniStyledCard) `
     background-color:#daa520;
-             
+        
 `
 export const MiniCardBack = styled(MiniStyledCard) `
     background-color: #1d2039;
@@ -333,6 +363,12 @@ export const LayoutMoves = styled(DisplayFlex) `
         background-color: rgb(238 242 255);
         border-radius: 10px;
     }
+
+    
+    @media (max-width: 470px) {
+        width: 300px;
+        margin: 0 auto;
+    }
 `
 
 export const ContainerMoves = styled(DisplayFlex) `
@@ -342,7 +378,6 @@ export const ContainerMoves = styled(DisplayFlex) `
 `
 
 export const Moves = styled(DisplayFlex) `  
-    
     padding: 15px;
     flex-wrap: wrap;
     gap: 10px;

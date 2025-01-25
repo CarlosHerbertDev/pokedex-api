@@ -48,5 +48,4 @@ export const ButtonDarkLight = styled.button `
     height: 34px;
     cursor: pointer;
     transform: translateY(4px);
-    transition: 1s;
 `

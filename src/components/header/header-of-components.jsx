@@ -1,10 +1,7 @@
 import { ButtonDarkLight, HeaderContainer, HeaderlistPokemons, ImagePokebola, Logo, TitleLogo } from "./styles"
 import { LinkHome } from "../../style/reusablestyles"
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { ThemeContext } from "../../contexts/theme-context"
-
-
-
 
 export const HeaderOfComponents = () => {
     const {tooglerTheme, setTogglerTheme} = useContext(ThemeContext)
