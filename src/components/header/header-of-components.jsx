@@ -9,7 +9,7 @@ export const HeaderOfComponents = () => {
     return (
                 <HeaderlistPokemons>
                     <HeaderContainer>
-                        <Logo onClick={() => {window.scrollTo(100, 0)}}>
+                        <Logo data-testid="scroll-top" onClick={() => {window.scrollTo(100, 0)}}>
                             <TitleLogo>
                                 <LinkHome>
                                     Pokédex API
@@ -18,6 +18,7 @@ export const HeaderOfComponents = () => {
                             <ImagePokebola />
                         </Logo>
                         <ButtonDarkLight 
+                        data-testid ='change-theme'
                         onClick={() => {setTogglerTheme(tooglerTheme === 'dark' ? 'light' : 'dark' )}}
                         theme={tooglerTheme}
                         />
