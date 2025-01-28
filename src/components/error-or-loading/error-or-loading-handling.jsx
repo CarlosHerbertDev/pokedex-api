@@ -11,7 +11,7 @@ export const ErrorOrLoadingHandling = ({children}) => {
             <BodyPokemons theme={tooglerTheme}>
                 
                 <SectionMessage>
-                    <TextMessage>
+                    <TextMessage data-testid ='error-or-loading'>
                         {children}
                     </TextMessage>
                 </SectionMessage>

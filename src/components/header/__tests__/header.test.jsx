@@ -3,8 +3,6 @@ import { HeaderOfComponents } from "../header-of-components"
 import { ThemeProvider } from "../../../contexts/theme-context";
 import React from 'react';
 
-
-
 const ProviderThemes = () => {
     return (
         <ThemeProvider>
