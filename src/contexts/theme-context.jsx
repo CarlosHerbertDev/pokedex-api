@@ -23,8 +23,6 @@ export const ThemeProvider = (props) => {
     
         useEffect(() => {
             
-
-
             sessionStorage.setItem("tooglerTheme", tooglerTheme)
             
         }, [tooglerTheme])
