@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import React from 'react';
-import { ThemeContext, ThemeProvider } from "../theme-context";
+import { ThemeProvider } from "../theme-context";
 
 
 jest.mock('react', () => ({
@@ -28,6 +28,19 @@ describe("Theme Component", () => {
 
 
     //    expect(React.useState).toHaveBeenCalledWith('')
+
+    })
+
+    it('ao rendertizar a pagina, se tiver um estado salvo no session storage, carrear ele', () => {
+
+        const getItem = jest.spyOn(Storage.prototype, 'getItem');
+
+        getItem.mockImplementation (() => 'light' || 'dark')
+        
+        
+        render(<ThemeProvider />)
+
+        expect(getItem).toHaveBeenCalledWith('tooglerTheme')
 
     })
 
