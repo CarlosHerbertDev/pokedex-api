@@ -1,41 +1,69 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import { DescriptionProject } from "../description-project"
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext, ThemeProvider } from "../../../contexts/theme-context";
 
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useState: jest.fn(),
-}));
+let valueTheme
+
+const TestComponent = () => {
+
+    const { tooglerTheme } = useContext(ThemeContext)
+
+    valueTheme = tooglerTheme
+
+    return null;
+}
+
+
+const ProviderThemes = () => {
+
+    return (
+    <ThemeProvider>
+        <TestComponent />
+        <DescriptionProject />
+    </ThemeProvider>
+    )
+}
+
+afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
 
 describe('Description Componente', () => {
 
-    it('verificar se os estados das variáveis estão iniciando com os valores corretos', () => {
+    it('aaao renderizar os estados das variáveis devem iniciar com os valores corretos', () => {
         const useSateMock = jest.spyOn(React, 'useState');
         useSateMock.mockImplementation((initialValue) => [initialValue, jest.fn()]);
 
         render(<DescriptionProject />)
 
-        expect(useSateMock).toHaveBeenCalledWith('')
-        expect(useSateMock).toHaveBeenCalledWith(false)
+        expect(useSateMock).toHaveBeenCalledWith('');
+        expect(useSateMock).toHaveBeenCalledWith(false);
     })
 
-    it('verificar se o estado ao renderizar o compoente o estado é carregado e o estado do select atualizado', () => {
+    it('ao renderizar o contexto deve ser disponibilizado para o componente', () => {
 
-        const setSeleckMock = jest.fn()
-        React.useState.mockImplementation(() => ['', setSeleckMock])
+        render (<ProviderThemes />)
 
-        const getItem = jest.spyOn(Storage.prototype, 'getItem');
-
-        getItem.mockImplementation(() => ['fire', 'water', 'grass'])
-
-        render( <DescriptionProject />)
-
-        expect(getItem).toHaveBeenCalledWith('selectPokemons')
-
-        expect(setSeleckMock).toHaveBeenCalledWith(['fire', 'water', 'grass'])
+        expect(valueTheme).toBe('')
     })
 
-    it('verificar se ao renderizar o componente o estado é salvo', () => {
+    it('ao renderizar, o estado salvo no sessionStrage deve ser carregado e o estado do select atualizado', () => {
+
+        const mockSetState = jest.fn();
+        jest.spyOn(React, 'useState')
+            .mockImplementationOnce(() => [['fire', 'water', 'grass'], mockSetState]); 
+
+         const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(['fire', 'water', 'grass']);
+
+        render(<DescriptionProject />);
+
+        expect(getItem).toHaveBeenCalledWith('selectPokemons');
+        expect(mockSetState).toHaveBeenCalledWith(['fire', 'water', 'grass']);
+    })
+
+    it('ao renderizar o componente o estado é salvo', () => {
 
         const setItem = jest.spyOn(Storage.prototype, 'setItem');
 
@@ -44,7 +72,73 @@ describe('Description Componente', () => {
         expect(setItem).toHaveBeenCalledWith('selectPokemons', '')
     })
 
-    
+    it('aao renderizar os textos devem aparecer na tela', () => {
+
+        render(<DescriptionProject />)
+
+        const textWelcome = screen.getByText('Bem vindo ao Pokédex API !')
+        const textFilter = screen.getByText('Filtrar')
+        const textDescription = screen.getByText(new RegExp('A Pokédex API é', 'i'))
+        
+        expect(textWelcome).toBeInTheDocument()
+        expect(textFilter).toBeInTheDocument()
+        expect(textDescription).toBeInTheDocument()
+        
+    })
+
+    it('ao clicar no botão dropdawn do select o estado de isdropdawn é atualizado', () => {
+
+        const setMockDropDawn = jest.fn()
+        jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setMockDropDawn]);
+     
+        render (<DescriptionProject />)
+
+        const selectButton = screen.getByTestId('test-select')
+
+        fireEvent.click(selectButton)
+        
+        expect(setMockDropDawn).toHaveBeenCalledWith(true)
+
+    })
+
+    it('ao renderizar o componente, as props devem receber os valoreas corretos', () => {
+
+        const types = ['fire', 'water', 'grass']
+        const filterPokemons = jest.fn()
+
+        render(<DescriptionProject dinamicSelect={types} filteringPokemons={filterPokemons}  />)
+
+        expect(types).toEqual(expect.arrayContaining(['fire', 'water', 'grass']))
+        expect(typeof filterPokemons).toBe('function')
+
+    })
+
+    it('ao clicar no botão do select, o dropdawn deve mostrar as opções do select e renderizar a lista de tipos de pokemons que foi recebida como prop', () => {
+
+
+        const types = ['fire', 'water', 'grass']
+
+        render(<DescriptionProject dinamicSelect={types} />)
+
+        expect(types).toEqual(expect.arrayContaining(['fire', 'water', 'grass']))
+
+        expect(screen.queryByTestId('test-options')).not.toBeInTheDocument()
+        
+        const selectButton = screen.getByTestId('test-select')
+
+        fireEvent.click(selectButton)
+
+        const optionsContainer = screen.getByTestId('test-options');
+        expect(optionsContainer).toBeInTheDocument();
+
+        types.forEach((type) => {
+            expect(screen.getByText(type)).toBeInTheDocument();
+        });
+
+    })
+
+
+
 
 
     it('ao renderizar o componente deve recerber os valores das props corretamente', () => {

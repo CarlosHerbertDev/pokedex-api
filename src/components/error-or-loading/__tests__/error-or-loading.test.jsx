@@ -8,7 +8,7 @@ let valueTheme
 
 const ThemeTest = () => {
     
-    const { tooglerTheme } = useContext(ThemeContext);
+    const { tooglerTheme } = useContext(ThemeContext)
     
     valueTheme = tooglerTheme
     

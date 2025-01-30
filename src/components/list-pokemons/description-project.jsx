@@ -55,10 +55,9 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
         <DropdownContainer>
           <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)} theme={tooglerTheme} data-testid ='test-select'>
             {select || 'todos'}
-          </DropdownButton>
           {isDropdownOpen && (
-
-            <DropdownList theme={tooglerTheme}  data-testid ='test-options'>
+            
+            <DropdownList theme={tooglerTheme} data-testid ='test-options'>
               <DropdownItem onClick={() => handleChange('todos')} theme={tooglerTheme} >todos</DropdownItem>
               {dinamicSelect.map((item, index) => (
                 <DropdownItem key={index} onClick={() => handleChange(item)} theme={tooglerTheme}>
@@ -67,6 +66,7 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
               ))}
             </DropdownList>
           )}
+          </DropdownButton>
         </DropdownContainer>
       </ContainerFilter>
     </>

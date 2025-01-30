@@ -14,11 +14,6 @@ const ProviderThemes = () => {
 }
 
 
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useState: jest.fn(),
-}));
-
 describe("Header Component", () => {
 
     it('ao renderizar o header, deverá aparacer o titulo da aplicação', () => {
@@ -46,8 +41,10 @@ describe("Header Component", () => {
 
 
     it('ao clicar no botão darklight, o tema deverá ser alterado', () => {
-        const setThemeMock = jest.fn();
-        React.useState.mockImplementation(() => ['', setThemeMock]);      
+    
+        const setThemeMock = jest.fn()
+        jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setThemeMock]);
+
 
         render(<ProviderThemes />)
 
