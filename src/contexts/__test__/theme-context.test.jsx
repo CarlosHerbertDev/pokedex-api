@@ -69,12 +69,13 @@ describe("Theme Component", () => {
         render(
             <ThemeProvider>
                 <ThemeContext.Consumer>
-                    {(value) => {}}
+                    {(value) => {
+                        expect(value.tooglerTheme).toBe('')
+                        expect(typeof value.setTogglerTheme).toBe('function')
+                    }}
                 </ThemeContext.Consumer>
             </ThemeProvider>
         )
-
-
 
     })
 

@@ -1,6 +1,30 @@
 import { render, screen } from "@testing-library/react"
 import { ErrorOrLoadingHandling } from "../error-or-loading-handling"
+import { ThemeContext, ThemeProvider } from "../../../contexts/theme-context";
+import { useContext } from "react";
 
+let valueTheme
+
+
+const ThemeTest = () => {
+    
+    const { tooglerTheme } = useContext(ThemeContext);
+    
+    valueTheme = tooglerTheme
+    
+    return null;
+    
+} 
+
+const ProviderThemes = () => {
+    return (
+        <ThemeProvider>
+            <ThemeTest />
+            <ErrorOrLoadingHandling />
+        </ThemeProvider>
+    )
+
+}
 
     describe('Error or Loanding Component', () => {
 
@@ -18,5 +42,13 @@ import { ErrorOrLoadingHandling } from "../error-or-loading-handling"
             
             expect(text).toBeInTheDocument()
         })
+
+        it('ao renderizar o componente, verificar se está sendo passado o nosso contexto', () => {
+        
+            render(<ProviderThemes />)
+        
+            expect(valueTheme).toBe('')
+        
+            })
 
     })

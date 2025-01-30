@@ -53,12 +53,12 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
         <TitleFiltro>Filtrar</TitleFiltro>
 
         <DropdownContainer>
-          <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)} theme={tooglerTheme}>
+          <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)} theme={tooglerTheme} data-testid ='test-select'>
             {select || 'todos'}
           </DropdownButton>
           {isDropdownOpen && (
 
-            <DropdownList theme={tooglerTheme}>
+            <DropdownList theme={tooglerTheme}  data-testid ='test-options'>
               <DropdownItem onClick={() => handleChange('todos')} theme={tooglerTheme} >todos</DropdownItem>
               {dinamicSelect.map((item, index) => (
                 <DropdownItem key={index} onClick={() => handleChange(item)} theme={tooglerTheme}>
