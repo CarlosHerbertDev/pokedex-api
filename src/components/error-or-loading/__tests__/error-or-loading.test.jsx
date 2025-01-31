@@ -26,6 +26,10 @@ const ProviderThemes = () => {
 
 }
 
+afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
     describe('Error or Loanding Component', () => {
 
         it('ao dar um erro ou página carregar, exibir mensagem', () => {

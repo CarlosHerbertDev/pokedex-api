@@ -13,6 +13,9 @@ const ProviderThemes = () => {
 
 }
 
+afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
 describe("Header Component", () => {
 
@@ -40,7 +43,7 @@ describe("Header Component", () => {
     })
 
 
-    it('ao clicar no botão darklight, o tema deverá ser alterado', () => {
+    it('ao clicar no botão darklight, o estado tema deverá ser alterado', () => {
     
         const setThemeMock = jest.fn()
         jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setThemeMock]);

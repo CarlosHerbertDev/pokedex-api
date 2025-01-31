@@ -58,7 +58,7 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
           {isDropdownOpen && (
             
             <DropdownList theme={tooglerTheme} data-testid ='test-options'>
-              <DropdownItem onClick={() => handleChange('todos')} theme={tooglerTheme} >todos</DropdownItem>
+              <DropdownItem onClick={() => handleChange('todos')} theme={tooglerTheme} data-testid='campo-todos'>todos</DropdownItem>
               {dinamicSelect.map((item, index) => (
                 <DropdownItem key={index} onClick={() => handleChange(item)} theme={tooglerTheme}>
                   {item}

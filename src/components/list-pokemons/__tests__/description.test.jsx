@@ -29,10 +29,9 @@ afterEach(() => {
     jest.restoreAllMocks();
   });
 
-
 describe('Description Componente', () => {
 
-    it('aaao renderizar os estados das variáveis devem iniciar com os valores corretos', () => {
+    it('ao renderizar os estados das variáveis devem iniciar com os valores corretos', () => {
         const useSateMock = jest.spyOn(React, 'useState');
         useSateMock.mockImplementation((initialValue) => [initialValue, jest.fn()]);
 
@@ -42,7 +41,7 @@ describe('Description Componente', () => {
         expect(useSateMock).toHaveBeenCalledWith(false);
     })
 
-    it('ao renderizar o contexto deve ser disponibilizado para o componente', () => {
+    it('ao renderizar, o contexto deve ser disponibilizado para o componente', () => {
 
         render (<ProviderThemes />)
 
@@ -63,7 +62,7 @@ describe('Description Componente', () => {
         expect(mockSetState).toHaveBeenCalledWith(['fire', 'water', 'grass']);
     })
 
-    it('ao renderizar o componente o estado é salvo', () => {
+    it('ao renderizar o componente, o estado é salvo', () => {
 
         const setItem = jest.spyOn(Storage.prototype, 'setItem');
 
@@ -72,7 +71,7 @@ describe('Description Componente', () => {
         expect(setItem).toHaveBeenCalledWith('selectPokemons', '')
     })
 
-    it('aao renderizar os textos devem aparecer na tela', () => {
+    it('ao renderizar, os textos devem aparecer na tela', () => {
 
         render(<DescriptionProject />)
 
@@ -86,7 +85,7 @@ describe('Description Componente', () => {
         
     })
 
-    it('ao clicar no botão dropdawn do select o estado de isdropdawn é atualizado', () => {
+    it('ao clicar no botão dropdawn do select, o estado de isdropdawn é atualizado', () => {
 
         const setMockDropDawn = jest.fn()
         jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setMockDropDawn]);
@@ -115,10 +114,9 @@ describe('Description Componente', () => {
 
     it('ao clicar no botão do select, o dropdawn deve mostrar as opções do select e renderizar a lista de tipos de pokemons que foi recebida como prop', () => {
 
-
         const types = ['fire', 'water', 'grass']
 
-        render(<DescriptionProject dinamicSelect={types} />)
+        render(<DescriptionProject dinamicSelect={types}/>)
 
         expect(types).toEqual(expect.arrayContaining(['fire', 'water', 'grass']))
 
@@ -137,34 +135,24 @@ describe('Description Componente', () => {
 
     })
 
-
-
-
-
-    it('ao renderizar o componente deve recerber os valores das props corretamente', () => {
-
-        // const types = ['fire', 'water', 'grass']
-        // const filterPokemons = jest.fn()
-
-        // render(<DescriptionProject dinamicSelect={types} filteringPokemons={filterPokemons}  />)
-
-        //     expect(types).toEqual(expect.arrayContaining(['fire', 'water', 'grass']))
-        //     expect(typeof filterPokemons).toBe('function')
-
-        //     const select = screen.getByTestId('test-select') 
-
-        //     fireEvent.click(select)
-
-        //     const optionsSelect = screen.getByTestId('test-options')
-
-        //     expect(optionsSelect).toBeInTheDocument(types.forEach((type) => {
-        //         expect(screen.getByText(type)).toBeInTheDocument();
-        //     }))
-
-
-
+    it('ao renderizar a lista do select, quando clicamos em um item, a função passada como prop deve ser disparada', async () => {
+        
+        const filterPokemons = jest.fn()
+        
+        render(<DescriptionProject dinamicSelect={[]} filteringPokemons={filterPokemons}  />)
+        
+        expect(screen.queryByTestId('test-options')).not.toBeInTheDocument()
+        
+        const selectButton = screen.getByTestId('test-select')
+        fireEvent.click(selectButton)
+                    
+        const optionsContainer = screen.getByTestId('campo-todos')
+        expect(optionsContainer).toBeInTheDocument();
+                             
+        fireEvent.click(optionsContainer)
+                    
+        expect(filterPokemons).toHaveBeenCalledWith('todos')
+  
     })
-
-
 
 })

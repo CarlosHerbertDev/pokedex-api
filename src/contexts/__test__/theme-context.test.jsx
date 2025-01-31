@@ -2,14 +2,12 @@ import { render } from "@testing-library/react"
 import React from 'react';
 import { ThemeContext, ThemeProvider } from "../theme-context";
 
-// jest.mock('react', () => ({
-//     ...jest.requireActual('react'),
-//     useState: jest.fn(),
-// }));
 
 
-jest.mock("../../components/button/button", () => jest.fn(() => <div data-testid="mock-filho"></div>));
 
+afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
 describe("Theme Component", () => {
 
@@ -31,14 +29,13 @@ describe("Theme Component", () => {
         const setNockTheme = jest.fn()
         jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setNockTheme]);
 
-        const getItem = jest.spyOn(Storage.prototype, 'getItem');
-        getItem.mockImplementation (() => 'light' || 'dark')
+        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue ('light')
                 
         render(<ThemeProvider />)
 
         expect(getItem).toHaveBeenCalledWith('tooglerTheme')
 
-        expect(setNockTheme).toHaveBeenCalledWith('light' || 'dark')
+        expect(setNockTheme).toHaveBeenCalledWith('light')
 
     })
 

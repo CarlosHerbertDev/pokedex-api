@@ -8,6 +8,8 @@ export const FilterPokemons = ({filteredPokemons}) => {
 
     const {tooglerTheme} = useContext(ThemeContext)
 
+        console.log(filteredPokemons)
+        
 return (
     <UlListPokemons>
     {filteredPokemons.map((pokemon, index) => (
