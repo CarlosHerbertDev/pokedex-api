@@ -6,6 +6,7 @@ import axios from 'axios';
 
 // Mockando o axios
 jest.mock('axios');
+
 let valueTheme
 
 const TestComponent = () => {
@@ -32,12 +33,11 @@ afterEach(() => {
     jest.restoreAllMocks();
 });
 
-
-
-const mockPokedex = [
-    {name: 'charmander', image: 'charmander.png', type: ['fire']},
-    {name: 'charmander', image: 'charmander.png', type: ['fire']}
-]
+const mockPokedex =  { pokemons: [
+    { name: "charmander", image: "charmander.png", type: ["fire"] },
+    { name: "bulbasaur", image: "bulbasaur.png", type: ["grass"] }
+  ] 
+}
 
 describe('List Pokemons Component', () => {
 
@@ -48,23 +48,53 @@ describe('List Pokemons Component', () => {
         expect(valueTheme).toBe('')
     })
 
-    it('verificar se o conteudo do sessionStorage de pokedex está sendo carregado', async () => {
+    it('ai renderizar, o conteudo do sessionStorage de pokedex deve ser carregado', async () => {
 
 
-            const mockSetState = jest.fn();
-                    jest.spyOn(React, 'useState')
-                        .mockImplementation((initialValue) => [initialValue, mockSetState]);
+        const mockSetState = jest.fn();
+        jest.spyOn(React, 'useState')
+            .mockImplementation((initialValue) => [initialValue, mockSetState]);
 
-            const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(mockPokedex))
+        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(mockPokedex))
 
-            render (<ListPokemons />)
+        render (<ListPokemons />)
 
-                await waitFor(() => {
-                    expect(getItem).toHaveBeenCalledWith('pokedex');
-                    expect(mockSetState).toHaveBeenCalledWith(mockPokedex);
-                })
+        await waitFor(() => {
+            expect(getItem).toHaveBeenCalledWith('pokedex');
+            expect(mockSetState).toHaveBeenCalledWith(mockPokedex);
+        })
+    })
+
+    it('ao renderizar, o conteúdo do sessuinStorege deve ser salvo',  () => {
+
+        const setItem = jest.spyOn(Storage.prototype, 'setItem')
+
+        jest.spyOn(React, "useState").mockImplementation((initialValue) => {
+            if (typeof initialValue === "object" && initialValue !== null && "pokemons" in initialValue) {
+                return [mockPokedex, jest.fn()]
+            }
+                return [initialValue, jest.fn()];
+          });
+
+        render(<ListPokemons />);
+        
+        
+        expect(setItem).toHaveBeenCalledWith('pokedex', JSON.stringify(mockPokedex))
+    })
+
+    it('ao renderizar, deve ser exibido uma mensgaem de carregando, antes do contéudo ser carregado está aparecendo na tela', () => {
+
+        render(<ListPokemons />)
+
+        const loading = screen.getByText('Carregando...')
+
+        expect(loading).toBeInTheDocument()
+
+    })
+
+    it('API', () => {
+
             
-
 
     })
 

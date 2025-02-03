@@ -105,10 +105,12 @@ const ListPokemons = () => {
 
     useEffect(() => {
       if (!pokedex.pokemons || pokedex.pokemons.length === 0) return; // 🛑 Evita erro antes de acessar `.map()`
-    
-      setDinamicSelect((prevdinamicSelect) => {
+
+      sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
+
+      setDinamicSelect(() => {
         const arrayOfTypes = pokedex.pokemons.map((item) => {
-          const names = item.type?.map((value) => value.type.name) || []; // Evita erro se `item.type` for undefined
+          const names = item.type?.map((value) => value.type?.name) || []; // Evita erro se `item.type` for undefined
           return names;
         });
     

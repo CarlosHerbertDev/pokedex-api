@@ -23,7 +23,8 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
     const savedSelect = sessionStorage.getItem("selectPokemons");
     if (savedSelect) {
       try {
-
+        console.log(savedSelect)
+        
         setSelect(savedSelect)
 
       } catch (error) {

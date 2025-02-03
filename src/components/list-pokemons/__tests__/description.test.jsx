@@ -40,17 +40,17 @@ describe('Description Componente', () => {
 
     it('ao renderizar, o estado salvo no sessionStrage deve ser carregado e o estado do select atualizado', () => {
 
+        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue('fire');
         const mockSetState = jest.fn();
         jest.spyOn(React, 'useState')
-            .mockImplementationOnce(() => [['fire', 'water', 'grass'], mockSetState]); 
+            .mockImplementationOnce(() => ['fire', mockSetState]); 
 
-        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(['fire', 'water', 'grass']));
 
         render(<DescriptionProject />);
 
         expect(getItem).toHaveBeenCalledWith('selectPokemons');
 
-        expect(mockSetState).toHaveBeenCalled();
+        expect(mockSetState).toHaveBeenCalledWith('fire');
     })
 
     it('ao renderizar o componente, o estado é salvo', () => {
