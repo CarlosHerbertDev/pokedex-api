@@ -3,7 +3,7 @@ import { ImagePokemon, LiPokemons, NamePokemon, UlListPokemons } from "./styles"
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/theme-context";
 
-export const IntroductinPokemons = ({ list}) => {
+export const IntroductinPokemons = ({ list }) => {
     
 
     const {tooglerTheme} = useContext(ThemeContext)

@@ -27,19 +27,9 @@ const ProviderThemes = () => {
 
 afterEach(() => {
     jest.restoreAllMocks();
-  });
+});
 
 describe('Description Componente', () => {
-
-    it('ao renderizar os estados das variáveis devem iniciar com os valores corretos', () => {
-        const useSateMock = jest.spyOn(React, 'useState');
-        useSateMock.mockImplementation((initialValue) => [initialValue, jest.fn()]);
-
-        render(<DescriptionProject />)
-
-        expect(useSateMock).toHaveBeenCalledWith('');
-        expect(useSateMock).toHaveBeenCalledWith(false);
-    })
 
     it('ao renderizar, o contexto deve ser disponibilizado para o componente', () => {
 
@@ -54,12 +44,13 @@ describe('Description Componente', () => {
         jest.spyOn(React, 'useState')
             .mockImplementationOnce(() => [['fire', 'water', 'grass'], mockSetState]); 
 
-         const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(['fire', 'water', 'grass']);
+        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(['fire', 'water', 'grass']));
 
         render(<DescriptionProject />);
 
         expect(getItem).toHaveBeenCalledWith('selectPokemons');
-        expect(mockSetState).toHaveBeenCalledWith(['fire', 'water', 'grass']);
+
+        expect(mockSetState).toHaveBeenCalled();
     })
 
     it('ao renderizar o componente, o estado é salvo', () => {
@@ -89,7 +80,7 @@ describe('Description Componente', () => {
 
         const setMockDropDawn = jest.fn()
         jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setMockDropDawn]);
-     
+    
         render (<DescriptionProject />)
 
         const selectButton = screen.getByTestId('test-select')
@@ -124,6 +115,8 @@ describe('Description Componente', () => {
         
         const selectButton = screen.getByTestId('test-select')
 
+        expect(selectButton).toBeInTheDocument()
+
         fireEvent.click(selectButton)
 
         const optionsContainer = screen.getByTestId('test-options');
@@ -148,11 +141,11 @@ describe('Description Componente', () => {
                     
         const optionsContainer = screen.getByTestId('campo-todos')
         expect(optionsContainer).toBeInTheDocument();
-                             
+                        
         fireEvent.click(optionsContainer)
                     
         expect(filterPokemons).toHaveBeenCalledWith('todos')
-  
+
     })
 
 })

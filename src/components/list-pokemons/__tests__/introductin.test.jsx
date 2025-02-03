@@ -3,7 +3,7 @@ import { FilterPokemons } from "../filter-pokemons"
 import { ThemeContext, ThemeProvider } from "../../../contexts/theme-context"
 import { BrowserRouter } from "react-router-dom"
 import { useContext } from "react"
-
+import { IntroductinPokemons } from "../indroductin-pokemons"
 
 let valueTheme
 
@@ -16,7 +16,7 @@ const TestComponent = () => {
     return null;
 }
 
-const filteredPokemons = [
+const listPokemons = [
     {name: 'charmander', image:'https://imagecharmander.com'}, 
     {name: 'bulbasur', image:'https://imagebulbasur.com'}
     ]
@@ -27,7 +27,7 @@ const ProviderTheme = () => {
     <ThemeProvider >
         <TestComponent />
         <BrowserRouter>
-                <FilterPokemons filteredPokemons={filteredPokemons} />
+                <IntroductinPokemons list={listPokemons} />
         </BrowserRouter>
     </ThemeProvider>
     )
@@ -37,7 +37,7 @@ describe('Filter Componente', () => {
     it('ao renderizar o componente deve receber os valores das props corretamente', () => {
         render(<ProviderTheme />)
 
-        expect(filteredPokemons).toEqual(expect.arrayContaining([expect.objectContaining(
+        expect(listPokemons).toEqual(expect.arrayContaining([expect.objectContaining(
             {name: 'charmander', image:'https://imagecharmander.com'}, 
             {name: 'bulbasur', image:'https://imagebulbasur.com'}
             )]))
@@ -55,7 +55,7 @@ describe('Filter Componente', () => {
 
         render(<ProviderTheme />)
 
-        filteredPokemons.forEach(pokemon => {
+        listPokemons.forEach(pokemon => {
             expect(screen.getByText(pokemon.name)).toBeInTheDocument()
         })
     })

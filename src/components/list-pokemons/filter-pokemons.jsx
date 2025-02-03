@@ -7,8 +7,6 @@ import { Link } from "react-router-dom"
 export const FilterPokemons = ({filteredPokemons}) => {
 
     const {tooglerTheme} = useContext(ThemeContext)
-
-        console.log(filteredPokemons)
         
 return (
     <UlListPokemons>

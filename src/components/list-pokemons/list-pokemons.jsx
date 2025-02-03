@@ -102,26 +102,47 @@ const ListPokemons = () => {
       fetchData();
     }, [newList]);
     
-    useEffect(() => {
-      if (pokedex.pokemons.length > 0) {
-        sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
-      }
-  
-      setDinamicSelect((prevdinamicSelect) => {
 
+    useEffect(() => {
+      if (!pokedex.pokemons || pokedex.pokemons.length === 0) return; // 🛑 Evita erro antes de acessar `.map()`
+    
+      setDinamicSelect((prevdinamicSelect) => {
         const arrayOfTypes = pokedex.pokemons.map((item) => {
-              const names = item.type.map((value) => value.type.name )
-              return names
-        })  
-        const arrayTyoesFlatten = arrayOfTypes.flat()
-        const removeDuplicates = arrayTyoesFlatten.filter((value, index) =>
-          arrayTyoesFlatten.findIndex((name) => name === value) === index
-        )
-  
-        return prevdinamicSelect = [...removeDuplicates] 
-    }) 
-  
+          const names = item.type?.map((value) => value.type.name) || []; // Evita erro se `item.type` for undefined
+          return names;
+        });
+    
+        const arrayTyoesFlatten = arrayOfTypes.flat();
+        const removeDuplicates = arrayTyoesFlatten.filter(
+          (value, index) => arrayTyoesFlatten.findIndex((name) => name === value) === index
+        );
+    
+        return [...removeDuplicates];
+      });
     }, [pokedex]);
+    
+
+    // useEffect(() => {
+    //   if (pokedex.pokemons && pokedex.pokemons.length > 0) {
+    //     sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
+    //   }
+  
+    //   setDinamicSelect((prevdinamicSelect) => {
+
+    //     const arrayOfTypes = pokedex.pokemons.map((item) => {
+    //           const names = item.type.map((value) => value.type.name )
+    //           return names
+    //     })  
+    //     const arrayTyoesFlatten = arrayOfTypes.flat()
+    //     const removeDuplicates = arrayTyoesFlatten.filter((value, index) =>
+    //       arrayTyoesFlatten.findIndex((name) => name === value) === index
+    //     )
+  
+    //     return prevdinamicSelect = [...removeDuplicates] 
+    // }) 
+  
+    // }, [pokedex]);
+
 
     useEffect(() => {
       if (filteredPokemons.length > 0) {
@@ -184,7 +205,7 @@ const ListPokemons = () => {
         <FilterPokemons filteredPokemons={filteredPokemons} />
 
       ) : (
-
+ 
         <>
 
         <IntroductinPokemons list={pokedex.pokemons} />
