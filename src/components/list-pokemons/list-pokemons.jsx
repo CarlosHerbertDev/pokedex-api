@@ -90,7 +90,7 @@ const ListPokemons = () => {
             );
             return { pokemons: uniquePokemons };
           });
-          
+          setError(null)
           setNumberOfPokemon(namesPokemons.count);
         } catch (error) {
           setError("Erro ao carregar informações dos Pokemons 😕");

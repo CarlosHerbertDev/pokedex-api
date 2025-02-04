@@ -2,9 +2,14 @@ import axios from "axios";
 
 export async function createListPokemon(offset) {
     try {
+        console.log(`🟡 Fazendo requisição para /pokemon?offset=${offset}&limit=10`)
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`);
+        console.log("🟢 Resposta da API recebida:", response.data);
         return response?.data;
+
+
     } catch (error) {
+        console.error("🔴 Erro ao buscar os Pokémons:", error);
         console.error('Erro ao buscar lista dos Pokemons 😕', error);
     }
 }
