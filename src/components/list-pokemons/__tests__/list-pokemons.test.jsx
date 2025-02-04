@@ -2,7 +2,9 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import React, { useContext } from "react";
 import { ThemeContext, ThemeProvider } from "../../../contexts/theme-context";
 import { ListPokemons } from "../list-pokemons";
+import { server } from "../../../mocks/server";
 import axios from 'axios';
+
 
 // Mockando o axios
 jest.mock('axios');
@@ -92,10 +94,20 @@ describe('List Pokemons Component', () => {
 
     })
 
+    it('ao renderizar, deve ser exibido uma mensagem de erro caso aja algum', async () => {
+
+        render(<ListPokemons />);
+        await waitFor(() => {
+            const Error = screen.getByText('Erro ao carregar informações dos Pokemons 😕')
+            expect(Error).toBeInTheDocument()
+        })
+
+        
+    })
+
     it('API', () => {
-
-            
-
+        render(<ListPokemons />)
+        screen.debug()
     })
 
 })
