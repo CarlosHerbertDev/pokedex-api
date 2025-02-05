@@ -1,8 +1,10 @@
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  http.get("https://pokeapi.co/api/v2/pokemon", async ({ request }) => {
-    console.log("🟡 Interceptado pelo MSW!", request.url);
+  // Primeiro request: Lista de Pokémons
+  http.get("https://pokeapi.co/api/v2/pokemon", async () => {
+    console.log("🟡 Interceptado pelo MSW! (Lista de Pokémons)");
+
     return HttpResponse.json({
       count: 2,
       results: [
@@ -12,22 +14,38 @@ export const handlers = [
     });
   }),
 
-  http.get("https://pokeapi.co/api/v2/pokemon/:name", async ({ params }) => {
-    const { name } = params;
+  // Segundo request: Detalhes de cada Pokémon
+  http.get("https://pokeapi.co/api/v2/pokemon/:id", async ({ params }) => {
+    console.log(`🟡 Interceptado pelo MSW! (Detalhes do Pokémon: ${params.id})`);
 
-    const pokemonData = {
-      pikachu: {
+    if (params.id === "25") {
+      return HttpResponse.json({
         name: "pikachu",
-        sprites: { other: { dream_world: { front_default: "pikachu.png" } } },
+        sprites: {
+          other: {
+            dream_world: {
+              front_default: "https://example.com/pikachu.svg",
+            },
+          },
+        },
         types: [{ type: { name: "electric" } }],
-      },
-      bulbasaur: {
-        name: "bulbasaur",
-        sprites: { other: { dream_world: { front_default: "bulbasaur.png" } } },
-        types: [{ type: { name: "grass" } }],
-      },
-    };
+      });
+    }
 
-    return HttpResponse.json(pokemonData[name] || { message: "Not found" });
+    if (params.id === "1") {
+      return HttpResponse.json({
+        name: "bulbasaur",
+        sprites: {
+          other: {
+            dream_world: {
+              front_default: "https://example.com/bulbasaur.svg",
+            },
+          },
+        },
+        types: [{ type: { name: "grass" } }],
+      });
+    }
+
+    return HttpResponse.json({ message: "Not found" }, { status: 404 });
   }),
 ];

@@ -71,7 +71,10 @@ const ListPokemons = () => {
     const fetchData = async () => {
       try {
         const namesPokemons = await createListPokemon(newList);
+        console.log("🟢 Dados recebidos no componente:", namesPokemons);
         const detailsPokemons = await getPokemonDetatils(namesPokemons.results);
+        console.log("🟢 Detalhes recebidos no componente:", detailsPokemons);
+
         const resumedeDetails = detailsPokemons.map((item) => {
           return {
             name: item.name,
@@ -90,10 +93,10 @@ const ListPokemons = () => {
             );
             return { pokemons: uniquePokemons };
           });
-          setError(null)
           setNumberOfPokemon(namesPokemons.count);
         } catch (error) {
           setError("Erro ao carregar informações dos Pokemons 😕");
+          console.error("🔴 Erro no componente ao buscar os Pokémons:", error);
         } finally {
           setLoading(false);
         }
