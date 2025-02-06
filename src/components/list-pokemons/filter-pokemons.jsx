@@ -7,10 +7,12 @@ import { Link } from "react-router-dom"
 export const FilterPokemons = ({filteredPokemons}) => {
 
     const {tooglerTheme} = useContext(ThemeContext)
-        
+    
+    console.log( filteredPokemons)
 return (
     <UlListPokemons>
     {filteredPokemons.map((pokemon, index) => (
+        
         <LiPokemons key={index} theme={tooglerTheme}>
             <Link to={`/details/${pokemon.name}`}>
                 {pokemon.image ? (

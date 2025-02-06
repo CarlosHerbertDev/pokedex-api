@@ -36,12 +36,12 @@ export async function getDetails(id) {
 }
 
 
+
 export async function getDetailsAbilities(link) {
         console.log(link)
         
     try {
         const dataAbilities = link.map(async function (abilities) {
-            console.log(abilities.ability.url)
             const response = await axios.get(abilities.ability.url);
             console.log(response.data)
             

@@ -23,8 +23,10 @@ const ListPokemons = () => {
 
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
-    if (savedScrollPosition && !loading) {
-      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    console.log("Saved Scroll Position:", savedScrollPosition, "Loading:", loading);
+    if (savedScrollPosition && !loading) {   
+      console.log("Chamando window.scrollTo...");
+      window.scrollTo(0, savedScrollPosition);
     }
 
     const handleScroll = () => {
@@ -103,13 +105,13 @@ const ListPokemons = () => {
     
 
     useEffect(() => {
-      if (!pokedex.pokemons || pokedex.pokemons.length === 0) return; // 🛑 Evita erro antes de acessar `.map()`
+      if (!pokedex.pokemons || pokedex.pokemons.length === 0) return; 
 
       sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
 
       setDinamicSelect(() => {
         const arrayOfTypes = pokedex.pokemons.map((item) => {
-          const names = item.type?.map((value) => value.type?.name) || []; // Evita erro se `item.type` for undefined
+          const names = item.type?.map((value) => value.type?.name) || [];
           return names;
         });
     
@@ -121,29 +123,6 @@ const ListPokemons = () => {
         return [...removeDuplicates];
       });
     }, [pokedex]);
-    
-
-    // useEffect(() => {
-    //   if (pokedex.pokemons && pokedex.pokemons.length > 0) {
-    //     sessionStorage.setItem("pokedex", JSON.stringify(pokedex));
-    //   }
-  
-    //   setDinamicSelect((prevdinamicSelect) => {
-
-    //     const arrayOfTypes = pokedex.pokemons.map((item) => {
-    //           const names = item.type.map((value) => value.type.name )
-    //           return names
-    //     })  
-    //     const arrayTyoesFlatten = arrayOfTypes.flat()
-    //     const removeDuplicates = arrayTyoesFlatten.filter((value, index) =>
-    //       arrayTyoesFlatten.findIndex((name) => name === value) === index
-    //     )
-  
-    //     return prevdinamicSelect = [...removeDuplicates] 
-    // }) 
-  
-    // }, [pokedex]);
-
 
     useEffect(() => {
       if (filteredPokemons.length > 0) {

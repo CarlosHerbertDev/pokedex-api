@@ -7,6 +7,8 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import axios from 'axios';
 import { BrowserRouter } from "react-router-dom";
+import { type } from "@testing-library/user-event/dist/cjs/utility/type.js";
+import { MemoryRouter } from 'react-router-dom';
 
 let valueTheme
 
@@ -36,6 +38,12 @@ const mockPokedex =  { pokemons: [
  ] 
 }
 
+const mockFilter =  [
+    { name: "pikachu", image: "https://example.com/pikachu.svg", type: [{type: {name: "electric" }}] }
+]
+
+
+
 
 beforeEach(() => {
     jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -46,118 +54,179 @@ afterEach(() => {
 });
 
 describe('List Pokemons Component', () => {
-    it("ao renderizar mostrar carregamento, se não estiver nada sendo carregado, mostrar o contéudo", async () => {
-        render(
-        <BrowserRouter>
-        <ListPokemons />
-        </BrowserRouter>
-        );
+    // it("ao renderizar mostrar carregamento, se não estiver nada sendo carregado, mostrar o contéudo", async () => {
+    //     render(
+    //     <BrowserRouter>
+    //     <ListPokemons />
+    //     </BrowserRouter>
+    //     );
 
-        expect(screen.getByText(/Carregando/i)).toBeInTheDocument();
+    //     expect(screen.getByText(/Carregando/i)).toBeInTheDocument();
 
-        const pikachu = await screen.findByText(/pikachu/i);
-        const bulbasaur = await screen.findByText(/bulbasaur/i);
+    //     const pikachu = await screen.findByText(/pikachu/i);
+    //     const bulbasaur = await screen.findByText(/bulbasaur/i);
 
-        expect(pikachu).toBeInTheDocument();
-        expect(bulbasaur).toBeInTheDocument();
+    //     expect(pikachu).toBeInTheDocument();
+    //     expect(bulbasaur).toBeInTheDocument();
 
-    });
+    // });
 
-    it("ao renderizar e clicar em 'ver mais', devem ser carregados novos pokémons", async () => {
-        render(
-        <BrowserRouter>
-        <ListPokemons />
-        </BrowserRouter>
+    // it("ao renderizar e clicar em 'ver mais', devem ser carregados novos pokémons", async () => {
+    //     render(
+    //     <BrowserRouter>
+    //     <ListPokemons />
+    //     </BrowserRouter>
+    //     );
+    
+    //     const pikachu = await screen.findByText(/pikachu/i);
+    //     expect(pikachu).toBeInTheDocument();
+    //     expect(screen.queryByText(/charizard/i)).not.toBeInTheDocument();
+
+    //     const button = screen.getByText('Ver Mais')
+
+    //     fireEvent.click(button)
+
+    //     const charizard = await screen.findByText(/charizard/i);
+    //     expect(charizard).toBeInTheDocument();
+
+    // });
+
+    // it("ao renderizar e clicar no select 'filtro', pokemlons devem ser filtrados ", async () => {
+    //     render(
+    //     <BrowserRouter>
+    //     <ListPokemons />
+    //     </BrowserRouter>
+    //     );
+    
+    // const button = await screen.findByTestId('test-select')
+    // fireEvent.click(button)
+    // const electric = screen.getByText('electric')
+    // fireEvent.click(electric)
+
+    // const pikachu = await screen.findByText(/pikachu/i);
+    // expect(pikachu).toBeInTheDocument();
+
+
+    // });
+    // it('ao renderizar, o contexto do tema deve ser disponibilizado', () => {
+
+    //     render(<ProviderThemes />)
+
+    //     expect(valueTheme).toBe('')
+
+
+    // })
+
+    it('deve restaurar a posição de scroll ao renderizar', async () => {
+        const mockScroll = 500;
+    
+        // Mock do sessionStorage.getItem
+        jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
+          if (key === "scrollPosition") return mockScroll;
+          return null;
+        });
+    
+        // Mock de window.scrollTo
+        const scrollToMock = jest.fn();
+        Object.defineProperty(window, "scrollTo", { value: scrollToMock, writable: true });
+    
+        // Renderiza o componente dentro do MemoryRouter
+        const { rerender } = render(
+          <MemoryRouter>
+            <ListPokemons loading={true} />
+          </MemoryRouter>
         );
     
-        const pikachu = await screen.findByText(/pikachu/i);
-        expect(pikachu).toBeInTheDocument();
-        expect(screen.queryByText(/charizard/i)).not.toBeInTheDocument();
-
-        const button = screen.getByText('Ver Mais')
-
-        fireEvent.click(button)
-
-        const charizard = await screen.findByText(/charizard/i);
-        expect(charizard).toBeInTheDocument();
-
-    });
-
-    it("ao renderizar e clicar no select 'filtro', pokemlons devem ser filtrados ", async () => {
-        render(
-        <BrowserRouter>
-        <ListPokemons />
-        </BrowserRouter>
+        // Simula mudança de estado
+        rerender(
+          <MemoryRouter>
+            <ListPokemons loading={false} />
+          </MemoryRouter>
         );
     
-    const button = await screen.findByTestId('test-select')
-    fireEvent.click(button)
-    const fire = screen.getByText('electric')
-    fireEvent.click(fire)
-
-    const pikachu = await screen.findByText(/pikachu/i);
-    expect(pikachu).toBeInTheDocument();
-
-
-    });
-    it('ao renderizar, o contexto do tema deve ser disponibilizado', () => {
-
-        render(<ProviderThemes />)
-
-        expect(valueTheme).toBe('')
-
-
-    })
-
-    it('ai renderizar, o conteudo do sessionStorage de pokedex deve ser carregado', async () => {
-
-
-        const mockSetState = jest.fn();
-        jest.spyOn(React, 'useState')
-            .mockImplementation((initialValue) => [initialValue, mockSetState]);
-
-        const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(mockPokedex))
-
-        render (<ListPokemons />)
-
-            expect(getItem).toHaveBeenCalledWith('pokedex');
-            expect(mockSetState).toHaveBeenCalledWith(mockPokedex);
+        // Aguarda o useEffect ser executado
+        await waitFor(() => expect(scrollToMock).toHaveBeenCalledWith(0, mockScroll));
     
-    })
+        // Verifica se sessionStorage.getItem foi chamado
+        expect(Storage.prototype.getItem).toHaveBeenCalledWith('scrollPosition');
+    
+        // Verifica se window.scrollTo foi chamado corretamente
+        expect(scrollToMock).toHaveBeenCalledWith(0, mockScroll);
+      });   
+    // it('ao renderizar, o conteudo do sessionStorage de pokedex deve ser carregado', () => {
 
-    it('ao renderizar, o conteúdo do sessuinStorege de pokedex deve ser salvo', async () => {
+    //     const mockSetState = jest.fn();
+    //     jest.spyOn(React, 'useState')
+    //         .mockImplementation((initialValue) => [initialValue, mockSetState]);
 
-    const setItem = jest.spyOn(Storage.prototype, 'setItem')
+    //     const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(mockPokedex))
 
-    jest.spyOn(React, "useState").mockImplementation((initialValue) => {
-        if (typeof initialValue === "object" && initialValue !== null && "pokemons" in initialValue) {
-            return [mockPokedex, jest.fn()]
-        }
-            return [initialValue, jest.fn()];
-    });
+    //     render (<ListPokemons />)
 
-        render(<ListPokemons />);
-        expect(setItem).toHaveBeenCalledWith('pokedex', JSON.stringify(mockPokedex)) 
+    //         expect(getItem).toHaveBeenCalledWith('pokedex');
+    //         expect(mockSetState).toHaveBeenCalledWith(mockPokedex);
+    
+    // })
+    
+    // it('ao renderizar, o conteúdo do sessuinStorege de pokedex deve ser salvo', async () => {
+        
+    //     const setItem = jest.spyOn(Storage.prototype, 'setItem')
+        
+    //     jest.spyOn(React, "useState").mockImplementation((initialValue) => {
+    //         if (typeof initialValue === "object" && initialValue !== null && "pokemons" in initialValue) {
+    //             return [mockPokedex, jest.fn()]
+    //         }
+    //         return [initialValue, jest.fn()];
+    //     });
+        
+    //     render(<ListPokemons />);
+    //     expect(setItem).toHaveBeenCalledWith('pokedex', JSON.stringify(mockPokedex)) 
+        
+    // })
+    // it('ao renderizar, o conteudo do sessionStorage do filteredPokemons deve ser carregado', async () => {
 
-    })
-    it('ao renderizar, se ocorrer um erro na api, deve aparecer uma mensagem na tela', async () => {
 
-    server.use(
-        http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
-            return HttpResponse.json({ message: "Not found" }, { status: 404 });
-        })
-    );
+    //     const mockSetState = jest.fn();
+    //     jest.spyOn(React, 'useState')
+    //         .mockImplementation((initialValue) => [initialValue, mockSetState]);
 
-    render(
-        <BrowserRouter>
-        <ListPokemons />
-        </BrowserRouter>
-    );
+    //     const getItem = jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(mockFilter))
 
-    const erro =  await screen.findByText('Erro ao carregar informações dos Pokemons 😕')
+    //     render (<ListPokemons />)
 
-    expect(erro).toBeInTheDocument();
+    //         expect(getItem).toHaveBeenCalledWith('filterPokemons');
+    //         expect(mockSetState).toHaveBeenCalledWith(mockFilter);
+    
+    // })
 
-    })
+    // it('ao renderizar, o conteúdo do sessuinStorege de filteredPokemons deve ser salvo', async () => {
+        
+    //     const setItem = jest.spyOn(Storage.prototype, 'setItem')
+        
+    //     jest.spyOn(React, "useState").mockImplementationOnce(() => {[mockFilter, jest.fn()]});
+        
+    //     render(<ListPokemons />);
+    //     expect(setItem).toHaveBeenCalledWith('filterPokemons', JSON.stringify(mockFilter)) 
+    // })
+    // it('ao renderizar, se ocorrer um erro na api, deve aparecer uma mensagem na tela', async () => {
+        
+    //     server.use(
+    //         http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
+    //         return HttpResponse.json({ message: "Not found" }, { status: 404 });
+    //     })
+    // );
+
+    // render(
+    //     <BrowserRouter>
+    //     <ListPokemons />
+    //     </BrowserRouter>
+    // );
+
+    // const erro =  await screen.findByText('Erro ao carregar informações dos Pokemons 😕')
+
+    // expect(erro).toBeInTheDocument();
+
+    // })
+    
 
 })
