@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/20</span>
+                <span class='fraction'>8/20</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/20</span>
+                <span class='fraction'>8/20</span>
             </div>
         
             
@@ -112,25 +112,29 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -167,19 +171,21 @@ export async function createListPokemon(offset) {
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&amp;limit=10`);
         return response?.data;
+&nbsp;
+&nbsp;
     } catch (error) {
-        console.error('Erro ao buscar lista dos Pokemons 😕', error);
+<span class="cstat-no" title="statement not covered" >        console.error('Erro ao buscar lista dos Pokemons 😕', error);</span>
     }
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >getPokemonDetatils(</span>namePokemon) {
-<span class="cstat-no" title="statement not covered" >    try {</span>
-        const listDetails = <span class="cstat-no" title="statement not covered" >namePokemon.map(<span class="fstat-no" title="function not covered" >as</span>ync function (item) {</span>
-            const response = <span class="cstat-no" title="statement not covered" >await axios.get(item.url);</span>
-<span class="cstat-no" title="statement not covered" >            return response?.data;</span>
+export async function getPokemonDetatils(namePokemon) {
+    try {
+        const listDetails = namePokemon.map(async function (item) {
+            const response = await axios.get(item.url);
+            return response?.data;
         });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return await Promise.all(listDetails);</span>
+        return await Promise.all(listDetails);
 &nbsp;
     } catch (error) {
 <span class="cstat-no" title="statement not covered" >        console.error('Erro ao buscar informações dos Pokemons 😕', error);</span>
@@ -217,7 +223,7 @@ export async function <span class="fstat-no" title="function not covered" >getDe
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-02-04T10:48:47.539Z
+                at 2025-02-05T23:06:00.809Z
             </div>
         <script src="../prettify.js"></script>
         <script>

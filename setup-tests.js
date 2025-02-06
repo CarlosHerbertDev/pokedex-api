@@ -5,6 +5,7 @@ import { TextDecoder, TextEncoder } from 'util';
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
 
+
 // Inicia o MSW antes dos testes
 beforeAll(() => server.listen());
 

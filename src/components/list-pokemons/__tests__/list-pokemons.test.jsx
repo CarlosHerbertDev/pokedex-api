@@ -33,43 +33,79 @@ const ProviderThemes = () => {
 const mockPokedex =  { pokemons: [
     { name: "charmander", image: "charmander.png", type: ["fire"] },
     { name: "squartle", image: "squartle.png", type: ["water"] }
-  ] 
+ ] 
 }
 
 
-// beforeEach(() => {
-//     jest.spyOn(console, 'error').mockImplementation(() => {});
-// });
+beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+});
 
 afterEach(() => {
     jest.restoreAllMocks();
 });
 
 describe('List Pokemons Component', () => {
-
-
     it("ao renderizar mostrar carregamento, se não estiver nada sendo carregado, mostrar o contéudo", async () => {
-      render(
+        render(
         <BrowserRouter>
         <ListPokemons />
         </BrowserRouter>
-      );
-  
-      expect(screen.getByText(/Carregando/i)).toBeInTheDocument();
-  
-      const pikachu = await screen.findByText(/pikachu/i);
-      const bulbasaur = await screen.findByText(/bulbasaur/i);
-  
-      expect(pikachu).toBeInTheDocument();
-      expect(bulbasaur).toBeInTheDocument();
-    });
-    
+        );
 
+        expect(screen.getByText(/Carregando/i)).toBeInTheDocument();
+
+        const pikachu = await screen.findByText(/pikachu/i);
+        const bulbasaur = await screen.findByText(/bulbasaur/i);
+
+        expect(pikachu).toBeInTheDocument();
+        expect(bulbasaur).toBeInTheDocument();
+
+    });
+
+    it("ao renderizar e clicar em 'ver mais', devem ser carregados novos pokémons", async () => {
+        render(
+        <BrowserRouter>
+        <ListPokemons />
+        </BrowserRouter>
+        );
+    
+        const pikachu = await screen.findByText(/pikachu/i);
+        expect(pikachu).toBeInTheDocument();
+        expect(screen.queryByText(/charizard/i)).not.toBeInTheDocument();
+
+        const button = screen.getByText('Ver Mais')
+
+        fireEvent.click(button)
+
+        const charizard = await screen.findByText(/charizard/i);
+        expect(charizard).toBeInTheDocument();
+
+    });
+
+    it("ao renderizar e clicar no select 'filtro', pokemlons devem ser filtrados ", async () => {
+        render(
+        <BrowserRouter>
+        <ListPokemons />
+        </BrowserRouter>
+        );
+    
+    const button = await screen.findByTestId('test-select')
+    fireEvent.click(button)
+    const fire = screen.getByText('electric')
+    fireEvent.click(fire)
+
+    const pikachu = await screen.findByText(/pikachu/i);
+    expect(pikachu).toBeInTheDocument();
+
+
+    });
     it('ao renderizar, o contexto do tema deve ser disponibilizado', () => {
 
         render(<ProviderThemes />)
 
         expect(valueTheme).toBe('')
+
 
     })
 
@@ -91,55 +127,37 @@ describe('List Pokemons Component', () => {
 
     it('ao renderizar, o conteúdo do sessuinStorege de pokedex deve ser salvo', async () => {
 
-        const setItem = jest.spyOn(Storage.prototype, 'setItem')
+    const setItem = jest.spyOn(Storage.prototype, 'setItem')
 
-        jest.spyOn(React, "useState").mockImplementation((initialValue) => {
-            if (typeof initialValue === "object" && initialValue !== null && "pokemons" in initialValue) {
-                return [mockPokedex, jest.fn()]
-            }
-                return [initialValue, jest.fn()];
-          });
+    jest.spyOn(React, "useState").mockImplementation((initialValue) => {
+        if (typeof initialValue === "object" && initialValue !== null && "pokemons" in initialValue) {
+            return [mockPokedex, jest.fn()]
+        }
+            return [initialValue, jest.fn()];
+    });
 
-            render(<ListPokemons />);
-  
-            expect(setItem).toHaveBeenCalledWith('pokedex', JSON.stringify(mockPokedex)) 
+        render(<ListPokemons />);
+        expect(setItem).toHaveBeenCalledWith('pokedex', JSON.stringify(mockPokedex)) 
+
     })
+    it('ao renderizar, se ocorrer um erro na api, deve aparecer uma mensagem na tela', async () => {
 
-    
-    it("ao renderizar e clicar em 'ver mais', devem ser carregados novos pokémons", async () => {
-        render(
-          <BrowserRouter>
-          <ListPokemons />
-          </BrowserRouter>
-        );
-        
-        const pikachu = await screen.findByText(/pikachu/i);
-        expect(pikachu).toBeInTheDocument();
-        expect(screen.queryByText(/charizard/i)).not.toBeInTheDocument();
+    server.use(
+        http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
+            return HttpResponse.json({ message: "Not found" }, { status: 404 });
+        })
+    );
 
-        const button = screen.getByText('Ver Mais')
+    render(
+        <BrowserRouter>
+        <ListPokemons />
+        </BrowserRouter>
+    );
 
-        fireEvent.click(button)
+    const erro =  await screen.findByText('Erro ao carregar informações dos Pokemons 😕')
 
-        const charizard = await screen.findByText(/charizard/i);
-        expect(charizard).toBeInTheDocument();
-      });
-      
-      it("ao renderizar e clicar no select 'filtro', pokemlons devem ser filtrados ", async () => {
-          render(
-          <BrowserRouter>
-          <ListPokemons />
-          </BrowserRouter>
-        );
-        
-        const button = await screen.findByTestId('test-select')
-        fireEvent.click(button)
-        const fire = screen.getByText('fire')
-        fireEvent.click(fire)
+    expect(erro).toBeInTheDocument();
 
-        const charizard = await screen.findByText(/charizard/i);
-        expect(charizard).toBeInTheDocument();
-       
-      });
+    })
 
 })

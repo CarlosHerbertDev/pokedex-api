@@ -4,34 +4,32 @@ let reQuest = 0
 
 export const handlers = [
   
-  // Primeiro request: Lista de Pokémons
   http.get("https://pokeapi.co/api/v2/pokemon", async () => {
     reQuest++
-    console.log('testando request', reQuest)
-    if (reQuest === 5) {
+    if (reQuest >= 3) {
     return HttpResponse.json({
-      count: 2,
-      results: [
-        { name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" },
-        { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
-      ],
-    });
-  }
-  return HttpResponse.json({
-    count: 3,
+      ount: 3,
     results: [
       { name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" },
       { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
       { name: "charizard", url: "https://pokeapi.co/api/v2/pokemon/5/" },
     ],
+
+
+    });
+  }
+  return HttpResponse.json({
+      count: 2,
+      results: [
+        { name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" },
+        { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
+      ],
   });
 
   }),
-
   // Segundo request: Detalhes de cada Pokémon
   http.get("https://pokeapi.co/api/v2/pokemon/:id", async ({ params }) => {
-if ( reQuest === 5) {
-  
+if ( reQuest >= 3) {
   if (params.id === "25") {
     return HttpResponse.json({
       name: "pikachu",
@@ -57,6 +55,20 @@ if ( reQuest === 5) {
         },
       },
       types: [{ type: { name: "grass" } }],
+    });
+  }
+
+  if (params.id === "5") {
+    return HttpResponse.json({
+      name: "charizard",
+      sprites: {
+        other: {
+          dream_world: {
+            front_default: "https://example.com/charizard.svg",
+          },
+        },
+      },
+      types: [{ type: { name: "fire" } }],
     });
   }
 }
@@ -89,19 +101,23 @@ if (params.id === "1") {
   });
 }
 
-if (params.id === "5") {
-  return HttpResponse.json({
-    name: "charizard",
-    sprites: {
-      other: {
-        dream_world: {
-          front_default: "https://example.com/charizard.svg",
-        },
-      },
-    },
-    types: [{ type: { name: "fire" } }],
-  });
-}
+http.get("https://pokeapi.co/api/v2/ability/65/", async () => {
+
+    return HttpResponse.json({
+        
+        name:"overgrow",
+        flavor_text_entries: [{
+          flavor_text: 'Powers up Grass-type moves in a pinch.'
+        }]
+
+    })
+
+
+})
+
+
+
+
 
     return HttpResponse.json({ message: "Not found" }, { status: 404 });
   }),
