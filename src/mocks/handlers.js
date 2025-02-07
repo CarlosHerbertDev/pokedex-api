@@ -41,6 +41,10 @@ if ( reQuest >= 3) {
         },
       },
       types: [{ type: { name: "electric" } }],
+      moves: [{ move: { name: "thunderbolt" } }],
+      abilities: [
+        { ability: { name: "static", url: "https://pokeapi.co/api/v2/ability/9/" } }
+      ],
     });
   }
 
@@ -55,6 +59,10 @@ if ( reQuest >= 3) {
         },
       },
       types: [{ type: { name: "grass" } }],
+      moves: [{ move: { name: "razor-wind" } }],
+      abilities: [
+        { ability: { name: "overgrow", url: "https://pokeapi.co/api/v2/ability/65/"} }
+      ],
     });
   }
 
@@ -69,6 +77,10 @@ if ( reQuest >= 3) {
         },
       },
       types: [{ type: { name: "fire" } }],
+      moves: [{ move: { name: "mega-punch" } }],
+      abilities: [
+        { ability: { name: "blaze", url: "https://pokeapi.co/api/v2/ability/66/"} }
+      ],
     });
   }
 }
@@ -84,6 +96,10 @@ if (params.id === "25") {
       },
     },
     types: [{ type: { name: "electric" } }],
+    moves: [{ move: { name: "thunderbolt" } }],
+    abilities: [
+      { ability: { name: "static", url: "https://pokeapi.co/api/v2/ability/9/" } }
+    ],
   });
 }
 
@@ -98,26 +114,56 @@ if (params.id === "1") {
       },
     },
     types: [{ type: { name: "grass" } }],
+    moves: [{ move: { name: "thunderbolt" } }],
+    abilities: [
+      { ability: { name: "overgrow", url: "https://pokeapi.co/api/v2/ability/65/"} }
+    ],
   });
 }
 
-http.get("https://pokeapi.co/api/v2/ability/65/", async () => {
 
+http.get("https://pokeapi.co/api/v2/ability/:id/", async ({params}) => {
+
+  if (params.id === 9) {
     return HttpResponse.json({
         
-        name:"overgrow",
-        flavor_text_entries: [{
-          flavor_text: 'Powers up Grass-type moves in a pinch.'
-        }]
-
+      name: "static",
+      flavor_text_entries: [
+        {
+          language: { name: "en" },
+          flavor_text: "Powers up Grass-type moves in a pinch."
+        }
+      ]
     })
+  }
 
+  if (params.id === 66) {
+    return HttpResponse.json({
+        
+      name: "blaze",
+      flavor_text_entries: [
+        {
+          language: { name: "en" },
+          flavor_text: "Ups FIRE moves in a pinch."
+        }
+      ]
+    })
+  }
 
+  if (params.id === 65) {
+    return HttpResponse.json({
+        
+      name: "overgrow",
+      flavor_text_entries: [
+        {
+          language: { name: "en" },
+          flavor_text: "Ups GRASS moves in a pinch."
+        }
+      ]
+    })
+  }
+    
 })
-
-
-
-
 
     return HttpResponse.json({ message: "Not found" }, { status: 404 });
   }),

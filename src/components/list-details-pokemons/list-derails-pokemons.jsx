@@ -45,16 +45,19 @@ const ListDetailsPokemons = () => {
   const [details, setPokeDetails] = useState({});
   const [abilities, setAbilities] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, seError] = useState(null);
+  const [error, setError] = useState(null);
   const { togglerTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     async function fetchData() {
       try {
         const pokeDetails = await getDetails(id);
+        console.log("Detalhes do Pokémon:", pokeDetails);
         const detailsAbilities = await getDetailsAbilities(
           pokeDetails.abilities
         );
+        console.log("Detalhes das Habilidades:", detailsAbilities); // 🕵️‍♂️ Veja se os dados aparecem corretamente
+
 
         const descriptionAbilities = detailsAbilities.map((item) => {
           const texts = item.flavor_text_entries.find((entry) => {
@@ -67,9 +70,11 @@ const ListDetailsPokemons = () => {
           };
         });
         setAbilities(descriptionAbilities);
+        
+        
         setPokeDetails(pokeDetails);
       } catch (error) {
-        seError("Erro ao carregar as informaçãoes do Pokemon 😕");
+        setError("Erro ao carregar detalhes do Pokemon 😕");
         console.error(error);
       } finally {
         setLoading(false);
@@ -107,7 +112,7 @@ const ListDetailsPokemons = () => {
               ) : (
                 <DisplayFlex>
                   <TextLoading>
-                    Carregando imagem...
+                   Nenhuma imagem disponível 
                   </TextLoading>
                 </DisplayFlex>
               )}
@@ -131,7 +136,7 @@ const ListDetailsPokemons = () => {
                 ) : (
                   <DisplayFlex>
                     <TextLoading>
-                      Carregando Type...
+                    Nenhum Type disponível 
                     </TextLoading>
                   </DisplayFlex>
                 )}
@@ -169,7 +174,7 @@ const ListDetailsPokemons = () => {
                 ) : (
                   <DisplayFlex>
                     <TextLoadingAbilities>
-                      Carregando Abilities...
+                    Nenhuma Abilitie disponível 
                     </TextLoadingAbilities>
                   </DisplayFlex>
                 )}
@@ -195,7 +200,7 @@ const ListDetailsPokemons = () => {
               <LayoutMoves>
                 <DisplayFlex>
                   <TextLoading>
-                    Carregando Moves...
+                  Nenhum Move disponível 
                   </TextLoading>
                 </DisplayFlex>
               </LayoutMoves>

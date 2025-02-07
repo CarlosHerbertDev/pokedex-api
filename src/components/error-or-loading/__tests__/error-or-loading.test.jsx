@@ -23,12 +23,11 @@ const ProviderThemes = () => {
             <ErrorOrLoadingHandling />
         </ThemeProvider>
     )
-
 }
 
 afterEach(() => {
     jest.restoreAllMocks();
-  });
+  }); 
 
     describe('Error or Loanding Component', () => {
 

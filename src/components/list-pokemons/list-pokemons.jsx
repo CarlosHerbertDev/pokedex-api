@@ -23,7 +23,8 @@ const ListPokemons = () => {
 
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
-
+    console.log(savedScrollPosition);
+    
     if (savedScrollPosition && !loading) {   
       window.scrollTo(0, savedScrollPosition);
     }

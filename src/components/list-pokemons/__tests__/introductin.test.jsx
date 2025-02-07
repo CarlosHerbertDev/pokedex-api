@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
-import { FilterPokemons } from "../filter-pokemons"
+import { render, screen } from "@testing-library/react"
 import { ThemeContext, ThemeProvider } from "../../../contexts/theme-context"
 import { BrowserRouter } from "react-router-dom"
 import { useContext } from "react"
