@@ -46,7 +46,7 @@ const ListDetailsPokemons = () => {
   const [abilities, setAbilities] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, seError] = useState(null);
-  const { tooglerTheme } = useContext(ThemeContext)
+  const { togglerTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     async function fetchData() {
@@ -88,7 +88,7 @@ const ListDetailsPokemons = () => {
   }
 
   return (
-    <BodyPokemons theme={tooglerTheme}>
+    <BodyPokemons theme={togglerTheme}>
       <HeaderOfComponents />
       <ContainerButtonBack to="/">
         <BackOfList> Voltar </BackOfList>

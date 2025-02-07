@@ -18,14 +18,13 @@ const ListPokemons = () => {
   const [error, setError] = useState(null);
   const [dinamicSelect, setDinamicSelect] = useState([])
   const [filteredPokemons, setFilteredPokemons] = useState([])
-  const {tooglerTheme} = useContext(ThemeContext)
+  const {togglerTheme} = useContext(ThemeContext)
 
 
   useEffect(() => {
     const savedScrollPosition = sessionStorage.getItem("scrollPosition");
-    console.log("Saved Scroll Position:", savedScrollPosition, "Loading:", loading);
+
     if (savedScrollPosition && !loading) {   
-      console.log("Chamando window.scrollTo...");
       window.scrollTo(0, savedScrollPosition);
     }
 
@@ -149,22 +148,18 @@ const ListPokemons = () => {
     return <ErrorOrLoadingHandling>{error}</ErrorOrLoadingHandling>;
   }
 
-  const filteringPokemons  = (value) => {
+  const filteringPokemons = (value) => {
 
-      if (value === 'todos') {
+      if (value === 'todos'){
         sessionStorage.removeItem("filterPokemons")
-        setFilteredPokemons((prevFilter) => {
-          return prevFilter = []
-      })
+        setFilteredPokemons(() => [])
       } else {
     
         const filterPokemons = pokedex.pokemons.filter((item) =>{
         return item.type?.find((element) => element.type?.name === value)
       })
 
-      setFilteredPokemons((prevFilter) => {
-          return prevFilter = [...filterPokemons]
-      })
+      setFilteredPokemons([...filterPokemons])
     
       }
   }
@@ -172,7 +167,7 @@ const ListPokemons = () => {
   
   return (
 
-    <BodyPokemons theme = {tooglerTheme}>
+    <BodyPokemons theme = {togglerTheme}>
       <HeaderOfComponents />
       <SectionListPokemons >
       <DescriptionProject 
@@ -185,7 +180,7 @@ const ListPokemons = () => {
         <FilterPokemons filteredPokemons={filteredPokemons} />
 
       ) : (
- 
+
         <>
 
         <IntroductinPokemons list={pokedex.pokemons} />

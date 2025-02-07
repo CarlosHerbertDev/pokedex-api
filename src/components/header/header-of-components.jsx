@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { ThemeContext } from "../../contexts/theme-context"
 
 export const HeaderOfComponents = () => {
-    const {tooglerTheme, setTogglerTheme} = useContext(ThemeContext)
+    const {togglerTheme, setTogglerTheme} = useContext(ThemeContext)
 
     return (
                 <HeaderlistPokemons>
@@ -19,8 +19,8 @@ export const HeaderOfComponents = () => {
                         </Logo>
                         <ButtonDarkLight 
                         data-testid ='change-theme'
-                        onClick={() => {setTogglerTheme(tooglerTheme === 'dark' ? 'light' : 'dark' )}}
-                        theme={tooglerTheme}
+                        onClick={() => {setTogglerTheme(togglerTheme === 'dark' ? 'light' : 'dark' )}}
+                        theme={togglerTheme}
                         />
                     </HeaderContainer>
                 </HeaderlistPokemons>

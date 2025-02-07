@@ -9,9 +9,9 @@ let valueTheme
 
 const TestComponent = () => {
 
-    const { tooglerTheme } = useContext(ThemeContext)
+    const { togglerTheme } = useContext(ThemeContext)
 
-    valueTheme = tooglerTheme
+    valueTheme = togglerTheme
 
     return null;
 }

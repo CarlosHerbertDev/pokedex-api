@@ -4,8 +4,6 @@ export async function createListPokemon(offset) {
     try {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=10`);
         return response?.data;
-
-
     } catch (error) {
         console.error('Erro ao buscar lista dos Pokemons 😕', error);
     }
@@ -43,8 +41,6 @@ export async function getDetailsAbilities(link) {
     try {
         const dataAbilities = link.map(async function (abilities) {
             const response = await axios.get(abilities.ability.url);
-            console.log(response.data)
-            
             return response?.data;
         })
             return await Promise.all(dataAbilities)

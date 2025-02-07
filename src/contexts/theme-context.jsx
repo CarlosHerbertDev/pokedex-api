@@ -5,7 +5,7 @@ export const ThemeContext = createContext({})
 
 export const ThemeProvider = (props) => {
 
-    const [ tooglerTheme, setTogglerTheme ] = useState('')
+    const [ togglerTheme, setTogglerTheme ] = useState('')
     
 
         useEffect(() => {       
@@ -23,12 +23,12 @@ export const ThemeProvider = (props) => {
     
         useEffect(() => {
             
-            sessionStorage.setItem("tooglerTheme", tooglerTheme)
+            sessionStorage.setItem("tooglerTheme", togglerTheme)
             
-        }, [tooglerTheme])
+        }, [togglerTheme])
 
     return (
-        <ThemeContext.Provider value={{tooglerTheme, setTogglerTheme}}>
+        <ThemeContext.Provider value={{togglerTheme, setTogglerTheme}}>
             {props.children}
         </ThemeContext.Provider>
     )

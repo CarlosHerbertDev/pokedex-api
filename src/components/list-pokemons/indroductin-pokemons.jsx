@@ -6,20 +6,20 @@ import { ThemeContext } from "../../contexts/theme-context";
 export const IntroductinPokemons = ({ list }) => {
     
 
-    const {tooglerTheme} = useContext(ThemeContext)
+    const {togglerTheme} = useContext(ThemeContext)
 
     return (
         <>
         <UlListPokemons>
             {list.map((pokemon, index) => (
-                <LiPokemons key={index} theme={tooglerTheme}>
+                <LiPokemons key={index} theme={togglerTheme}>
                     <Link to={`/details/${pokemon.name}`}>
                         {pokemon.image ? (
                             <ImagePokemon src={pokemon.image} alt={pokemon.name} />
                         ) : (
                             "Sem imagem"
                         )}
-                        <NamePokemon theme={tooglerTheme}>
+                        <NamePokemon theme={togglerTheme}>
                             {pokemon.name}
                         </NamePokemon>
                     </Link>

@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
 
-  const { tooglerTheme } = useContext(ThemeContext)
+  const { togglerTheme } = useContext(ThemeContext)
   const [select, setSelect] = useState('')
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -22,9 +22,7 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
 
     const savedSelect = sessionStorage.getItem("selectPokemons");
     if (savedSelect) {
-      try {
-        console.log(savedSelect)
-        
+      try {      
         setSelect(savedSelect)
 
       } catch (error) {
@@ -47,21 +45,21 @@ export const DescriptionProject = ({ dinamicSelect, filteringPokemons }) => {
           Bem vindo ao Pokédex API !
         </LinkHome>
       </TextApresentation>
-      <DescriptionApresentation theme={tooglerTheme}>
+      <DescriptionApresentation theme={togglerTheme}>
         A Pokédex API é uma aplicação que exibe informações detalhadas sobre os pokémons a partir da Poké API. Inicialmente, são apresentados 10 pokémons na lista. Ao clicar em "ver mais", novos pokémons serão carregados em blocos de 10. Cada pokémon possui uma página interna com detalhes adicionais, que podem ser acessados ao clicar no card correspondente.
       </DescriptionApresentation>
       <ContainerFilter>
         <TitleFiltro>Filtrar</TitleFiltro>
 
         <DropdownContainer>
-          <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)} theme={tooglerTheme} data-testid ='test-select'>
+          <DropdownButton onClick={() => setDropdownOpen(!isDropdownOpen)} theme={togglerTheme} data-testid ='test-select'>
             {select || 'todos'}
           {isDropdownOpen && (
             
-            <DropdownList theme={tooglerTheme} data-testid ='test-options'>
-              <DropdownItem onClick={() => handleChange('todos')} theme={tooglerTheme} data-testid='campo-todos'>todos</DropdownItem>
+            <DropdownList theme={togglerTheme} data-testid ='test-options'>
+              <DropdownItem onClick={() => handleChange('todos')} theme={togglerTheme} data-testid='campo-todos'>todos</DropdownItem>
               {dinamicSelect.map((item, index) => (
-                <DropdownItem key={index} onClick={() => handleChange(item)} theme={tooglerTheme} data-testid ={item} >
+                <DropdownItem key={index} onClick={() => handleChange(item)} theme={togglerTheme} data-testid ={item} >
                   {item}
                 </DropdownItem>
               ))}

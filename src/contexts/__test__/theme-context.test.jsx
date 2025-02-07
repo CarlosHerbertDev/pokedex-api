@@ -2,9 +2,6 @@ import { render } from "@testing-library/react"
 import React from 'react';
 import { ThemeContext, ThemeProvider } from "../theme-context";
 
-
-
-
 afterEach(() => {
     jest.restoreAllMocks();
   });
@@ -56,7 +53,7 @@ describe("Theme Component", () => {
             <ThemeProvider>
                 <ThemeContext.Consumer>
                     {(value) => {
-                        expect(value.tooglerTheme).toBe('')
+                        expect(value.togglerTheme).toBe('')
                         expect(typeof value.setTogglerTheme).toBe('function')
                     }}
                 </ThemeContext.Consumer>

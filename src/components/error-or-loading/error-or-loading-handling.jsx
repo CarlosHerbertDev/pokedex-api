@@ -5,10 +5,10 @@ import { ThemeContext } from "../../contexts/theme-context"
 
 export const ErrorOrLoadingHandling = ({children}) => {
 
-    const {tooglerTheme} = useContext(ThemeContext)
+    const {togglerTheme} = useContext(ThemeContext)
 
     return (
-            <BodyPokemons theme={tooglerTheme}>
+            <BodyPokemons theme={togglerTheme}>
                 
                 <SectionMessage>
                     <TextMessage data-testid ='error-or-loading'>
