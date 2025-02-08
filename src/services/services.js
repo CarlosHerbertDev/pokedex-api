@@ -9,34 +9,27 @@ export async function createListPokemon(offset) {
     }
 }
 
-export async function getPokemonDetatils(namePokemon) {
+export async function getPokemonDetatils(source) {
+
     try {
-        const listDetails = namePokemon.map(async function (item) {
+        if(!isNaN(Number(source)))      {
+            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${source}/`)
+            return response?.data;    
+        } else if(Array.isArray(source)) {
+            const listDetails = source.map(async function (item) {
             const response = await axios.get(item.url);
             return response?.data;
-        });
+            });
 
-        return await Promise.all(listDetails);
+            return await Promise.all(listDetails);
+        }
 
     } catch (error) {
         console.error('Erro ao buscar informações dos Pokemons 😕', error);
     }
 }
 
-export async function getDetails(id) {
-
-    try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        return response?.data;    
-    } catch (error) {
-        console.error('Houve um erro ao buscar as informações detalhadas do Pokemon 😕', error);
-    }
-}
-
-
-
 export async function getDetailsAbilities(link) {
-        console.log(link)
         
     try {
         const dataAbilities = link.map(async function (abilities) {

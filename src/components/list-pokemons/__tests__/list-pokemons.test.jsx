@@ -30,13 +30,13 @@ const ProviderThemes = () => {
 }
 
 const mockPokedex =  { pokemons: [
-    { name: "charmander", image: "charmander.png", type: ["fire"] },
-    { name: "squartle", image: "squartle.png", type: ["water"] }
+    { name: "charmander", id: 4,  image: "charmander.png", type: ["fire"] },
+    { name: "squartle", id: 7, image: "squartle.png", type: ["water"] }
   ] 
 }
 
 const mockFilter =  [
-    { name: "pikachu", image: "https://example.com/pikachu.svg", type: [{type: {name: "electric" }}] }
+    { name: "pikachu", id: 25, image: "https://example.com/pikachu.svg", type: [{type: {name: "electric" }}] }
 ]
 
 

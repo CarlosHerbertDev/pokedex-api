@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDetails, getDetailsAbilities } from "../../services/services";
+import {getDetailsAbilities, getPokemonDetatils } from "../../services/services";
 import { ErrorOrLoadingHandling } from "../error-or-loading/error-or-loading-handling";
 import { HeaderOfComponents } from "../header/header-of-components";
 import {
@@ -51,13 +51,10 @@ const ListDetailsPokemons = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const pokeDetails = await getDetails(id);
-        console.log("Detalhes do Pokémon:", pokeDetails);
+        const pokeDetails = await getPokemonDetatils(id);
         const detailsAbilities = await getDetailsAbilities(
           pokeDetails.abilities
         );
-        console.log("Detalhes das Habilidades:", detailsAbilities); // 🕵️‍♂️ Veja se os dados aparecem corretamente
-
 
         const descriptionAbilities = detailsAbilities.map((item) => {
           const texts = item.flavor_text_entries.find((entry) => {

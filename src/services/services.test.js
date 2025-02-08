@@ -1,7 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { createListPokemon, getPokemonDetatils, getDetails, getDetailsAbilities } from "./services"; 
-import { wait } from "@testing-library/user-event/dist/cjs/utils/index.js";
 
 const mock = new MockAdapter(axios);
 
@@ -31,10 +30,9 @@ describe("Testes das chamadas de API", () => {
         id: 25
       }
 
-
       mock.onGet('https://pokeapi.co/api/v2/pokemon/25/').reply(200, mockDetails)
 
-      const data = await getDetails(25)
+      const data = await getPokemonDetatils(25)
 
       expect(data).toEqual(mockDetails)
 

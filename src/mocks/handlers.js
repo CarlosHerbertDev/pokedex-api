@@ -8,7 +8,7 @@ export const handlers = [
     reQuest++
     if (reQuest >= 3) {
     return HttpResponse.json({
-      ount: 3,
+      count: 3,
     results: [
       { name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" },
       { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/" },
@@ -27,12 +27,12 @@ export const handlers = [
   });
 
   }),
-  // Segundo request: Detalhes de cada Pokémon
   http.get("https://pokeapi.co/api/v2/pokemon/:id", async ({ params }) => {
 if ( reQuest >= 3) {
   if (params.id === "25") {
     return HttpResponse.json({
       name: "pikachu",
+      id: 25,
       sprites: {
         other: {
           dream_world: {
@@ -51,6 +51,7 @@ if ( reQuest >= 3) {
   if (params.id === "1") {
     return HttpResponse.json({
       name: "bulbasaur",
+      id: 1,
       sprites: {
         other: {
           dream_world: {
@@ -69,6 +70,7 @@ if ( reQuest >= 3) {
   if (params.id === "5") {
     return HttpResponse.json({
       name: "charizard",
+      id: 5,
       sprites: {
         other: {
           dream_world: {
@@ -88,6 +90,7 @@ if ( reQuest >= 3) {
 if (params.id === "25") {
   return HttpResponse.json({
     name: "pikachu",
+    id: 25,
     sprites: {
       other: {
         dream_world: {
@@ -106,6 +109,7 @@ if (params.id === "25") {
 if (params.id === "1") {
   return HttpResponse.json({
     name: "bulbasaur",
+    id: 1,
     sprites: {
       other: {
         dream_world: {
