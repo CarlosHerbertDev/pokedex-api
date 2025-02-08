@@ -1,13 +1,14 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { createListPokemon, getPokemonDetatils, getDetails, getDetailsAbilities } from "./services"; 
+import { wait } from "@testing-library/user-event/dist/cjs/utils/index.js";
 
 const mock = new MockAdapter(axios);
 
 describe("Testes das chamadas de API", () => {
 
   afterEach(() => {
-    mock.reset(); // Reseta os mocks após cada teste para evitar conflitos
+    mock.reset();
   });
 
     it('deve buscar a lista de pokemons corretamente', async () => {
@@ -23,48 +24,43 @@ describe("Testes das chamadas de API", () => {
         expect(data).toEqual(mockLlist)
     })
 
-//   it("Deve buscar a lista de Pokémons corretamente", async () => {
-//     const mockData = {
-//       results: [{ name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon/25/" }]
-//     };
+    it('deve buscar os detalhes do pokemon corretamente', async () => {
 
-//     mock.onGet("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10").reply(200, mockData);
+      const mockDetails = {
+        name: "pikachu",
+        id: 25
+      }
 
-//     const data = await createListPokemon(0);
 
-//     expect(data).toEqual(mockData);
-//   });
+      mock.onGet('https://pokeapi.co/api/v2/pokemon/25/').reply(200, mockDetails)
 
-//   it("Deve buscar os detalhes dos Pokémons", async () => {
-//     const mockData = {
-//       name: "pikachu",
-//       id: 25
-//     };
+      const data = await getDetails(25)
 
-//     mock.onGet("https://pokeapi.co/api/v2/pokemon/25/").reply(200, mockData);
+      expect(data).toEqual(mockDetails)
 
-//     const data = await getDetails(25);
+    })
 
-//     expect(data).toEqual(mockData);
-//   });
+    it('deve buscar os detalhes do pokemon corretamente', async () => {
 
-//   it("Deve buscar os detalhes das habilidades corretamente", async () => {
-//     const mockAbilities = [
-//       {
-//         ability: { name: "static", url: "https://pokeapi.co/api/v2/ability/9/" }
-//       }
-//     ];
+      const mockAbilitiesDetails = {
+        name: "overgrow",
+        flavor_text_entries: [{language: { name: "en" },flavor_text: "Ups GRASS moves in a pinch."}]
+      }
 
-//     const mockAbilityDetails = {
-//       name: "static",
-//       flavor_text_entries: [{ language: { name: "en" }, flavor_text: "Paralyzes on contact." }]
-//     };
 
-//     mock.onGet("https://pokeapi.co/api/v2/ability/9/").reply(200, mockAbilityDetails);
+      const mockAbilities = [
+              {
+                ability: { name: "static", url: "https://pokeapi.co/api/v2/ability/9/" }
+              }
+            ];
+          
 
-//     const data = await getDetailsAbilities(mockAbilities);
+      mock.onGet("https://pokeapi.co/api/v2/ability/9/").reply(200, mockAbilitiesDetails)
 
-//     expect(data).toEqual([mockAbilityDetails]);
-//   });
+      const data = await getDetailsAbilities(mockAbilities)
+
+      expect(data).toEqual([mockAbilitiesDetails])
+
+    })
 
 });
