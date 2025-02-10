@@ -52,6 +52,8 @@ const ListDetailsPokemons = () => {
     async function fetchData() {
       try {
         const pokeDetails = await getPokemonDetatils(id);
+        console.log(pokeDetails)
+        
         const detailsAbilities = await getDetailsAbilities(
           pokeDetails.abilities
         );

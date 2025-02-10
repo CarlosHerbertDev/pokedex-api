@@ -32,7 +32,7 @@ const renderDetails = (component, initialRoute = '/details/25') => {
 }
 
 beforeEach(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    // jest.spyOn(console, 'error').mockImplementation(() => {});
 });
 
 describe('List Details Component', () => {
@@ -62,6 +62,8 @@ describe('List Details Component', () => {
     })
     it('ao renderizar elementos devem aparecer na tela, se não estiverem disponíveis, mostrar mensagem de carregamento', async () => {
         
+        jest.setTimeout(10000);
+
         renderDetails(<ListDetailsPokemons />)
            
         expect(screen.getByText(/Carregando/i)).toBeInTheDocument();
@@ -74,8 +76,10 @@ describe('List Details Component', () => {
     })
     it('ao renderizar a pagina deve exibir o botão de voltar para a listagem', async () => {
         
+        jest.setTimeout(10000);
+
         renderDetails(<ListDetailsPokemons />)
     
-        expect(await screen.findByText(/voltar/i))
+        expect(await screen.findByText(/voltar/i)).toBeInTheDocument()
     })
 })

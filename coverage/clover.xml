@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1738947099395" clover="3.2.0">
-  <project timestamp="1738947099396" name="All files">
-    <metrics statements="330" coveredstatements="287" conditionals="150" coveredconditionals="87" methods="79" coveredmethods="77" elements="559" coveredelements="451" complexity="0" loc="330" ncloc="330" packages="10" files="20" classes="20"/>
+<coverage generated="1739215075171" clover="3.2.0">
+  <project timestamp="1739215075172" name="All files">
+    <metrics statements="327" coveredstatements="284" conditionals="154" coveredconditionals="90" methods="78" coveredmethods="76" elements="559" coveredelements="450" complexity="0" loc="327" ncloc="327" packages="10" files="20" classes="20"/>
     <package name="assets">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="moon34.png" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\assets\moon34.png">
@@ -22,7 +22,7 @@
       <file name="button.jsx" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\button\button.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="7" type="stmt"/>
-        <line num="2" count="13" type="stmt"/>
+        <line num="2" count="12" type="stmt"/>
       </file>
     </package>
     <package name="components.error-or-loading">
@@ -44,8 +44,8 @@
       <file name="header-of-components.jsx" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\header\header-of-components.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
         <line num="6" count="3" type="stmt"/>
-        <line num="7" count="17" type="stmt"/>
-        <line num="9" count="17" type="stmt"/>
+        <line num="7" count="16" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="22" count="1" type="cond" truecount="1" falsecount="1"/>
       </file>
@@ -57,44 +57,43 @@
         <line num="29" count="3" type="stmt"/>
         <line num="34" count="3" type="stmt"/>
         <line num="42" count="3" type="stmt"/>
-        <line num="44" count="17" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="16" type="cond" truecount="1" falsecount="1"/>
       </file>
     </package>
     <package name="components.list-details-pokemons">
-      <metrics statements="104" coveredstatements="78" conditionals="54" coveredconditionals="23" methods="9" coveredmethods="9"/>
+      <metrics statements="103" coveredstatements="77" conditionals="54" coveredconditionals="23" methods="9" coveredmethods="9"/>
       <file name="list-derails-pokemons.jsx" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\list-details-pokemons\list-derails-pokemons.jsx">
-        <metrics statements="31" coveredstatements="31" conditionals="16" coveredconditionals="11" methods="8" coveredmethods="8"/>
+        <metrics statements="30" coveredstatements="30" conditionals="16" coveredconditionals="11" methods="8" coveredmethods="8"/>
         <line num="43" count="1" type="stmt"/>
-        <line num="44" count="7" type="stmt"/>
-        <line num="45" count="7" type="stmt"/>
-        <line num="46" count="7" type="stmt"/>
-        <line num="47" count="7" type="stmt"/>
-        <line num="48" count="7" type="stmt"/>
-        <line num="49" count="7" type="stmt"/>
-        <line num="51" count="7" type="stmt"/>
+        <line num="44" count="6" type="stmt"/>
+        <line num="45" count="6" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="47" count="6" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="49" count="6" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
         <line num="53" count="4" type="stmt"/>
         <line num="54" count="4" type="stmt"/>
         <line num="55" count="4" type="stmt"/>
-        <line num="56" count="4" type="stmt"/>
-        <line num="59" count="3" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
         <line num="62" count="3" type="stmt"/>
-        <line num="63" count="3" type="stmt"/>
-        <line num="64" count="6" type="stmt"/>
-        <line num="67" count="3" type="stmt"/>
-        <line num="72" count="3" type="stmt"/>
-        <line num="75" count="3" type="stmt"/>
+        <line num="63" count="6" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="71" count="3" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
         <line num="77" count="1" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="80" count="4" type="stmt"/>
-        <line num="84" count="4" type="stmt"/>
-        <line num="87" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="88" count="4" type="stmt"/>
-        <line num="91" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="92" count="1" type="stmt"/>
-        <line num="95" count="2" type="stmt"/>
-        <line num="127" count="2" type="stmt"/>
-        <line num="158" count="2" type="stmt"/>
-        <line num="190" count="2" type="stmt"/>
+        <line num="79" count="4" type="stmt"/>
+        <line num="83" count="4" type="stmt"/>
+        <line num="86" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="87" count="4" type="stmt"/>
+        <line num="90" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="126" count="1" type="stmt"/>
+        <line num="157" count="1" type="stmt"/>
+        <line num="189" count="1" type="stmt"/>
       </file>
       <file name="styles.js" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\list-details-pokemons\styles.js">
         <metrics statements="73" coveredstatements="47" conditionals="38" coveredconditionals="12" methods="1" coveredmethods="1"/>
@@ -114,30 +113,30 @@
         <line num="127" count="1" type="stmt"/>
         <line num="132" count="1" type="stmt"/>
         <line num="140" count="1" type="stmt"/>
-        <line num="146" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="146" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="147" count="0" type="stmt"/>
-        <line num="151" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="151" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="152" count="0" type="stmt"/>
-        <line num="156" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="156" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="157" count="0" type="stmt"/>
-        <line num="161" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="161" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="162" count="0" type="stmt"/>
-        <line num="166" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="166" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="167" count="0" type="stmt"/>
-        <line num="171" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="171" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="172" count="0" type="stmt"/>
-        <line num="176" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="176" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="177" count="0" type="stmt"/>
-        <line num="181" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="181" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="182" count="0" type="stmt"/>
-        <line num="186" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="186" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="187" count="0" type="stmt"/>
-        <line num="191" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="191" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="192" count="0" type="stmt"/>
-        <line num="196" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="196" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="197" count="0" type="stmt"/>
-        <line num="201" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="202" count="2" type="stmt"/>
+        <line num="201" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="202" count="1" type="stmt"/>
         <line num="206" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="207" count="0" type="stmt"/>
         <line num="211" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -174,7 +173,7 @@
       </file>
     </package>
     <package name="components.list-pokemons">
-      <metrics statements="138" coveredstatements="132" conditionals="68" coveredconditionals="47" methods="51" coveredmethods="50"/>
+      <metrics statements="137" coveredstatements="131" conditionals="68" coveredconditionals="47" methods="51" coveredmethods="50"/>
       <file name="description-project.jsx" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\list-pokemons\description-project.jsx">
         <metrics statements="20" coveredstatements="19" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="8"/>
         <line num="9" count="2" type="stmt"/>
@@ -213,7 +212,7 @@
         <line num="15" count="34" type="stmt"/>
       </file>
       <file name="list-pokemons.jsx" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\components\list-pokemons\list-pokemons.jsx">
-        <metrics statements="81" coveredstatements="76" conditionals="28" coveredconditionals="24" methods="24" coveredmethods="23"/>
+        <metrics statements="80" coveredstatements="75" conditionals="28" coveredconditionals="24" methods="24" coveredmethods="23"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="39" type="stmt"/>
         <line num="15" count="37" type="stmt"/>
@@ -225,34 +224,33 @@
         <line num="21" count="37" type="stmt"/>
         <line num="24" count="37" type="stmt"/>
         <line num="25" count="16" type="stmt"/>
-        <line num="26" count="16" type="stmt"/>
-        <line num="28" count="16" type="cond" truecount="4" falsecount="0"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="32" count="16" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="36" count="16" type="stmt"/>
+        <line num="27" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="31" count="16" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="16" type="stmt"/>
+        <line num="37" count="16" type="stmt"/>
         <line num="38" count="16" type="stmt"/>
-        <line num="39" count="16" type="stmt"/>
-        <line num="43" count="37" type="stmt"/>
+        <line num="42" count="37" type="stmt"/>
+        <line num="43" count="11" type="stmt"/>
         <line num="44" count="11" type="stmt"/>
-        <line num="45" count="11" type="stmt"/>
-        <line num="47" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="9" type="stmt"/>
         <line num="48" count="9" type="stmt"/>
         <line num="49" count="9" type="stmt"/>
-        <line num="50" count="9" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="57" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="7" type="stmt"/>
         <line num="58" count="7" type="stmt"/>
         <line num="59" count="7" type="stmt"/>
-        <line num="60" count="7" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="72" count="37" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="71" count="37" type="stmt"/>
+        <line num="72" count="12" type="stmt"/>
         <line num="73" count="12" type="stmt"/>
         <line num="74" count="12" type="stmt"/>
         <line num="75" count="12" type="stmt"/>
         <line num="76" count="12" type="stmt"/>
-        <line num="77" count="12" type="stmt"/>
-        <line num="78" count="31" type="stmt"/>
+        <line num="77" count="31" type="stmt"/>
         <line num="85" count="11" type="stmt"/>
         <line num="86" count="8" type="stmt"/>
         <line num="87" count="8" type="stmt"/>
@@ -351,62 +349,61 @@
       <metrics statements="26" coveredstatements="18" conditionals="20" coveredconditionals="12" methods="3" coveredmethods="2"/>
       <file name="handlers.js" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\mocks\handlers.js">
         <metrics statements="25" coveredstatements="17" conditionals="20" coveredconditionals="12" methods="3" coveredmethods="2"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
+        <line num="3" count="9" type="stmt"/>
+        <line num="5" count="9" type="stmt"/>
         <line num="8" count="12" type="stmt"/>
         <line num="9" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="10" count="10" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
-        <line num="32" count="34" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="27" type="cond" truecount="2" falsecount="0"/>
-        <line num="34" count="9" type="stmt"/>
+        <line num="31" count="34" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="9" type="stmt"/>
         <line num="51" count="18" type="cond" truecount="2" falsecount="0"/>
         <line num="52" count="9" type="stmt"/>
-        <line num="69" count="9" type="cond" truecount="1" falsecount="1"/>
-        <line num="70" count="9" type="stmt"/>
-        <line num="88" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="89" count="5" type="stmt"/>
-        <line num="106" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="107" count="2" type="stmt"/>
-        <line num="125" count="0" type="stmt"/>
-        <line num="127" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="128" count="0" type="stmt"/>
-        <line num="140" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="141" count="0" type="stmt"/>
-        <line num="153" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="154" count="0" type="stmt"/>
-        <line num="168" count="0" type="stmt"/>
+        <line num="70" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="71" count="9" type="stmt"/>
+        <line num="90" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="91" count="5" type="stmt"/>
+        <line num="109" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="110" count="2" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="131" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="132" count="0" type="stmt"/>
+        <line num="144" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="145" count="0" type="stmt"/>
+        <line num="157" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="172" count="0" type="stmt"/>
       </file>
       <file name="server.js" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\mocks\server.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="8" type="stmt"/>
+        <line num="4" count="9" type="stmt"/>
       </file>
     </package>
     <package name="services">
-      <metrics statements="21" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+      <metrics statements="20" coveredstatements="18" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
       <file name="services.js" path="C:\Users\Plantão RR\Desktop\Versão Brasileira Herbet Richard\Herbert\projects\pokedex-api\src\services\services.js">
-        <metrics statements="21" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="5" count="12" type="stmt"/>
-        <line num="6" count="12" type="stmt"/>
+        <metrics statements="20" coveredstatements="18" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="6" count="13" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
-        <line num="13" count="12" type="stmt"/>
-        <line num="14" count="12" type="stmt"/>
-        <line num="15" count="34" type="stmt"/>
-        <line num="16" count="31" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="15" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="12" type="cond" truecount="1" falsecount="1"/>
         <line num="19" count="12" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="39" count="3" type="stmt"/>
-        <line num="41" count="3" type="stmt"/>
-        <line num="42" count="3" type="stmt"/>
-        <line num="43" count="3" type="stmt"/>
-        <line num="44" count="3" type="stmt"/>
-        <line num="46" count="3" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
+        <line num="20" count="34" type="stmt"/>
+        <line num="21" count="31" type="stmt"/>
+        <line num="24" count="12" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
       </file>
     </package>
     <package name="style">
@@ -416,7 +413,7 @@
         <line num="5" count="7" type="stmt"/>
         <line num="11" count="7" type="stmt"/>
         <line num="17" count="7" type="stmt"/>
-        <line num="19" count="45" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="44" type="cond" truecount="1" falsecount="1"/>
         <line num="24" count="7" type="stmt"/>
         <line num="34" count="7" type="stmt"/>
         <line num="45" count="7" type="stmt"/>
