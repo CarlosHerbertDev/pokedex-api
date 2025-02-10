@@ -34,9 +34,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 🛠 Decisões adotadas 
 <p>  
-Esse projeto trouxe grander desfios, um deles foi uso do Jest, onde antes tinha apenas o conhecimento do seu uso em funções de JS puro, e com o desenvolvimento desse projeto adquiri conhecimento nos testes envolvendo componentes, onde usei O RTL para testar componentes, aprendi a mockar estados e funções de guardam estados de sessão como o SessionStorage, além de usar a ajuda no MSW para mockar e interceptar chamadas da API para realizar os testes.
+Esse projeto trouxe grandes desafios, um deles foi uso do Jest, onde antes tinha apenas o conhecimento do seu uso em funções de JS puro, e com o desenvolvimento desse projeto adquiri conhecimento nos testes envolvendo componentes, onde usei O RTL para testar eles, aprendi a mockar estados e funções que guardam estados de sessão como o SessionStorage, além de usar a ajuda no MSW para mockar e interceptar chamadas da API para realizar os testes.
 </p>
-
+<p>  
+Outro desafio foi a utlização do context API, para disponibilizar o contexto de temas por toda a aplicação, onde é proporcionado uma experiência personalizada para usuário alterar entre o tema claro e escuro, e para utilização dessa funcionalidade, antes tive que me apronfundar um pouco mais no uso de styled components para criar um estilização mais dinâmica, estilizando os componentes por meio de props, e de acordo com o valor recebido pela prop, o tema é alterado, e onde essa prop que é recebida pelos componentes de estilos é o contexto que disponibilzamos os componentes
+</p>
 
 
 - [Acesse o projeto finalizado, online](https://carlosherbertdev.github.io/projeto-inicial-fetch-github-api/)
