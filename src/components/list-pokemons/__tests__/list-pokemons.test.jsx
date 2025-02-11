@@ -209,7 +209,26 @@ describe('List Pokemons Component', () => {
         expect(setItem).toHaveBeenCalledWith('filterPokemons', JSON.stringify(mockFilter)) 
     })
 
-    it('ao renderizar, se ocorrer um erro na API, deve aparecer uma mensagem na tela', async () => {
+    it('ao renderizar, se ocorrer um erro na chamada da API ao buscar lista dos pokémons, mostrar erro', async () => {
+        
+        server.use(
+            http.get("https://pokeapi.co/api/v2/pokemon", async () => {
+            return HttpResponse.json({ message: "Not found" }, { status: 404 });
+        })
+    );
+
+    render(
+        <BrowserRouter>
+        <ListPokemons />
+        </BrowserRouter>
+    );
+
+    const erro =  await screen.findByText('Erro ao carregar informações dos Pokemons 😕')
+
+    expect(erro).toBeInTheDocument();
+
+    })
+    it('ao renderizar, se ocorrer um erro na chamada da API ao buscar detalhes dos pokémons, mostrar erro', async () => {
         
         server.use(
             http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {

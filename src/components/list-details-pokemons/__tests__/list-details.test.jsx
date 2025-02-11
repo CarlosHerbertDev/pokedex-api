@@ -32,7 +32,7 @@ const renderDetails = (component, initialRoute = '/details/25') => {
 }
 
 beforeEach(() => {
-    // jest.spyOn(console, 'error').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
 });
 
 describe('List Details Component', () => {
@@ -45,7 +45,7 @@ describe('List Details Component', () => {
     })
     
     
-    it('ao renderizar, se houver algum problema com a API, mostrar mensagem de erro na tela', async () => {
+    it('ao renderizar, se ocorrer um erro na chamada da API ao buscar detalhes dos pokémons, mostrar erro', async () => {
        
         server.use(
                 http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
@@ -60,9 +60,23 @@ describe('List Details Component', () => {
         expect(erro).toBeInTheDocument();
         
     })
-    it('ao renderizar elementos devem aparecer na tela, se não estiverem disponíveis, mostrar mensagem de carregamento', async () => {
+    
+    it('ao renderizar, se ocorrer um erro na chamada da API ao buscar abilities dos pokémons, mostrar erro', async () => {
+       
+        server.use(
+                http.get("https://pokeapi.co/api/v2/ability/:id/", async () => {
+                return HttpResponse.json({ message: "Not found" }, { status: 404 });
+            })
+        );
+
+        renderDetails(<ListDetailsPokemons />)
         
-        jest.setTimeout(10000);
+        const erro =  await screen.findByText('Erro ao carregar detalhes do Pokemon 😕')
+        
+        expect(erro).toBeInTheDocument();
+        
+    })
+    it('ao renderizar elementos devem aparecer na tela, se não estiverem disponíveis, mostrar mensagem de carregamento', async () => {
 
         renderDetails(<ListDetailsPokemons />)
            
@@ -76,8 +90,6 @@ describe('List Details Component', () => {
     })
     it('ao renderizar a pagina deve exibir o botão de voltar para a listagem', async () => {
         
-        jest.setTimeout(10000);
-
         renderDetails(<ListDetailsPokemons />)
     
         expect(await screen.findByText(/voltar/i)).toBeInTheDocument()

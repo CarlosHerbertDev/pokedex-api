@@ -6,8 +6,8 @@ O Pokédex API é um projeto que exibe uma listagem inicial de 10 Pokémons obti
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Decisões adotadas">Decições adotadas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="#-Como Instalar e Rodar">Como Instalar e Rodar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-decisões-adotadas">Decições adotadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-instalar-e-rodar">Como Instalar e Rodar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   
 </p>
 <br>
@@ -64,17 +64,13 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <ol style="padding: 5px;">
 <li>
-  <p>
-     📝 Clonando Repositório
-
-     Primeiro vamos fazer um clone do repositório para sua máquina local, para deverá copiar o seguinte comando
-     
-     ```
-     git clone https://github.com/CarlosHerbertDev/pokedex-api.git 
-     ```
-     Depois de copiar esse comando, pode escolher no seu computador a pasta onde vai ficar os arquivos, abra ele com seu git, cmd ou powershell, depois basta colalr esse comando e executar 
-  </p>
-
+    📝 Clonando Repositório:
+   
+  Primeiro vamos fazer um clone do repositório para sua máquina local, lembrando que é necessário ter o git instalado para realizar o clone, tendo ele instalado, você deverá copiar o seguinte comando
+   ```
+  git clone https://github.com/CarlosHerbertDev/pokedex-api.git
+   ```
+  Depois de copiar esse comando, pode escolher no seu computador a pasta onde vai ficar os arquivos, depois com git bash basta colar esse comando e executar
 </li>
 <li>
    🛠 Entrando na Pasta e instalando depências: 
