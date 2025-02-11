@@ -125,23 +125,25 @@ if (params.id === "1") {
   });
 }
 
+  return HttpResponse.json({ message: "Not found" }, { status: 404 });
+}),
 
 http.get("https://pokeapi.co/api/v2/ability/:id/", async ({params}) => {
 
-  if (params.id === 9) {
+  if (params.id === '9') {
     return HttpResponse.json({
         
       name: "static",
       flavor_text_entries: [
         {
           language: { name: "en" },
-          flavor_text: "Powers up Grass-type moves in a pinch."
+          flavor_text: "Paralyzes on contact."
         }
       ]
     })
   }
 
-  if (params.id === 66) {
+  if (params.id === '66') {
     return HttpResponse.json({
         
       name: "blaze",
@@ -154,7 +156,7 @@ http.get("https://pokeapi.co/api/v2/ability/:id/", async ({params}) => {
     })
   }
 
-  if (params.id === 65) {
+  if (params.id === '65') {
     return HttpResponse.json({
         
       name: "overgrow",
@@ -166,9 +168,7 @@ http.get("https://pokeapi.co/api/v2/ability/:id/", async ({params}) => {
       ]
     })
   }
-    
+  return HttpResponse.json({ message: "Not found" }, { status: 404 });
 })
 
-    return HttpResponse.json({ message: "Not found" }, { status: 404 });
-  }),
 ];
