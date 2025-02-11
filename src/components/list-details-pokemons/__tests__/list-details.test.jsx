@@ -17,14 +17,14 @@ const TestComponent = () => {
     return null;
 }
 
-const renderDetails = (component, initialRoute = '/details/25') => {
+const renderDetails = (component, initialRoute = '/25') => {
 
     return render(
         <ThemeProvider>
           <TestComponent />
           <MemoryRouter initialEntries={[initialRoute]}>
             <Routes>
-              <Route exact path="/details/:id" element={component} />
+              <Route exact path="/:id" element={component} />
             </Routes>
           </MemoryRouter>
         </ThemeProvider>
