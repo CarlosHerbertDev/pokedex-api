@@ -1,4 +1,4 @@
-import { setupServer } from 'msw/node'; // Certifique-se de que isso está correto
-import { handlers } from './handlers'; // Caminho correto para o arquivo de handlers
+import { setupServer } from 'msw/node';
+import { handlers } from './handlers';
 
 export const server = setupServer(...handlers);

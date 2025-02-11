@@ -1,6 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { createListPokemon, getPokemonDetatils, getDetails, getDetailsAbilities } from "./services"; 
+import { createListPokemon, getPokemonDetatils, getDetailsAbilities } from "./services"; 
 
 const mock = new MockAdapter(axios);
 

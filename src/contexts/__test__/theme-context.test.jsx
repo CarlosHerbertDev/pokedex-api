@@ -17,8 +17,7 @@ describe("Theme Component", () => {
        render(<ThemeProvider />)
 
        expect(useSateMock).toHaveBeenCalledWith('');
-
-
+       
     })
 
     it('ao renderizar, o estado salvo no sessionStrage deve ser carregado e o estado do select atualizado', () => {
