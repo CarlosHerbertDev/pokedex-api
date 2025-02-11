@@ -30,14 +30,14 @@ const ProviderThemes = () => {
 }
 
 const mockPokedex =  { pokemons: [
-    { name: "charmander", id: 4,  image: "charmander.png", type: ["fire"] },
-    { name: "squartle", id: 7, image: "squartle.png", type: ["water"] }
+    { name: "charmander", image: "charmander.png", type: ["fire"] },
+    { name: "squartle", image: "squartle.png", type: ["water"] }
   ] 
 }
 
 const mockFilter =  [
-    { name: "pikachu", id: 25, image: "https://example.com/pikachu.svg", type: [{type: {name: "electric" }}] }
-]
+    { name: "pikachu", image: "https://example.com/pikachu.svg", type:[{ type :{name: "electric"}}]}
+    ]
 
 
 beforeEach(() => {
@@ -86,20 +86,20 @@ describe('List Pokemons Component', () => {
 
     });
 
-    it("ao renderizar e clicar no select 'filtro', pokemlons devem ser filtrados ", async () => {
+    it("ao renderizar e clicar no select 'filtro', pokemons devem ser filtrados ", async () => {
         render(
         <BrowserRouter>
         <ListPokemons />
         </BrowserRouter>
         );
     
-      const button = await screen.findByTestId('test-select')
-      fireEvent.click(button)
-      const electric = screen.getByText('electric')
-      fireEvent.click(electric)
+        const button = await screen.findByTestId('test-select')
+        fireEvent.click(button)
+        const electric = screen.getByText('electric')
+        fireEvent.click(electric)
 
-      const pikachu = await screen.findByText(/pikachu/i);
-      expect(pikachu).toBeInTheDocument();
+        const pikachu = await screen.findByText(/pikachu/i);
+        expect(pikachu).toBeInTheDocument();
 
 
     });
@@ -115,17 +115,17 @@ describe('List Pokemons Component', () => {
         const mockScroll = 500;
     
         const getItem = jest.spyOn(Storage.prototype, 'getItem').mockImplementation((key) => {
-          if (key === "scrollPosition") return mockScroll;
-          return null;
+        if (key === "scrollPosition") return mockScroll;
+        return null;
         });
     
         const scrollToMock = jest.fn();
         Object.defineProperty(window, "scrollTo", { value: scrollToMock, writable: true });
     
         render(
-          <BrowserRouter>
+        <BrowserRouter>
             <ListPokemons loading={false} />
-          </BrowserRouter>
+        </BrowserRouter>
         );
     
 
@@ -139,16 +139,16 @@ describe('List Pokemons Component', () => {
     it('ao scrolar, salvar posição do scroll', async () => {
         
 
-      const setItem = jest.spyOn(Storage.prototype, 'setItem')
+    const setItem = jest.spyOn(Storage.prototype, 'setItem')
 
-      render (<ListPokemons />)
+    render (<ListPokemons />)
 
-      window.scrollY = 300; 
-      window.dispatchEvent(new Event('scroll'));
-  
-      expect(setItem).toHaveBeenCalledWith('scrollPosition', 300); 
+    window.scrollY = 300; 
+    window.dispatchEvent(new Event('scroll'));
 
-  })
+    expect(setItem).toHaveBeenCalledWith('scrollPosition', 300); 
+
+    })
 
     it('ao renderizar, o conteudo do sessionStorage de pokedex deve ser carregado', () => {
 
@@ -202,7 +202,7 @@ describe('List Pokemons Component', () => {
         const setItem = jest.spyOn(Storage.prototype, 'setItem')
         
         jest.spyOn(React, "useState").mockImplementationOnce(() => {
-          [mockFilter, jest.fn()]
+            [mockFilter, jest.fn()]
         });
         
         render(<ListPokemons />);
@@ -231,7 +231,7 @@ describe('List Pokemons Component', () => {
     it('ao renderizar, se ocorrer um erro na chamada da API ao buscar detalhes dos pokémons, mostrar erro', async () => {
         
         server.use(
-            http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
+            http.get("https://pokeapi.co/api/v2/pokemon/:name", async () => {
             return HttpResponse.json({ message: "Not found" }, { status: 404 });
         })
     );

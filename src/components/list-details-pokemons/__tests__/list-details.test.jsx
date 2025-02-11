@@ -17,14 +17,14 @@ const TestComponent = () => {
     return null;
 }
 
-const renderDetails = (component, initialRoute = '/25') => {
+const renderDetails = (component, initialRoute = '/pikachu') => {
 
     return render(
         <ThemeProvider>
           <TestComponent />
           <MemoryRouter initialEntries={[initialRoute]}>
             <Routes>
-              <Route exact path="/:id" element={component} />
+              <Route exact path="/:name" element={component} />
             </Routes>
           </MemoryRouter>
         </ThemeProvider>
@@ -48,7 +48,7 @@ describe('List Details Component', () => {
     it('ao renderizar, se ocorrer um erro na chamada da API ao buscar detalhes dos pokémons, mostrar erro', async () => {
        
         server.use(
-                http.get("https://pokeapi.co/api/v2/pokemon/:id", async () => {
+                http.get("https://pokeapi.co/api/v2/pokemon/:name", async () => {
                 return HttpResponse.json({ message: "Not found" }, { status: 404 });
             })
         );

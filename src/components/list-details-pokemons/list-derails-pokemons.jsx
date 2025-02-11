@@ -41,7 +41,7 @@ import { BodyPokemons, DisplayFlex, SectionPokemons } from "../../style/reusable
 import { ThemeContext } from "../../contexts/theme-context";
 
 const ListDetailsPokemons = () => {
-  const { id } = useParams();
+  const { name } = useParams();
   const [details, setPokeDetails] = useState({});
   const [abilities, setAbilities] = useState({});
   const [loading, setLoading] = useState(true);
@@ -51,7 +51,7 @@ const ListDetailsPokemons = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const pokeDetails = await getPokemonDetatils(id);
+        const pokeDetails = await getPokemonDetatils(name);
         const detailsAbilities = await getDetailsAbilities(
           pokeDetails.abilities
         );
@@ -79,7 +79,7 @@ const ListDetailsPokemons = () => {
     }
 
     fetchData();
-  }, [id]);
+  }, [name]);
 
   if (loading) {
     return <ErrorOrLoadingHandling>Carregando...</ErrorOrLoadingHandling>;

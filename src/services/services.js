@@ -12,12 +12,14 @@ export async function createListPokemon(offset) {
 export async function getPokemonDetatils(source) {
 
     try {
-        if(!isNaN(Number(source)))      {
-            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${source}/`)
+        const details = 'https://pokeapi.co/api/v2/pokemon/'
+        if(typeof source === 'string'){
+            const response = await axios.get(`${details}${source}/`)
             return response?.data;    
         } else if(Array.isArray(source)) {
+        
             const listDetails = source.map(async function (item) {
-            const response = await axios.get(item.url);
+            const response = await axios.get(`${details}${item.name}`);
             return response?.data;
             });
 

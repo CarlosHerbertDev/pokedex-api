@@ -8,7 +8,7 @@ const AppRoutes = () => (
     <BrowserRouter>
         <Routes>
             <Route exact path='/' element={ <RenderListPokemons /> } />
-            <Route exact path='/:id' element={ <RenderDetailsPokemons /> } />
+            <Route exact path='/:name' element={ <RenderDetailsPokemons /> } />
         </Routes>
     </BrowserRouter>
 )

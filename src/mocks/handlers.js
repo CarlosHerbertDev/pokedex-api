@@ -29,9 +29,9 @@
     })
    
   }),
-    http.get("https://pokeapi.co/api/v2/pokemon/:id", async ({ params }) => {
+    http.get("https://pokeapi.co/api/v2/pokemon/:name", async ({ params }) => {
   if ( reQuest >= 3) {
-    if (params.id === "25") {
+    if (params.name === "pikachu") {
       return HttpResponse.json({
         name: "pikachu",
         id: 25,
@@ -50,7 +50,7 @@
       });
     }
 
-    if (params.id === "1") {
+    if (params.name === "bulbasaur") {
       return HttpResponse.json({
         name: "bulbasaur",
         id: 1,
@@ -69,7 +69,7 @@
       });
     }
 
-    if (params.id === "5") {
+    if (params.name === "charizard") {
       return HttpResponse.json({
         name: "charizard",
         id: 5,
@@ -89,7 +89,7 @@
     }
   }
 
-  if (params.id === "25") {
+  if (params.name === "pikachu") {
     return HttpResponse.json({
       name: "pikachu",
       id: 25,
@@ -108,7 +108,7 @@
     });
   }
 
-  if (params.id === "1") {
+  if (params.name === "bulbasaur") {
     return HttpResponse.json({
       name: "bulbasaur",
       id: 1,

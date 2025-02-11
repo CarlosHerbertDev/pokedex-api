@@ -20,7 +20,7 @@ describe("Theme Component", () => {
        
     })
 
-    it('ao renderizar, o estado salvo no sessionStrage deve ser carregado e o estado do select atualizado', () => {
+    it('ao renderizar, o estado salvo no localStrage deve ser carregado e o estado do select atualizado', () => {
 
         const setNockTheme = jest.fn()
         jest.spyOn(React, 'useState').mockImplementation((initialValue) => [initialValue, setNockTheme]);

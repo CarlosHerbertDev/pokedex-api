@@ -30,9 +30,9 @@ describe("Testes das chamadas de API", () => {
         id: 25
       }
 
-      mock.onGet('https://pokeapi.co/api/v2/pokemon/25/').reply(200, mockDetails)
+      mock.onGet('https://pokeapi.co/api/v2/pokemon/pikachu/').reply(200, mockDetails)
 
-      const data = await getPokemonDetatils(25)
+      const data = await getPokemonDetatils('pikachu')
 
       expect(data).toEqual(mockDetails)
 

@@ -9,7 +9,7 @@ export const ThemeProvider = (props) => {
     
 
         useEffect(() => {       
-            const savedTheme = sessionStorage.getItem("tooglerTheme");
+            const savedTheme = localStorage.getItem("tooglerTheme");
             if (savedTheme) {
                 try {
                 
@@ -23,7 +23,7 @@ export const ThemeProvider = (props) => {
     
         useEffect(() => {
             
-            sessionStorage.setItem("tooglerTheme", togglerTheme)
+            localStorage.setItem("tooglerTheme", togglerTheme)
             
         }, [togglerTheme])
 

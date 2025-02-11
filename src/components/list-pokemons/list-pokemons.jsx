@@ -76,7 +76,6 @@ const ListPokemons = () => {
         const resumedeDetails = detailsPokemons.map((item) => {
           return {
             name: item.name,
-            id: item.id,
             image: item.sprites.other.dream_world.front_default,
             type: item.types,
           };
