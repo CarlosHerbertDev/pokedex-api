@@ -7,7 +7,7 @@ O Pokédex API é um projeto que exibe uma listagem inicial de 10 Pokémons obti
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-decisões-adotadas">Decições adotadas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-instalar-e-rodar">Como Instalar e Rodar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   
 </p>
 <br>
@@ -58,63 +58,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 </p>
 
 
-## 💻 Como Instalar e Rodar
+## 💻 Projeto
 
-<p>Para instalar e rodar esse projeto em seu computador basta seguir os seguintes passos:</p>
+Acesse aqui o Pokédex API
 
-<ol style="padding: 5px;">
-<li>
-    📝 Clonando Repositório:
-   
-  Primeiro vamos fazer um clone do repositório para sua máquina local, lembrando que é necessário ter o git instalado para realizar o clone, tendo ele instalado, você deverá copiar o seguinte comando
-   ```
-  git clone https://github.com/CarlosHerbertDev/pokedex-api.git
-   ```
-  Depois de copiar esse comando, pode escolher no seu computador a pasta onde vai ficar os arquivos, depois com git bash basta colar esse comando e executar
-</li>
-<li>
-   🛠 Entrando na Pasta e instalando depências: 
-   
-   Agora que já clonamos, vamos entrar na pasta e instalar as dependências, para entrar na pasta, adicione o seguinte comando
-   ```
-   cd pokedex-api
-   ```
-   Para instalar as dependências verifique se o Node js esá instalado em sua máquina, caso não esteja, instale e vollte para os próximos passos
-  , tendo o node instalado rode o seguinte comando 
-  ```
-  npm install
-  ```
-Ou, se estiver usando yarn ou pnpm:
-
-```
-yarn install
-# ou
-pnpm install
-```
-</li>
-<li>
-💻 Rodar o Servidor de Desenvolvimento
-
-Para rodar o projeto agora, basta usar o seguinte comando
-```
-npm run dev
-```
-Ou, se estiver usando yarn ou pnpm
-```
-yarn dev
-# ou
-pnpm dev
-```
-
-Depois de usar esse comando sera impresso no terminal um link, então basta acessar ele e ver o projeto funcionando!
-
-O link será semelhante a esse:
-```
-Local: http://localhost:5173/
-```
-</li>
-</ol>
-
-<p>
-  Pronto, seguindo esses passos conseguirá ver o projeto em funcionamento! Uma boa experiência! :)
-</p>
+- [Acesse o projeto finalizado, online](https://pokedex-api-git-main-carlosherbertdevs-projects.vercel.app/)
