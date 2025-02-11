@@ -11,7 +11,7 @@ return (
     {filteredPokemons.map((pokemon, index) => (
         
         <LiPokemons key={index} theme={togglerTheme}>
-            <Link to={`/details/${pokemon.id}`}>
+            <Link to={`/${pokemon.id}`}>
                 {pokemon.image ? (
                     <ImagePokemon src={pokemon.image} alt={pokemon.name} />
                 ) : (
