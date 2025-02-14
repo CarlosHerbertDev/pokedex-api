@@ -40,7 +40,7 @@ import {
 import { BodyPokemons, DisplayFlex, SectionPokemons } from "../../style/reusablestyles";
 import { ThemeContext } from "../../contexts/theme-context";
 
-const ListDetailsPokemons = () => {
+export const ListDetailsPokemons = () => {
   const { name } = useParams();
   const [details, setPokeDetails] = useState({});
   const [abilities, setAbilities] = useState({});
@@ -208,4 +208,4 @@ const ListDetailsPokemons = () => {
     </BodyPokemons>
   );
 };
-export { ListDetailsPokemons };
+

@@ -4,7 +4,7 @@ import { RenderDetailsPokemons } from "./renderDetailsPokemons"
 
 HashRouter
 
-const AppRoutes = () => (
+export const AppRoutes = () => (
     <BrowserRouter>
         <Routes>
             <Route exact path='/' element={ <RenderListPokemons /> } />
@@ -12,5 +12,3 @@ const AppRoutes = () => (
         </Routes>
     </BrowserRouter>
 )
-
-export { AppRoutes }

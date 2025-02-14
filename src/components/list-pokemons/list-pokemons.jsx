@@ -10,7 +10,7 @@ import { ThemeContext } from "../../contexts/theme-context";
 import { DescriptionProject } from "./description-project";
 import { FilterPokemons } from "./filter-pokemons";
 
-const ListPokemons = () => {
+export const ListPokemons = () => {
   const [pokedex, setPokedex] = useState({ pokemons: [] });
   const [newList, setNewList] = useState(0);
   const [numberOfPokemons, setNumberOfPokemon] = useState(0);
@@ -194,5 +194,3 @@ const ListPokemons = () => {
     </BodyPokemons>
   );
 };
-
-export { ListPokemons };
