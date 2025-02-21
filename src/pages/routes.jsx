@@ -1,8 +1,6 @@
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { RenderListPokemons } from "./renderListPokemons"
 import { RenderDetailsPokemons } from "./renderDetailsPokemons"
-
-HashRouter
 
 export const AppRoutes = () => (
     <BrowserRouter>
